@@ -16,6 +16,7 @@ import { Location } from '../location.model';
 export class LocationFormComponent implements OnInit {
   myForm: FormGroup;
   name: AbstractControl;
+  isHidden: boolean;
 
   constructor(fb: FormBuilder) {
     this.myForm =fb.group({
