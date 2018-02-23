@@ -1,0 +1,9 @@
+<div class="ui items">
+  <location-row
+    *ngFor="let location of locationList"
+    [location]="location"
+    (click)='clicked(location)'
+    [class.selected]="isSelected(location)">
+  </location-row>
+ 
+</div>

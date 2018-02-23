@@ -1,0 +1,32 @@
+<div class="ui raised segment">
+  <div [ngClass]="{ hidden: isHidden }">
+    <h2 class="ui header">Add your entry here</h2>
+    <form [formGroup]="myForm"
+      (ngSubmit)="onSubmit(myForm.value)"
+      class="ui form"
+      [class.error]="!myForm.valid && myForm.touched">
+      <button type="button" (click)="toggleForm()" class="ui right floated button">-</button>
+      <div class="field"
+        [class.error]="!name.valid && name.touched">
+        <label for="nameInput">Name</label>
+        <input  type="text"
+                id ="nameInput"
+                placeholder="Name of entry"
+                [formControl]="name">
+        <div *ngIf="!name.valid"
+          class="ui error message">Name is Required
+        </div>
+        <div *ngIf="!myForm.valid"
+          class="ui error message">Form not valid</div>
+      </div>
+  
+      <button type="submit" *ngIf="myForm.valid" class="ui button">Submit</button>
+      
+    </form>
+
+  </div>
+  <div class="add-bar" [ngClass]="{ hidden: !isHidden }">
+    Click here to add your favourite places
+    <button (click)="toggleForm()" class="ui right floated button">+</button>
+  </div>
+</div>
