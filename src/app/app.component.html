@@ -1,5 +1,6 @@
 <div class="marmalade-app">
-  <location-form></location-form>
+ <location-form
+  [locationList]="locations"></location-form>
   <locations-list
     [locationList]="locations"
     (onLocationSelected)="locationWasSelected($event)">

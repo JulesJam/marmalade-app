@@ -2,19 +2,31 @@
   <div [ngClass]="{ hidden: isHidden }">
     <h2 class="ui header">Add your entry here</h2>
     <form [formGroup]="myForm"
-      (ngSubmit)="onSubmit(myForm.value)"
+      (ngSubmit)="onSubmit(myForm.value, locationList)"
       class="ui form"
       [class.error]="!myForm.valid && myForm.touched">
       <button type="button" (click)="toggleForm()" class="ui right floated button">-</button>
       <div class="field"
-        [class.error]="!name.valid && name.touched">
+        [class.error]="!myForm.controls['name'].valid && myForm.controls['name'].touched">
         <label for="nameInput">Name</label>
         <input  type="text"
                 id ="nameInput"
                 placeholder="Name of entry"
-                [formControl]="name">
-        <div *ngIf="!name.valid"
+                [formControl]="myForm.controls['name']">
+        <div *ngIf="!myForm.controls['name'].valid"
           class="ui error message">Name is Required
+        </div>
+        
+      </div>
+      <div class="field"
+        [class.error]="!myForm.controls['town'].valid && myForm.controls['town'].touched">
+        <label for="townInput">Town</label>
+        <input  type="text"
+                id ="townInput"
+                placeholder="Town"
+                [formControl]="myForm.controls['town']">
+        <div *ngIf="!myForm.controls['town'].valid"
+          class="ui error message">Town is Required
         </div>
         <div *ngIf="!myForm.valid"
           class="ui error message">Form not valid</div>
