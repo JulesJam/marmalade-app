@@ -18,6 +18,7 @@
         </div>
         
       </div>
+
       <div class="field"
         [class.error]="!myForm.controls['town'].valid && myForm.controls['town'].touched">
         <label for="townInput">Town</label>
@@ -27,6 +28,42 @@
                 [formControl]="myForm.controls['town']">
         <div *ngIf="!myForm.controls['town'].valid"
           class="ui error message">Town is Required
+        </div>
+      </div>
+
+      <div class="field"
+        [class.error]="!myForm.controls['description'].valid && myForm.controls['description'].touched">
+        <label for="descriptionInput">Description</label>
+        <input  type="text"
+                id ="descriptionInput"
+                placeholder="Description"
+                [formControl]="myForm.controls['description']">
+        <div *ngIf="!myForm.controls['description'].valid"
+          class="ui error message">Description is Required
+        </div>
+      </div>
+
+      <div class="field"
+        [class.error]="!myForm.controls['postCode'].valid && myForm.controls['postCode'].touched">
+        <label for="postCodeInput">PostCode</label>
+        <input  type="text"
+                id ="postCodeInput"
+                placeholder="PostCode"
+                [formControl]="myForm.controls['postCode']">
+        <div *ngIf="!myForm.controls['postCode'].valid"
+          class="ui error message">PostCode is Required
+        </div>
+      </div>
+
+      <div class="field"
+        [class.error]="!myForm.controls['entryType'].valid && myForm.controls['entryType'].touched">
+        <label for="entryTypeInput">Type of venue</label>
+        <input  type="text"
+                id ="entryTypeInput"
+                placeholder="Restaurant, Hotel, Coffe Shop"
+                [formControl]="myForm.controls['entryType']">
+        <div *ngIf="!myForm.controls['entryType'].valid"
+          class="ui error message">Type of location is Required
         </div>
         <div *ngIf="!myForm.valid"
           class="ui error message">Form not valid</div>
