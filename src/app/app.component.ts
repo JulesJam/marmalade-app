@@ -25,24 +25,7 @@ export class AppComponent {
   
   
   constructor(private http: Http){
-     /* this.locations = [
-       {
-      "locationName" : "Bandol",
-      "locationMainImage": "/assets/images/locations/bandol.jpg",
-      "locationType": "Restaurant",
-      "locationTown": "Berlin"
-      }, {
-      "locationName": "The Queensbury",
-      "locationMainImage": "/assets/images/locations/queensbury.jpg",
-      "locationType": "Hotel",
-      "locationTown": "Bath"
-      },{
-      "locationName": "The Clove Club",
-      "locationMainImage": "/assets/images/locations/cloveclub.jpg",
-      "locationType": "Restaurant",
-      "locationTown": "London",
-      }];*/
-
+   
       this.makeLocationListRequest(http);
       console.log(this.locations);
      

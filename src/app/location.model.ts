@@ -6,6 +6,7 @@ export class Location {
   entryType: string;
   locationTown: string;
   votes: number;
+  postCode: string;
 
   constructor(obj?: any){
     this.locationName         = obj && obj.locatinName            ||null;
@@ -13,6 +14,7 @@ export class Location {
     this.description          = obj && obj.description  ||null
     this.entryType            = obj && obj.entryType    ||null;
     this.locationTown         = obj && obj.locatioTown         ||null;
+    this.postCode             =obj && obj.postCode  ||null;
     this.votes                = obj && obj.votes        ||null;
 
   }

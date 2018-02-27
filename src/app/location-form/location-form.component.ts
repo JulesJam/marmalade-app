@@ -6,6 +6,13 @@ import {
     AbstractControl
 } from '@angular/forms';
 
+import {
+ Http,
+ Response,
+ RequestOptions,
+ Headers
+} from '@angular/http';
+
 import { Location } from '../location.model';
 
 
@@ -23,11 +30,13 @@ export class LocationFormComponent implements OnInit {
   imageUrl: any;
   entryType: any;
   isHidden: boolean;
+  data: object;
+  loading: boolean;
 
   @Input() locationList: Location[];
 
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private http: Http) {
     this.myForm =fb.group({
       'name': ['', Validators.required],
       'town': ['', Validators.required],
@@ -75,16 +84,35 @@ export class LocationFormComponent implements OnInit {
   }
 
   onSubmit(location: any, locationList): void{
-    locationList.push({
-    "locationName":location.name,
+    /*locationList.push*/
+    console.log("location is ", location)
+    let newLocation = {
+    "locationName": location.name,
     "locationMainImage": "/assets/images/locations/missing.png",
     "locationTown": location.town,
     "entryType": location.entryType,
     "description": location.description,
     "postCode": location.postCode
-    });
+    };
+    const headers: Headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const opts: RequestOptions = new RequestOptions();
+    opts.headers = headers;
+    opts.body = (newLocation);
+    this.loading = true;
+    
+    JSON.stringify(opts);
+    console.log ("Stringy opts", opts);
+
+    this.http.post('http://localhost:3000/api/locations', opts)
+      .subscribe((res: Response) => {
+        this.data = res.json();
+      });
+
+
     this.myForm.reset();
-    console.log("location name ",location.name)
+   
     console.log("location form submitted", location, locationList);
       }
 
