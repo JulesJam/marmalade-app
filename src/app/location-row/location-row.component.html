@@ -1,8 +1,10 @@
 <location-image [location]="location"></location-image>
-<div class="header">{{ location.name }}</div>
+<div class="header">{{ location.locationName}}</div>
 <div class="content">
   <br>
-  <div> {{ location.town }}</div>
+  <div> {{ location.locationTown }}</div>
+  <br>
+  <div>{{ location.description}}</div>
 </div>
 <div class="value">
   {{ location.votes }}<br> Votes

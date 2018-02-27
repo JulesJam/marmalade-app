@@ -32,7 +32,7 @@ export class LocationsListComponent  {
     if(!location || !this.currentLocation){
       return false;
     }
-    return location.name === this.currentLocation.name
+    return location.locationName === this.currentLocation.locationName
   }
 
 

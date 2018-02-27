@@ -4,6 +4,7 @@ import {
   FormsModule,
   ReactiveFormsModule
 } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
@@ -24,7 +25,8 @@ import { LocationFormComponent } from './location-form/location-form.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

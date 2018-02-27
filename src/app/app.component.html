@@ -1,8 +1,14 @@
 <div class="marmalade-app">
- <location-form
-  [locationList]="locations"></location-form>
-  <locations-list
-    [locationList]="locations"
-    (onLocationSelected)="locationWasSelected($event)">
-  </locations-list>
+  <div *ngIf="loading">
+    <div class="loading">Oops things are a bit slow here just trying to load all your lovely data</div>
+    <div class="ui active centered inline loader"></div>
+  </div>
+    <div *ngIf="!loading">
+      <location-form
+       [locationList]="locations"></location-form>
+       <locations-list
+         [locationList]="locations"
+         (onLocationSelected)="locationWasSelected($event)">
+       </locations-list>
+    </div>
 </div>

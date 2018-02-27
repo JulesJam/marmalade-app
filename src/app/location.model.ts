@@ -1,11 +1,17 @@
 export class Location {
 
-  constructor(
-    public name: string,
-    public imageUrl: string,
-    public venueType: string,
-    public town: string,
-    public votes: number
-    ){
+  locationName: string;
+  locationMainImage: string;
+  entryType: string;
+  locationTown: string;
+  votes: number;
+
+  constructor(obj?: any){
+    this.locationName         = obj && obj.id           ||null;
+    this.locationMainImage     = obj && obj.imageUrl     ||null;
+    this.entryType    = obj && obj.venueType    ||null;
+    this.locationTown         = obj && obj.town         ||null;
+    this.votes        = obj && obj.vote         ||null;
+
   }
 }

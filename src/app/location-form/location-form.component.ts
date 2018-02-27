@@ -63,7 +63,11 @@ export class LocationFormComponent implements OnInit {
   }
 
   onSubmit(location: any, locationList): void{
-    locationList.push(new Location(location.name,'/assets/images/locations/missing.png','',location.town, 5));
+    locationList.push({
+    "locationName":location.name,
+    "locationMainImage": "/assets/images/locations/missing.png",
+    "locationTown": location.town,
+    "entryType": location.entryType});
     this.myForm.reset();
     console.log("location name ",location.name)
     console.log("location form submitted", location, locationList);

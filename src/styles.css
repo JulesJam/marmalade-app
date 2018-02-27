@@ -73,3 +73,13 @@ cf {
 .hidden {
   display: none;
 }
+
+.loading {
+  margin: 10px, auto;
+  padding: 5px;
+  display: block;
+  min-height: 30px;
+  background-color: rgba(203, 203, 203, 1.0);
+  text-align: center;
+
+}

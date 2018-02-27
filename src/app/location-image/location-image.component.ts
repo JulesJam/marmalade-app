@@ -7,7 +7,7 @@ import {Component,
 
 @Component({
   selector: 'location-image',
-  template: `<img class="location-image" [src]="location.imageUrl">`,
+  template: `<img class="location-image" [src]="location.locationMainImage">`,
   styleUrls: ['./location-image.component.css']
 })
 export class LocationImageComponent implements OnInit {
