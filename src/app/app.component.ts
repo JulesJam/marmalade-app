@@ -10,7 +10,7 @@ import {
   Response
  } from '@angular/http';
 
-import { Location } from './location.model';
+import { Location } from './location';
 
 @Component({
   selector: 'marmalade-app-root',
@@ -27,9 +27,6 @@ export class AppComponent {
   constructor(private http: Http){
    
       this.makeLocationListRequest(http);
-      console.log(this.locations);
-     
-
   }
   
   locationWasSelected(location: Location): void {

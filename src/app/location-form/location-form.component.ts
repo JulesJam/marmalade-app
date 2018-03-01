@@ -1,4 +1,11 @@
-import {Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Injectable 
+} from '@angular/core';
+
+
 import {
     FormBuilder,
     FormGroup,
@@ -13,14 +20,20 @@ import {
  Headers
 } from '@angular/http';
 
-import { Location } from '../location.model';
+import { Observable } from 'rxjs/Observable';
 
+import { ApiService } from '../api.service';
+
+import { Location } from '../location';
+
+@Injectable()
 
 @Component({
   selector: 'location-form',
   templateUrl: './location-form.component.html',
   styleUrls: ['./location-form.component.css']
 })
+
 export class LocationFormComponent implements OnInit {
   myForm: FormGroup;
   name: any;
@@ -30,8 +43,10 @@ export class LocationFormComponent implements OnInit {
   imageUrl: any;
   entryType: any;
   isHidden: boolean;
-  data: object;
+  data: any;
   loading: boolean;
+
+  updatedLocation: Location = new Location();
 
   @Input() locationList: Location[];
 
@@ -108,6 +123,11 @@ export class LocationFormComponent implements OnInit {
     this.http.post('http://localhost:3000/api/locations', opts)
       .subscribe((res: Response) => {
         this.data = res.json();
+        this.updatedLocation = this.data.location;
+        this.locationList.push(this.updatedLocation);
+
+        console.log("returned location", this.data,"updatedata",this.updatedLocation, this.locationList)
+      
       });
 
 

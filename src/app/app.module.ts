@@ -12,6 +12,8 @@ import { LocationsListComponent } from './locations-list/locations-list.componen
 import { LocationRowComponent } from './location-row/location-row.component';
 import { LocationImageComponent } from './location-image/location-image.component';
 import { LocationFormComponent } from './location-form/location-form.component';
+import { ApiService } from './api.service';
+
 
 
 @NgModule({
@@ -28,7 +30,7 @@ import { LocationFormComponent } from './location-form/location-form.component';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

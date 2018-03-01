@@ -5,7 +5,7 @@ import {
   Output
   } from '@angular/core';
 
-import { Location } from '../location.model';
+import { Location } from '../location';
 
 @Component({
   selector: 'locations-list',

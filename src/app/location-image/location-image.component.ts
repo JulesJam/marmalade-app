@@ -3,7 +3,7 @@ import {Component,
  Input,
  HostBinding } from '@angular/core';
 
- import { Location } from '../location.model';
+ import { Location } from '../location';
 
 @Component({
   selector: 'location-image',

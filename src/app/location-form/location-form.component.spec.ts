@@ -1,5 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {
+    FormBuilder,
+    FormGroup,
+    Validators,
+    AbstractControl
+} from '@angular/forms';
 import { LocationFormComponent } from './location-form.component';
 
 describe('LocationFormComponent', () => {
@@ -8,6 +13,12 @@ describe('LocationFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+    imports: [
+      FormBuilder,
+      FormGroup,
+      Validators,
+      AbstractControl
+    ]
       declarations: [ LocationFormComponent ]
     })
     .compileComponents();
