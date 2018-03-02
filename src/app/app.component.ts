@@ -19,6 +19,8 @@ import { LocationDataService } from './location-data.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent {
 
   locations: Location[];

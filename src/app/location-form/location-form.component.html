@@ -7,26 +7,26 @@
       [class.error]="!myForm.valid && myForm.touched">
       <button type="button" (click)="toggleForm()" class="ui right floated button">-</button>
       <div class="field"
-        [class.error]="!myForm.controls['name'].valid && myForm.controls['name'].touched">
-        <label for="nameInput">Name</label>
+        [class.error]="!myForm.controls['locationName'].valid && myForm.controls['locationName'].touched">
+        <label for="locationNameInput">Name</label>
         <input  type="text"
-                id ="nameInput"
+                id ="locationNameInput"
                 placeholder="Name of entry"
-                [formControl]="myForm.controls['name']">
-        <div *ngIf="!myForm.controls['name'].valid"
+                [formControl]="myForm.controls['locationName']">
+        <div *ngIf="!myForm.controls['locationName'].valid"
           class="ui error message">Name is Required
         </div>
         
       </div>
 
       <div class="field"
-        [class.error]="!myForm.controls['town'].valid && myForm.controls['town'].touched">
-        <label for="townInput">Town</label>
+        [class.error]="!myForm.controls['locationTown'].valid && myForm.controls['locationTown'].touched">
+        <label for="locationTownInput">Town</label>
         <input  type="text"
-                id ="townInput"
+                id ="locationTownInput"
                 placeholder="Town"
-                [formControl]="myForm.controls['town']">
-        <div *ngIf="!myForm.controls['town'].valid"
+                [formControl]="myForm.controls['locationTown']">
+        <div *ngIf="!myForm.controls['locationTown'].valid"
           class="ui error message">Town is Required
         </div>
       </div>
@@ -44,13 +44,13 @@
       </div>
 
       <div class="field"
-        [class.error]="!myForm.controls['postCode'].valid && myForm.controls['postCode'].touched">
-        <label for="postCodeInput">PostCode</label>
+        [class.error]="!myForm.controls['locationPostcode'].valid && myForm.controls['locationPostcode'].touched">
+        <label for="locationPostcodeInput">PostCode</label>
         <input  type="text"
-                id ="postCodeInput"
+                id ="locationPostcodeInput"
                 placeholder="PostCode"
-                [formControl]="myForm.controls['postCode']">
-        <div *ngIf="!myForm.controls['postCode'].valid"
+                [formControl]="myForm.controls['locationPostcode']">
+        <div *ngIf="!myForm.controls['locationPostcode'].valid"
           class="ui error message">PostCode is Required
         </div>
       </div>

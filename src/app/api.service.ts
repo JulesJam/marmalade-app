@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import {
   Http,
-  Response      
+  Response,
+  RequestOptions,
+  Headers      
   } from '@angular/http';
+
 import { Location } from './location';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -39,10 +42,20 @@ export class ApiService {
   //API Post /locations
 
   public createLocation(location: Location): Observable<Location> {
+    const headers: Headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const opts: RequestOptions = new RequestOptions();
+    opts.headers = headers;
+    opts.body = (location);
+   
+    
+    JSON.stringify(opts);
+    console.log ("Stringy opts", opts);
     return this.http
-      .post(API_URL + '/locations', location)
+      .post(API_URL + '/locations', opts)
       .map(response => {
-      return new Location (response.json());
+      return new Location (response.json().location);
       })
       .catch(this.handleError);
   }
@@ -62,7 +75,7 @@ export class ApiService {
 
   public updateLocation(location: Location): Observable<Location> {
   return this.http
-    .put(API_URL + 'locations/' + location.id, location)
+    .put(API_URL + 'locations/' + location._id, location)
     .map(response => {
       return new Location(response.json());
     })

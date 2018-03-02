@@ -22,7 +22,8 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import { ApiService } from '../api.service';
+import { LocationDataService } from '../location-data.service';
+
 
 import { Location } from '../location';
 
@@ -36,45 +37,45 @@ import { Location } from '../location';
 
 export class LocationFormComponent implements OnInit {
   myForm: FormGroup;
-  name: any;
-  town: any;
+  locationName: any;
+  locationTown: any;
   description: any;
-  postCode: any;
-  imageUrl: any;
+  locationPostcode: any;
+  locationMainImage: any;
   entryType: any;
   isHidden: boolean;
   data: any;
   loading: boolean;
 
-  updatedLocation: Location = new Location();
+  newLocation: Location = new Location();
 
   @Input() locationList: Location[];
 
 
-  constructor(fb: FormBuilder, private http: Http) {
+  constructor(fb: FormBuilder, private locationDataService: LocationDataService) {
     this.myForm =fb.group({
-      'name': ['', Validators.required],
-      'town': ['', Validators.required],
+      'locationName': ['', Validators.required],
+      'locationTown': ['', Validators.required],
       'description': ['', Validators.required],
-      'postCode': ['',Validators.required],
+      'locationPostcode': ['',Validators.required],
       'entryType': ['',Validators.required],
-      'imageUrl': ['']
+      'locationMainImage': ['']
       });
 
-    this.name = this.myForm.controls['name'];
-    this.town = this.myForm.controls['town'];
+    this.locationName = this.myForm.controls['locationName'];
+    this.locationTown = this.myForm.controls['locationTown'];
     this.description = this.myForm.controls['description'];
-    this.postCode = this.myForm.controls['postCode'];
+    this.locationPostcode = this.myForm.controls['locationPostcode'];
     this.entryType = this.myForm.controls['entryType'];
-    this.imageUrl = this.myForm.controls['imageUrl'];
+    this.locationMainImage = this.myForm.controls['locationMainImage'];
 
-    this.name.valueChanges.subscribe (
+    this.locationName.valueChanges.subscribe (
       (value: string) => {
         console.log('Name changed to ', value);
       }
     );
 
-    this.town.valueChanges.subscribe (
+    this.locationTown.valueChanges.subscribe (
       (value: string) => {
         console.log('Town changed to ', value);
       }
@@ -99,41 +100,39 @@ export class LocationFormComponent implements OnInit {
   }
 
   onSubmit(location: any, locationList): void{
-    /*locationList.push*/
     console.log("location is ", location)
-    let newLocation = {
-    "locationName": location.name,
-    "locationMainImage": "/assets/images/locations/missing.png",
-    "locationTown": location.town,
-    "entryType": location.entryType,
-    "description": location.description,
-    "postCode": location.postCode
-    };
-    const headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    const opts: RequestOptions = new RequestOptions();
-    opts.headers = headers;
-    opts.body = (newLocation);
-    this.loading = true;
+    /*let newLocation = {
+    "locationName": location.locationName as string,
+    "locationMainImage": "/assets/images/locations/missing.png" as string,
+    "locationTown": location.locationTown as string,
+    "entryType": location.entryType as string,
+    "description": location.description as string,
+    "locationPostcode": location.locationPostcode as string
+    };*/
     
-    JSON.stringify(opts);
-    console.log ("Stringy opts", opts);
 
-    this.http.post('http://localhost:3000/api/locations', opts)
+    this.locationDataService  
+      .addLocation(location)
+      .subscribe(
+        (newLocation) => {
+        this.locationList.push(newLocation)
+      }
+      )
+
+    /*this.http.post('http://localhost:3000/api/locations', opts)
       .subscribe((res: Response) => {
         this.data = res.json();
         this.updatedLocation = this.data.location;
         this.locationList.push(this.updatedLocation);
 
-        console.log("returned location", this.data,"updatedata",this.updatedLocation, this.locationList)
+        console.log("returned location", this.data,"updatedata",this.updatedLocation, this.locationList)*/
       
-      });
+    /*  });*/
 
 
     this.myForm.reset();
    
     console.log("location form submitted", location, locationList);
-      }
+    }
 
 }

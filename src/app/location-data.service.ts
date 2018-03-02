@@ -14,22 +14,19 @@ export class LocationDataService {
     
    }
 
-  addLocation(location: Location): LocationDataService {
-    if(!location.id) {
-      location.id = ++this.lastId;
-    }
-    this.locationList.push(location);
-    return this;
+  addLocation(location: Location):  Observable<Location> {
+    console.log("new location returned", location);
+    return this.api.createLocation(location);
 
   }
 
-  deleteLocationById(id: number): LocationDataService {
+  deleteLocationById(id: string): LocationDataService {
     this.locationList = this.locationList
-      .filter(location => location.id !== id);
+      .filter(location => location._id !== id);
     return this;
   }
 
-  updateLocationById(id: number, values: Object = {}): Location{
+  updateLocationById(id: string, values: Object = {}): Location{
     let location = this.getLocationById(id);
     if (!location) {
     return null;
@@ -42,9 +39,9 @@ export class LocationDataService {
     return this.api.getAllLocations();
   }
 
-  getLocationById(id: number): Location{
+  getLocationById(id: string): Location{
     return this.locationList
-    .filter(location => location.id === id)
+    .filter(location => location._id === id)
     .pop();
   }
 

@@ -1,12 +1,12 @@
 export class Location {
-  id: number;
+  _id: string;
   locationName: string;
   locationMainImage: string;
   description: string;
   entryType: string;
   locationTown: string;
   votes: number;
-  postCode: string;
+  locationPostcode: string;
 
 
 
