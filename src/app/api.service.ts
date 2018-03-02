@@ -26,12 +26,15 @@ export class ApiService {
   return this.http
     .get(API_URL + '/locations')
     .map(response => {
+      console.log("response json", response.json());
       const locations = response.json();
-      return locations.map((location) => new Location(location));
+      return locations.locations.map((location) => new Location(location));
     })
     .catch(this.handleError);
 
   }
+
+  
 
   //API Post /locations
 

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Location } from './location';
+import { ApiService } from './api.service';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LocationDataService {
@@ -8,7 +10,8 @@ export class LocationDataService {
 
   locationList: Location[] = [];
 
-  constructor() {
+  constructor(private api: ApiService) {
+    
    }
 
   addLocation(location: Location): LocationDataService {
@@ -35,8 +38,8 @@ export class LocationDataService {
     return location;
   }
 
-  getAllLocations(): Location[]{
-  return this.locationList;
+  getAllLocations(): Observable<Location[]>{
+    return this.api.getAllLocations();
   }
 
   getLocationById(id: number): Location{
