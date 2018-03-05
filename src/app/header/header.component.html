@@ -1,0 +1,27 @@
+<div class="ui menu">
+  <div class="ui container">
+    <a href="http://www.julesjam.com" class="header item">
+      <img class="logo" src="/assets/images/jamicon.png">
+      By JulesJam
+    </a>
+    <div class="header item borderless centred">
+      <h1>Midnight Marmalade</h1>
+    </div>
+    <div type= "button" (click)="toggleMenu()" class = "header item">
+      <div  class ="navIcon" [ngClass]="{ navIconOpen: menuOpen}" >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div id="main-nav"  [ngClass] = "{ hidden: !menuOpen}">
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+        <li>Log Out</li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -100,34 +100,18 @@ export class LocationFormComponent implements OnInit {
   }
 
   onSubmit(location: any, locationList): void{
-    console.log("location is ", location)
-    /*let newLocation = {
-    "locationName": location.locationName as string,
-    "locationMainImage": "/assets/images/locations/missing.png" as string,
-    "locationTown": location.locationTown as string,
-    "entryType": location.entryType as string,
-    "description": location.description as string,
-    "locationPostcode": location.locationPostcode as string
-    };*/
+    console.log("location being posted is ", location)
+    if (!location.locationMainImage){location.locationMainImage = "/assets/images/locations/missing.png"}
     
-
     this.locationDataService  
       .addLocation(location)
       .subscribe(
         (newLocation) => {
         this.locationList.push(newLocation)
       }
-      )
+      );
 
-    /*this.http.post('http://localhost:3000/api/locations', opts)
-      .subscribe((res: Response) => {
-        this.data = res.json();
-        this.updatedLocation = this.data.location;
-        this.locationList.push(this.updatedLocation);
-
-        console.log("returned location", this.data,"updatedata",this.updatedLocation, this.locationList)*/
-      
-    /*  });*/
+  
 
 
     this.myForm.reset();

@@ -3,12 +3,6 @@ import {
   EventEmitter       
  } from '@angular/core';
 
- import 'rxjs/Rx';
-
- import {
-  Http,
-  Response
- } from '@angular/http';
 
 import { Location } from './location';
 

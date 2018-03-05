@@ -14,6 +14,7 @@ import { LocationImageComponent } from './location-image/location-image.componen
 import { LocationFormComponent } from './location-form/location-form.component';
 import { ApiService } from './api.service';
 import { LocationDataService } from './location-data.service';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -23,7 +24,8 @@ import { LocationDataService } from './location-data.service';
     LocationsListComponent,
     LocationRowComponent,
     LocationImageComponent,
-    LocationFormComponent
+    LocationFormComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
