@@ -6,6 +6,11 @@ import {
 } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import {
+  RouterModule,
+  Routes
+} from '@angular/router';
+
 
 import { AppComponent } from './app.component';
 import { LocationsListComponent } from './locations-list/locations-list.component';
@@ -15,8 +20,35 @@ import { LocationFormComponent } from './location-form/location-form.component';
 import { ApiService } from './api.service';
 import { LocationDataService } from './location-data.service';
 import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
+import { LocationsComponent } from './locations/locations.component';
 
+const routes: Routes = [
+  // basic routes
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'contactus', redirectTo: 'contact' },
+  
 
+ /* // authentication demo
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'protected',
+    component: ProtectedComponent,
+    canActivate: [ LoggedInGuard ]
+  },
+
+  // nested
+  {
+    path: 'products',
+    component: ProductsComponent,
+    children: childRoutes
+  }*/
+];
 
 @NgModule({
   declarations: [
@@ -25,15 +57,21 @@ import { HeaderComponent } from './header/header.component';
     LocationRowComponent,
     LocationImageComponent,
     LocationFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent,
+    ContactComponent,
+    AboutComponent,
+    LocationsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
+    /*{ provide: LocationStrategy, useClass: HashLocationStrategy},*/
     ApiService,
     LocationDataService
   ],

@@ -1,12 +1,13 @@
 import {
-  Component,
-  EventEmitter       
+  Component      
  } from '@angular/core';
 
+ import {
+   Router
+ } from '@angular/router';
 
-import { Location } from './location';
 
-import { LocationDataService } from './location-data.service';
+
 
 @Component({
   selector: 'marmalade-app-root',
@@ -17,31 +18,15 @@ import { LocationDataService } from './location-data.service';
 
 export class AppComponent {
 
-  locations: Location[];
-  loading: boolean;
-    data: Object;
   
   
-  constructor(private locationDataService: LocationDataService){
-    this.loading = true;
+  constructor(private router: Router ){
+   
       
   }
   
-  locationWasSelected(location: Location): void {
-    console.log('Location Selected: ', location);
-  }
 
-
-
- public ngOnInit() {
-  this.locationDataService
-    .getAllLocations()
-    .subscribe(
-      (locations) => {
-      this.locations = locations
-      this.loading = false;
-      }
-    );
+ngOnInit() {
 
  }
   
