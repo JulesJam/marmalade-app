@@ -14,6 +14,14 @@ export class LocationRowComponent{
   
   @Input() location: Location
   @HostBinding('attr.class') cssClass = 'item';
- 
+ voteUp(): boolean {
+   this.location.voteUp();
+   return false;
+ }
+
+ voteDown(): boolean {
+   this.location.voteDown();
+   return false;
+ }
 
 }

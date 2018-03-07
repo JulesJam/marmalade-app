@@ -26,6 +26,8 @@ export class LocationsComponent  {
     console.log('Location Selected: ', location);
   }
 
+
+
   public ngOnInit() {
     this.locationDataService
       .getAllLocations()

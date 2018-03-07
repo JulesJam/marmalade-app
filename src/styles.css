@@ -49,6 +49,15 @@ cf {
   margin: 1em 0 !important;
 }
 
+.votes{
+  display:block;
+  width:50px;
+  font-size: .7em;
+  font-style: 'arial';
+  font-weight: bold;
+  float: right;
+}
+
 .hidden {
   display: none;
 }
@@ -69,7 +78,7 @@ cf {
 .navIcon {
   width: 60px;
   height: 45px;
-  margin: 50px auto;
+  margin: 30px auto;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -143,6 +152,60 @@ cf {
   top: 18px;
   width: 0%;
   left: 50%;
+}
+
+.navLinks {
+  display: block;
+  margin: 0.3em auto;
+  color: #d3531a;
+  font-size: 1.2em;
+}
+
+.ui.cards{
+  margin: -.875em 27%;
+}
+
+.main-title{
+  font-size: 3em;
+  color: #d3531a;
+  margin:  auto !important;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-right:30%;
+  padding-left:24%;
+}
+
+@media only screen 
+  and (min-device-width: 319px) 
+  and (max-device-width: 790px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { .main-title{
+  width: 30%;
+  font-size: 1em;
+  color: #d3531a;
+  margin:  auto !important;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-right:0;
+  padding-left: 0;
+  }
+  .navIcon {
+    width: 20px;
+    height: 15px;
+  }
+  .navIcon span {
+    display: block;
+    position: absolute;
+    height: 9px;
+    width: 20px;
+  }
+  .item.borderless{
+    max-width:30% !important;
+  }
+
+  .nav-links{
+    font-size: 1em;
+  }
 }
 
 

@@ -1,11 +1,32 @@
-<location-image [location]="location"></location-image>
-<div class="header">{{ location.locationName}}</div>
-<div class="content">
-  <br>
-  <div> {{ location.locationTown }}</div>
-  <br>
-  <div>{{ location.description}}</div>
+ <div class="ui cards"> 
+  <div class="card">
+    <div class="image">
+      <location-image [location]="location"></location-image>
+    </div>
+    
+    <div class="content">
+      <div class="header">{{ location.locationName}}</div>
+      <div class="meta">
+        <div>City: {{ location.locationTown }}</div>
+      </div>
+      <div class="description">
+        {{ location.description}}
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="votes">
+        {{ location.votes }}<br> Votes
+      </div>
+      <div>
+        Vote
+      <button type="button" (click)="voteUp()">
+        <i class="arrow up icon"></i>
+      </button>
+      <button type="button" (click)="voteDown()">
+        <i class="arrow down icon"></i>
+      </button>
+    </div>
+    </div>
+  </div>
 </div>
-<div class="value">
-  {{ location.votes }}<br> Votes
-</div>
+

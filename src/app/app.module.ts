@@ -1,4 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {
+  LocationStrategy,
+  HashLocationStrategy
+  } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { 
   FormsModule,
@@ -24,6 +28,7 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { LocationsComponent } from './locations/locations.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   // basic routes
@@ -32,6 +37,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'contactus', redirectTo: 'contact' },
+  { path: 'locations', component: LocationsComponent},
+  { path: '**', component: PageNotFoundComponent}
   
 
  /* // authentication demo
@@ -61,7 +68,8 @@ const routes: Routes = [
     HomeComponent,
     ContactComponent,
     AboutComponent,
-    LocationsComponent
+    LocationsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +79,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    /*{ provide: LocationStrategy, useClass: HashLocationStrategy},*/
+    { provide: LocationStrategy, useClass: HashLocationStrategy},
     ApiService,
     LocationDataService
   ],

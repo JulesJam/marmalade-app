@@ -13,4 +13,12 @@ export class Location {
   constructor(values: Object ={}){
     Object.assign(this, values);
   }
+
+  voteUp(): void{
+    this.votes += 1;
+  }
+
+  voteDown(): void{
+    if (this.votes != 0){this.votes -=1};
+  }
 }
