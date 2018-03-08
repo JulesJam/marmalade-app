@@ -26,13 +26,19 @@ export class LocationDataService {
     return this;
   }
 
-  updateLocationById(id: string, values: Object = {}): Location{
+ /* updateLocationById(id: string, values: Object = {}): Location{
     let location = this.getLocationById(id);
     if (!location) {
     return null;
     }
     Object.assign(location, values);
     return location;
+  }*/
+
+  updateLocation(location: Location):  Observable<Location> {
+    console.log("updated returned", location);
+    return this.api.updateLocation(location);
+
   }
 
   getAllLocations(): Observable<Location[]>{

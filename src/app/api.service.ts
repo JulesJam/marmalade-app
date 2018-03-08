@@ -63,6 +63,7 @@ export class ApiService {
   //API Get /location/:id
 
   public getLocationById(locationId: Location): Observable<Location> {
+
     return this.http
       .get(API_URL + '/locations/' +locationId)
       .map(response => {
@@ -74,8 +75,18 @@ export class ApiService {
   //API PUT /location.:id
 
   public updateLocation(location: Location): Observable<Location> {
-  return this.http
-    .put(API_URL + 'locations/' + location._id, location)
+    const headers: Headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const opts: RequestOptions = new RequestOptions();
+    opts.headers = headers;
+    opts.body = (location);
+    
+    
+    JSON.stringify(opts);
+    console.log ("Stringy opts", opts);
+    return this.http
+    .patch(API_URL + '/locations/' + location._id, location)
     .map(response => {
       return new Location(response.json());
     })
