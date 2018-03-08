@@ -1,6 +1,6 @@
 <div>
   <location-row
-    *ngFor="let location of locationList"
+    *ngFor="let location of sortedLocations()"
     [location]="location"
     (click)='clicked(location)'
     [class.selected]="isSelected(location)">

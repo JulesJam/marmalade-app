@@ -35,6 +35,10 @@ export class LocationsListComponent  {
     return location.locationName === this.currentLocation.locationName
   }
 
+  sortedLocations(): Location[] {
+    return this.locationList.sort((a: Location, b: Location) => b.votes - a.votes);
+  }
+
 
 
 
