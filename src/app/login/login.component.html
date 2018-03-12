@@ -1,0 +1,14 @@
+<div class="ui raised segment"> 
+  Sign In
+  <form class="ui form"(submit)="login()">
+    <div class="field">
+      <label for="email">Email Address</label>
+      <input type="email" class="form-control" name="email"   placeholder="Email Address" [(ngModel)]="credentials. email">
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password  " placeholder="Password" [(ngModel)]="credentials.  password">
+    </div>
+    <button type="submit" class="ui button">Sign In</button>
+  </form>
+</div>

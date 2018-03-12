@@ -9,6 +9,7 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   RouterModule,
@@ -29,6 +30,9 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { LocationsComponent } from './locations/locations.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthService } from './auth.service';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   // basic routes
@@ -69,19 +73,23 @@ const routes: Routes = [
     ContactComponent,
     AboutComponent,
     LocationsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy},
     ApiService,
-    LocationDataService
+    LocationDataService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

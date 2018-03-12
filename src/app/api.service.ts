@@ -19,15 +19,29 @@ const API_URL = environment.apiUrl;
 @Injectable()
 export class ApiService {
 
+  private token: string;
+
   constructor(
     private http: Http) {
    }
 
+  private getToken(): string {
+    if(!this.token){
+      this.token = localStorage.getItem('marmalade-token'); 
+    }
+    return this.token;
+  }
+
   //API: Get /locations
 
   public getAllLocations(): Observable<Location[]>{
+  const headers: Headers = new Headers();
+  headers.append('Authorization', 'Bearer '+`${this.getToken()}`);
+
+  const opts: RequestOptions = new RequestOptions();
+  opts.headers = headers
   return this.http
-    .get(API_URL + '/locations')
+    .get(API_URL + '/locations',opts)
     .map(response => {
       console.log("response json", response.json());
       const locations = response.json();
@@ -101,6 +115,9 @@ export class ApiService {
     .map(response => null)
     .catch(this.handleError);
   }
+
+
+ 
 
   private handleError (error: Response | any) {
   console.error('ApiService::handleError', error);
