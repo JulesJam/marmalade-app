@@ -1,8 +1,13 @@
 <div *ngIf="loading">
-  <div class="alert_bar">
-  Oops things are a bit slow here just trying to load allyour lovely data
-  </div>
-  <div class="ui active centered inline loader"></div><!-- this is the loading spinner -->
+ <div class="ui icon message">
+   <i class="notched circle loading icon"></i>
+   <div class="content">
+     <div class="header">
+       Just one second
+     </div>
+     <p>...things seem a bit slow today - we're just looking for that lovely data.</p>
+   </div>
+ </div>
 </div>
 <div *ngIf="!loading">
   <location-form
