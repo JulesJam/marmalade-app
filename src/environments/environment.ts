@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: 'https://marmaladeapi-uhvhnltwvz.now.sh/api',
-  zeitNow: 'https://marmaladeapi-uhvhnltwvz.now.sh/api',
+  production: 'https://marmaladeapi-siylfjvnka.now.sh/api',
+  zeitNow: 'https://marmaladeapi-siylfjvnka.now.sh/api',
   apiUrl: 'http://localhost:3000/api'
 };

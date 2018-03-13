@@ -31,6 +31,7 @@ import { AboutComponent } from './about/about.component';
 import { LocationsComponent } from './locations/locations.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 
@@ -41,18 +42,12 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'contactus', redirectTo: 'contact' },
-  { path: 'locations', component: LocationsComponent},
+  { path: 'locations', component: LocationsComponent, canActivate:[AuthGuardService]},
   { path: '**', component: PageNotFoundComponent}
   
 
- /* // authentication demo
-  { path: 'login', component: LoginComponent },
-  {
-    path: 'protected',
-    component: ProtectedComponent,
-    canActivate: [ LoggedInGuard ]
-  },
-
+ /* 
+  
   // nested
   {
     path: 'products',
@@ -89,7 +84,8 @@ const routes: Routes = [
     { provide: LocationStrategy, useClass: HashLocationStrategy},
     ApiService,
     LocationDataService,
-    AuthService
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

@@ -60,6 +60,7 @@ export class AuthService {
     if(token){
       payload = token.split('.')[1];
       payload = window.atob(payload);
+      console.log("Current user is ", JSON.parse(payload)._id);
       return JSON.parse(payload);
     } else {
       console.log ("No token");

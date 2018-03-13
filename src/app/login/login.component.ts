@@ -8,7 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent  {
+
+  public invalidLogin: boolean;
   
+
+
   credentials: TokenPayload = {
     email: '',
     firstName: '',
@@ -17,13 +21,16 @@ export class LoginComponent  {
     passwordConfirmation: ''
   }
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {
+    this.invalidLogin = false;
+  }
 
   login(){
     this.auth.login(this.credentials).subscribe(() =>{
       this.router.navigateByUrl('/locations');
       },(err) => {
-      console.log("log in error", err);
+      console.log("log in error", err.error.message);
+      this.invalidLogin = true;
     });
   }
 }

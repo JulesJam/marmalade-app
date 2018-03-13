@@ -1,13 +1,14 @@
 <div class="ui raised segment"> 
-  Sign In
+  <h1 *ngIf="!invalidLogin">Sign In</h1>
+  <div class="alert_bar" *ngIf="invalidLogin">Oops those details don't seem quite right, if this problem perisist please pray"</div>
   <form class="ui form"(submit)="login()">
     <div class="field">
       <label for="email">Email Address</label>
-      <input type="email" class="form-control" name="email"   placeholder="Email Address" [(ngModel)]="credentials. email">
+      <input type="email" class="form-control" name="email"   placeholder="Email Address" autocomplete="email" [(ngModel)]="credentials. email">
     </div>
     <div class="field">
       <label for="password">Password</label>
-      <input type="password" class="form-control" name="password  " placeholder="Password" [(ngModel)]="credentials.  password">
+      <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="password" [(ngModel)]="credentials.  password">
     </div>
     <button type="submit" class="ui button">Sign In</button>
   </form>

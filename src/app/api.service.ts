@@ -37,6 +37,7 @@ export class ApiService {
   public getAllLocations(): Observable<Location[]>{
   const headers: Headers = new Headers();
   headers.append('Authorization', 'Bearer '+`${this.getToken()}`);
+  this.token ="";
 
   const opts: RequestOptions = new RequestOptions();
   opts.headers = headers
