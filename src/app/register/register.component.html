@@ -1,27 +1,31 @@
-<div class="ui raised segment"> 
-  <form class="ui form"(submit)="register()">
-    <div class="field">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" name="firstName" placeholder="Enter your first name" [(ngModel)]="credentials.firstName">
-    </div>
-    <div class="field">
-      <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" name="lastame" placeholder="Enter your last name" [(ngModel)]="credentials.lastName">
-    </div>
-    <div class="field">
-      <label for="email">Email Address</label>
-      <input type="email" class="form-control" name="email" placeholder="Email Address" [(ngModel)]="credentials.email">
-    </div>
-    <div class="field">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
-    </div>
-    <div class="field">
-      <label for="passwordConfirmation">Password Confirmation</label>
-      <input type="password" class="form-control" name="passwordConfirmation" placeholder="Re-enter Password" [(ngModel)]="credentials.passwordConfirmation">
-    </div>
-    
-   
-    <button type="submit" class="ui button">Register!</button>
-  </form>
+<div class="login_register_form">  
+  <div class="ui raised segment"> 
+    <h1 *ngIf="!invalidRegister">Register here</h1>
+    <div class="alert_bar" *ngIf="invalidRegister">Oops those details don't seem quite  right, contact support and give the following error... "{{this.registerError}}</div>
+    <form class="ui form"(submit)="register()">
+      <div class="field">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" name="firstName" placeholder="Enter  your first name" [(ngModel)]="credentials.firstName">
+      </div>
+      <div class="field">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" name="lastame" placeholder="Enter   your last name" [(ngModel)]="credentials.lastName">
+      </div>
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input type="email" class="form-control" name="email" placeholder="Email  Address" [(ngModel)]="credentials.email">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" placeholder=" Password" [(ngModel)]="credentials.password">
+      </div>
+      <div class="field">
+        <label for="passwordConfirmation">Password Confirmation</label>
+        <input type="password" class="form-control" name="passwordConfirmation"   placeholder="Re-enter Password" [(ngModel)]="credentials. passwordConfirmation">
+      </div>
+      
+     
+      <button type="submit" class="ui button">Register!</button>
+    </form>
+  </div>
 </div>

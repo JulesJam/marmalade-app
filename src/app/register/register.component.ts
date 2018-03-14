@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
 })
 
 export class RegisterComponent {
+
+  public invalidRegister: boolean;
+  public registerError: string;
+
   credentials: TokenPayload ={
     email: '',
     firstName: '',
@@ -17,16 +21,26 @@ export class RegisterComponent {
     passwordConfirmation: ''
       }
 
+   
+   
 
 
-  constructor(private auth: AuthService, private router: Router) { }
+
+  constructor(private auth: AuthService, private router: Router) {
+   this.invalidRegister = false;
+   this.registerError = "";
+  }
+
+ 
 
   register(){
     this.auth.register(this.credentials).subscribe(() => {
       this.router.navigateByUrl('locations');
       }, (err) => {
-        console.log("register error",err);
-      
+        console.log("register error",err.message);
+        this.invalidRegister = true;
+        this.registerError = err.message
     });
   }
+
 }
