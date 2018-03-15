@@ -25,7 +25,8 @@
       </div>
       
      
-      <button type="submit" class="ui button">Register!</button>
+      <button *ngIf = "!processing" type="submit" class="ui button">Register!</button>
+      <div *ngIf="processing">Processing...</div>
     </form>
   </div>
 </div>

@@ -12,6 +12,7 @@ export class RegisterComponent {
 
   public invalidRegister: boolean;
   public registerError: string;
+  public  processing: boolean
 
   credentials: TokenPayload ={
     email: '',
@@ -29,17 +30,21 @@ export class RegisterComponent {
   constructor(private auth: AuthService, private router: Router) {
    this.invalidRegister = false;
    this.registerError = "";
+   this.processing = false;
   }
 
  
 
   register(){
+    this.processing = true;
     this.auth.register(this.credentials).subscribe(() => {
       this.router.navigateByUrl('locations');
+      this.processing = false;
       }, (err) => {
         console.log("register error",err.message);
         this.invalidRegister = true;
         this.registerError = err.message
+        this.processing = false;
     });
   }
 

@@ -11,7 +11,8 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password" placeholder=" Password" autocomplete="password" [(ngModel)]="credentials.  password">
       </div>
-      <button type="submit" class="ui button">Sign In</button>
+      <button *ngIf="!processing" type="submit" class="ui button">Sign In</button>
+      <div *ngIf="processing">Processing...</div>
     </form>
   </div>
 </div>

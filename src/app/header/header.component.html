@@ -7,13 +7,13 @@
 
   <h1 class="main-title">Midnight Marmalade</h1>
   <div class="right menu">
-    <div type= "button" (click)="toggleMenu()" class = "header item">
-      <div  class ="navIcon" [ngClass]="{ navIconOpen: menuOpen}" >
+    <div class = "header item">
+      <button type= "button" (click)="toggleMenu()" class ="navIcon" [ngClass]="{ navIconOpen: menuOpen}" >
         <span></span>
         <span></span>
         <span></span>
         <span></span>
-      </div>
+      </button>
     </div>
     <div id="main-nav" [ngClass] = "{hidden: !menuOpen}">
       <a class="navLinks" *ngIf="!auth.isLoggedIn()" [routerLink]="['/home']">Log In</a>

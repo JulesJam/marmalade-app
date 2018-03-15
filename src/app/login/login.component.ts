@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent  {
 
   public invalidLogin: boolean;
+  public processing: boolean
   
 
 
@@ -23,14 +24,18 @@ export class LoginComponent  {
 
   constructor(private auth: AuthService, private router: Router) {
     this.invalidLogin = false;
+    this.processing =false
   }
 
   login(){
+    this.processing = true
     this.auth.login(this.credentials).subscribe(() =>{
       this.router.navigateByUrl('/locations');
+      this.processing = false
       },(err) => {
       console.log("log in error", err.error.message);
       this.invalidLogin = true;
+      this.processing = false;
     });
   }
 }

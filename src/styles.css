@@ -53,6 +53,8 @@ cf {
   margin: 1em 0 !important;
 }
 
+
+
 .votes{
   display:block;
   width:50px;
@@ -83,6 +85,8 @@ cf {
   width: 60px;
   height: 45px;
   margin: 30px auto;
+  background: none;   
+  border-style: none;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -92,6 +96,10 @@ cf {
   -o-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
   cursor: pointer;
+}
+
+.navIcon:focus{
+  outline: 0;
 }
 
 .navIcon span {
@@ -184,16 +192,16 @@ cf {
   left: 0;
   width: 100%;
   margin: 0 !important;
-  height: 40vh;
+  height: 30vw;
   background-color: rgba(203, 203, 203, 1.0) ;
 }
 
 .login_register_form{
-  margin-top: 5vh;
+  margin-top: 5vw;
 }
 
 .login_buttons{
-  margin-top: 45vh;
+  margin-top: 35vw;
   margin-left: 20%;
 
 }
@@ -213,8 +221,8 @@ cf {
 .image_one_quarter{
   position: fixed;
   width: 25vw;
-  height: 30vh;
-  margin-top: 5vh;
+  height: 25vw;
+  margin-top: 2.5vw;
 }
 
 .image_one_quarter_two{
@@ -265,8 +273,8 @@ cf {
   }
 
   .login_buttons{
-    margin-top: 50vh;
-    margin-left: 25%;
+    margin-top: 50vw;
+    margin-left: 20%;
 
   }
 
