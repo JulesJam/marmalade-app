@@ -57,12 +57,19 @@ export class ApiService {
   //API Post /locations
 
   public createLocation(location: Location): Observable<Location> {
-    const headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    const headers: Headers = new Headers( { "Content-Type": "application/json",
+               "Authorization": "Bearer "+`${this.getToken()}`});
+
+
+    /*headers.append('Content-Type', 'application/json');
+
+    headers.append('Authorization', 'Bearer '+`${this.getToken()}`);*/ 
 
     const opts: RequestOptions = new RequestOptions();
     opts.headers = headers;
     opts.body = (location);
+
+    console.log("OPts Headres>>>>>",opts.headers);
    
     
     JSON.stringify(opts);

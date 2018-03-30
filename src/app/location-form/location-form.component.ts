@@ -2,7 +2,8 @@ import {
   Component,
   OnInit,
   Input,
-  Injectable 
+  Injectable,
+  ViewChild
 } from '@angular/core';
 
 
@@ -45,6 +46,7 @@ export class LocationFormComponent implements OnInit {
   newLocation: Location = new Location();
 
   @Input() locationList: Location[];
+  @ViewChild('fileInput') fileInput
 
 
   constructor(fb: FormBuilder, private locationDataService: LocationDataService) {
@@ -64,7 +66,7 @@ export class LocationFormComponent implements OnInit {
     this.entryType = this.myForm.controls['entryType'];
     this.locationMainImage = this.myForm.controls['locationMainImage'];
 
-    this.locationName.valueChanges.subscribe (
+    /*this.locationName.valueChanges.subscribe (
       (value: string) => {
         console.log('Name changed to ', value);
       }
@@ -80,7 +82,7 @@ export class LocationFormComponent implements OnInit {
       (form: any) => {
         console.log('Form Changed to: ', form);
       }
-      )
+      )*/
   }
 
  
@@ -96,6 +98,9 @@ export class LocationFormComponent implements OnInit {
 
   onSubmit(location: any, locationList): void{
     console.log("location being posted is ", location)
+    const fileBrowser = this.fileInput.nativeElement;
+    if (fileBrowser.files && fileBrowser.files[0]){console.log(fileBrowser.files)}
+      else {console.log("no file")}
     if (!location.locationMainImage){location.locationMainImage = "/assets/images/locations/missing.png"}
     
     this.locationDataService  

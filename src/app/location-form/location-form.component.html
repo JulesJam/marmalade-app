@@ -68,6 +68,11 @@
         <div *ngIf="!myForm.valid"
           class="ui error message">Form not valid</div>
       </div>
+
+      
+      <div>
+        <input type="file" #fileInput placeholder="Upload file..." />
+      </div>
   
       <button type="submit" *ngIf="myForm.valid" class="ui button">Submit</button>
       

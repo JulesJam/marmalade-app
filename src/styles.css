@@ -1,9 +1,8 @@
 @import './app/vendor/semantic.min.css';
 
 
-body{
-  background-color: rgba(221, 222, 232, 1.0);
-}
+
+
 .ui.menu .item img.logo {
     margin-right: 1.5em;
 }

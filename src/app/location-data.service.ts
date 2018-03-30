@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Location } from './location';
 import { ApiService } from './api.service';
+import { ApinewService } from './apinew.service';
+
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -10,15 +12,18 @@ export class LocationDataService {
 
   locationList: Location[] = [];
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private apinew: ApinewService) {
     
    }
 
+
   addLocation(location: Location):  Observable<Location> {
     console.log("new location returned", location);
-    return this.api.createLocation(location);
+    return this.apinew.createLocation(location);
 
   }
+
+
 
   deleteLocationById(id: string): LocationDataService {
     this.locationList = this.locationList
@@ -26,14 +31,14 @@ export class LocationDataService {
     return this;
   }
 
- /* updateLocationById(id: string, values: Object = {}): Location{
+ updateLocationById(id: string, values: Object = {}): Location{
     let location = this.getLocationById(id);
     if (!location) {
     return null;
     }
     Object.assign(location, values);
     return location;
-  }*/
+  }
 
   updateLocation(location: Location):  Observable<Location> {
     console.log("updated returned", location);
@@ -41,8 +46,10 @@ export class LocationDataService {
 
   }
 
+
+
   getAllLocations(): Observable<Location[]>{
-    return this.api.getAllLocations();
+    return this.apinew.getAllLocations();
   }
 
   getLocationById(id: string): Location{

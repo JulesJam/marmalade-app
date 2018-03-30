@@ -34,6 +34,7 @@ import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ApinewService } from './apinew.service';
 
 const routes: Routes = [
   // basic routes
@@ -85,7 +86,8 @@ const routes: Routes = [
     ApiService,
     LocationDataService,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    ApinewService
   ],
   bootstrap: [AppComponent]
 })
