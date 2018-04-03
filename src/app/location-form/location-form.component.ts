@@ -66,7 +66,10 @@ export class LocationFormComponent implements OnInit {
     this.entryType = this.myForm.controls['entryType'];
     this.locationMainImage = this.myForm.controls['locationMainImage'];
 
-    /*this.locationName.valueChanges.subscribe (
+    //this shows how to sibscribe to value changes 
+
+    /* 
+    this.locationName.valueChanges.subscribe (
       (value: string) => {
         console.log('Name changed to ', value);
       }
@@ -83,6 +86,8 @@ export class LocationFormComponent implements OnInit {
         console.log('Form Changed to: ', form);
       }
       )*/
+
+    // end of example remove eventually
   }
 
  
@@ -106,10 +111,8 @@ export class LocationFormComponent implements OnInit {
     this.locationDataService  
       .addLocation(location)
       .subscribe(
-        (newLocation) => {
-        this.locationList.push(newLocation)
-      }
-      );
+        newLocation => 
+        this.locationList.push(newLocation));
 
   
 

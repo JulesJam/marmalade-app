@@ -24,11 +24,15 @@ export class ApinewService {
     return this.token;
   };
 
+
+  //Get list of all locations using latest Angular HTTPClient
+
   public getAllLocations(): Observable<Location[]>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer '+`${this.getToken()}`
+        'Authorization': 'Bearer '+`${this.getToken()}`,
+        'Access-Control-Allow-Origin': '*'
       })
     };
 
@@ -41,11 +45,15 @@ export class ApinewService {
          })
   };
 
+
+  //Post new location using latest angular HTTP Client
+  
   public createLocation(location: Location): Observable<Location> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer '+`${this.getToken()}`
+        'Authorization': 'Bearer '+`${this.getToken()}`,
+        'Access-Control-Allow-Origin': '*'
       })
     };
     return this.http
