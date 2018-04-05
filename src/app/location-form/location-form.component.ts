@@ -42,11 +42,12 @@ export class LocationFormComponent implements OnInit {
   isHidden: boolean;
   data: any;
   loading: boolean;
+  fileToUpload: File = null;
 
   newLocation: Location = new Location();
 
   @Input() locationList: Location[];
-  @ViewChild('fileInput') fileInput
+  @ViewChild('fileInput') fileInput;
 
 
   constructor(fb: FormBuilder, private locationDataService: LocationDataService) {
@@ -59,12 +60,13 @@ export class LocationFormComponent implements OnInit {
       'locationMainImage': ['']
       });
 
+
     this.locationName = this.myForm.controls['locationName'];
     this.locationTown = this.myForm.controls['locationTown'];
     this.description = this.myForm.controls['description'];
     this.locationPostcode = this.myForm.controls['locationPostcode'];
     this.entryType = this.myForm.controls['entryType'];
-    this.locationMainImage = this.myForm.controls['locationMainImage'];
+    
 
     //this shows how to sibscribe to value changes 
 
@@ -101,23 +103,25 @@ export class LocationFormComponent implements OnInit {
   this.toggleForm();
   }
 
+  handleFileInput(files: FileList){
+    this.fileToUpload =files.item(0);
+    console.log(this.fileToUpload.name);
+  }
+
   onSubmit(location: any, locationList): void{
+
     console.log("location being posted is ", location)
-    const fileBrowser = this.fileInput.nativeElement;
-    if (fileBrowser.files && fileBrowser.files[0]){console.log(fileBrowser.files)}
-      else {console.log("no file")}
-    if (!location.locationMainImage){location.locationMainImage = "/assets/images/locations/missing.png"}
+   
     
     this.locationDataService  
-      .addLocation(location)
+      .addLocation(location, this.fileToUpload)
       .subscribe(
         newLocation => 
         this.locationList.push(newLocation));
 
-  
-
-
+    this.fileToUpload == null;
     this.myForm.reset();
+    this.isHidden = true;
    
     console.log("location form submitted", location, locationList);
     }

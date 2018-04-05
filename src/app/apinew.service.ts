@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
@@ -30,7 +30,8 @@ export class ApinewService {
   public getAllLocations(): Observable<Location[]>{
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type':  'multipart/form-data',
+        'Accept': 'application/json',
         'Authorization': 'Bearer '+`${this.getToken()}`,
         'Access-Control-Allow-Origin': '*'
       })
@@ -48,16 +49,22 @@ export class ApinewService {
 
   //Post new location using latest angular HTTP Client
   
-  public createLocation(location: Location): Observable<Location> {
+  public createLocation(location: Location, file: File): Observable<Location> {
+    const formData: FormData = new FormData();
+    if(file){
+    formData.append('file', file, file.name)};
+    formData.append('location', JSON.stringify(location));
+
+    console.log('FormData <<<<<<<<<<', formData);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
         'Authorization': 'Bearer '+`${this.getToken()}`,
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'Accept': 'application/json'
       })
     };
     return this.http
-      .post<any>(this.API_URL + '/locations', location, httpOptions)
+      .post<any>(this.API_URL + '/locations', formData, httpOptions)
       .map(response => {
       console.log('Post response', response)
       return new Location (response.location);

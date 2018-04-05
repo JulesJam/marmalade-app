@@ -21,6 +21,8 @@ export class LocationRowComponent{
   @Input() location: Location
   @HostBinding('attr.class') cssClass = 'item';
 
+  
+
   constructor(private locationDataService: LocationDataService){ 
     }
 

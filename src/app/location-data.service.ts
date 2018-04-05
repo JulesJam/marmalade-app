@@ -17,9 +17,9 @@ export class LocationDataService {
    }
 
 
-  addLocation(location: Location):  Observable<Location> {
+  addLocation(location: Location, file: File):  Observable<Location> {
     console.log("new location returned", location);
-    return this.apinew.createLocation(location);
+    return this.apinew.createLocation(location, file);
 
   }
 

@@ -62,7 +62,6 @@ export class AuthService {
       payload = window.atob(payload);
       return JSON.parse(payload);
     } else {
-      console.log ("No token");
       return null;
     }
   }

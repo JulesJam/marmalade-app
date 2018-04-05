@@ -36,7 +36,6 @@ export class LocationsListComponent  {
   }
 
   sortedLocations(): Location[] {
-   console.log("location list", this.locationList);
     return this.locationList.sort((a: Location, b: Location) => b.votes - a.votes);
   }
 
