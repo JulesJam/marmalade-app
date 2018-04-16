@@ -20,6 +20,7 @@
       <a class="navLinks" *ngIf="auth.isLoggedIn()" [routerLink]="['/locations']">Favourite places</a>
       <a class="navLinks" [routerLink]="['/about']">About</a>
       <a class="navLinks" [routerLink]="['/contact']">Contact</a>
+      <a class="navLinks" [routerLink]="['/map']">Map-Testing</a>
       <a class="navLinks" *ngIf="auth.isLoggedIn()" (click)="auth.logout()">Logout</a>
     </div>
   </div>

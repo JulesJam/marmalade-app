@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
 
-  apiUrl: 'https://marmaladeapi-jkpgqrguoz.now.sh/api'
+  apiUrl: 'https://marmaladeapi-jatltpudcd.now.sh/api'
 };

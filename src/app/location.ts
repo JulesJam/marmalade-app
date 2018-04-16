@@ -7,6 +7,7 @@ export class Location {
   locationTown: string;
   votes: number;
   locationPostcode: string;
+  
 
 
 

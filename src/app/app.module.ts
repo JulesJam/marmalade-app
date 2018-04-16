@@ -16,6 +16,7 @@ import {
   Routes
 } from '@angular/router';
 
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { LocationsListComponent } from './locations-list/locations-list.component';
@@ -35,6 +36,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ApinewService } from './apinew.service';
+import { MapComponent } from './map/map.component';
 
 
 const routes: Routes = [
@@ -44,6 +46,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'contactus', redirectTo: 'contact' },
+  { path: 'map', component: MapComponent },
   { path: 'locations', component: LocationsComponent, canActivate:[AuthGuardService]},
   { path: '**', component: PageNotFoundComponent}
   
@@ -72,7 +75,8 @@ const routes: Routes = [
     LocationsComponent,
     PageNotFoundComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +84,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCJRs5Wosw3ztZr03Dxtzx3v2nGUgk4c1I',
+      libraries: ["places"]
+    })
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy},

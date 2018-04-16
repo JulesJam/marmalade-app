@@ -1,0 +1,12 @@
+<div class="container">
+   <h1>Find places here</h1>
+   <div class="form-group">
+     <input placeholder="Search" autocorrect="off" autocapitalize="off" spellcheck="of" type="text" class="form-control map-search" #search [formControl]="searchControl">
+   </div>
+
+   <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="true" [zoom]="zoom">
+     <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+   </agm-map>
+
+   <div>Search= {{this.searchControl}} User Entry{{this.userentry}}</div>
+</div>

@@ -237,6 +237,14 @@ cf {
 }
 
 
+agm-map {
+  height: 300px;
+}
+
+.map-search{
+  min-width: 100%;
+}
+
 
 
 @media only screen 
@@ -281,6 +289,7 @@ cf {
     font-size: 1rem !important;
   }
 
+  
 }
 
 
