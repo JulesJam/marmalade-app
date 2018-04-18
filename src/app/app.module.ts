@@ -37,6 +37,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ApinewService } from './apinew.service';
 import { MapComponent } from './map/map.component';
+import { UserLocationService } from './userlocation.service'
 
 
 const routes: Routes = [
@@ -96,7 +97,8 @@ const routes: Routes = [
     LocationDataService,
     AuthService,
     AuthGuardService,
-    ApinewService
+    ApinewService,
+    UserLocationService
   ],
   bootstrap: [AppComponent]
 })

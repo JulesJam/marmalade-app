@@ -4,9 +4,10 @@
      <input placeholder="Search" autocorrect="off" autocapitalize="off" spellcheck="of" type="text" class="form-control map-search" #search [formControl]="searchControl">
    </div>
 
-   <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="true" [zoom]="zoom">
-     <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+   <agm-map [latitude]="userLocation.latitude" [longitude]="userLocation.longitude" [scrollwheel]="true" [zoom]="userLocation.zoom">
+     <agm-marker [latitude]="userLocation.latitude" [longitude]="userLocation.longitude"></agm-marker>
    </agm-map>
 
-   <div>Search= {{this.searchControl}} User Entry{{this.userentry}}</div>
+   <div *ngIf="!userLocation.located">Searching for location...<i class="notched circle loading icon"></i></div>
+   <div *ngIf="userLocation.selectedLocation">{{userLocation.selectedLocation}}</div>
 </div>
