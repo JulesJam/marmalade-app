@@ -1,4 +1,4 @@
-import { ElementRef, NgZone, OnInit, ViewChild, Component } from '@angular/core';
+import { ElementRef, NgZone, OnInit, ViewChild, Component, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
@@ -15,21 +15,30 @@ import { UserLocationService } from '../userlocation.service';
 })
 
 
-export class MapComponent implements OnInit  {
+export class MapComponent implements OnInit {
 
   public latitude: number;
   public longitude: number;
 
   public searchControl: FormControl;
+  
   public zoom: number;
   public myLocation: number[];
   public myCountry: string;
   public located: boolean;
+  public newLocation: any;
   
   public countryCode: string;
 
+  
+
   @ViewChild('search')
   public searchElementRef: ElementRef;
+
+  
+
+  @Output() notifyNewLocation: EventEmitter<any> 
+
 
 
 
@@ -38,44 +47,55 @@ export class MapComponent implements OnInit  {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, private userLocation: UserLocationService
-  ) { }
+  ) {
+    this.notifyNewLocation = new EventEmitter();
+  }
+
+
+  ngOnInit (){
+  
+   this.searchControl = new FormControl();
+     this.zoom = 10;
+     this.latitude = 51.4686;
+     this.longitude = -0.1335;
+     this.located = false;
+
+     this.userLocation.setCurrentPosition()
+       .then(
+       (coords) => {
+         console.log("coords",coords);
+         this.userLocation.setCurrentCountry(coords)
+         .then(
+           (countryCode) => {
+             console.log("Detected Country = ",countryCode);
+             this.userLocation.findPlaceDetails(countryCode, this.searchElementRef.nativeElement, this.searchControl)
+             .then(
+               (newLocation) => {
+                 this.newLocation = newLocation;
+                 console.log("NewLocation is >>>", this.newLocation);
+                 this.notifyNewLocation.emit(this.newLocation);
+                   
+               }
+               );
+
+           }
+         );
+       })
+       .catch(
+       (err) => console.error("Geolocation Failed ", err));
+
+     
+     
+
+   };
+
+
+  }
+
 
  
 
-  ngOnInit() {
-
-    this.zoom = 4;
-    this.latitude = 51.4686;
-    this.longitude = -0.1335;
-    this.located = false
-
-    this.searchControl = new FormControl();
-
-
-    
-
-    this.userLocation.setCurrentPosition()
-      .then(
-      (coords) => {
-        console.log("coords",coords);
-        this.userLocation.setCurrentCountry(coords)
-        .then(
-          (countryCode) => {
-            console.log("Detected Country = ",countryCode);
-            this.userLocation.findPlaceDetails(countryCode, this.searchElementRef.nativeElement, this.searchControl);
-          }
-        );
-      })
-      .catch(
-      (err) => console.error("Geolocation Failed ", err));
-
-    
-    
-
-  };
-
-}
-    
+  
   
 
 

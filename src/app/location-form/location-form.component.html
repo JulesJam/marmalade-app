@@ -1,11 +1,14 @@
 <div class="ui raised segment location-form">
   <div [ngClass]="{ hidden: isHidden }">
     <h2 class="ui header">Add your entry here</h2>
+
     <form [formGroup]="myForm"
       (ngSubmit)="onSubmit(myForm.value, locationList)"
       class="ui form"
       [class.error]="!myForm.valid && myForm.touched" >
       <button type="button" (click)="toggleForm()" class="ui right floated button">-</button>
+      <div *ngIf="mapIsDisplayed"><app-map (notifyNewLocation)="locationNotified($event)" ></app-map></div>
+      
       <div class="field"
         [class.error]="!myForm.controls['locationName'].valid && myForm.controls['locationName'].touched">
         <label for="locationNameInput">Name</label>
@@ -21,7 +24,7 @@
 
       <div class="field"
         [class.error]="!myForm.controls['locationTown'].valid && myForm.controls['locationTown'].touched">
-        <label for="locationTownInput">Town</label>
+        <label for="locationTownInput">Address</label>
         <input  type="text"
                 id ="locationTownInput"
                 placeholder="Town"

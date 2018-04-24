@@ -1,12 +1,13 @@
 <div class="container">
-   <h1>Find places here</h1>
+   <h1>What do you want to add?</h1>
    <div class="form-group">
-     <input placeholder="Search" autocorrect="off" autocapitalize="off" spellcheck="of" type="text" class="form-control map-search" #search [formControl]="searchControl">
+     <input placeholder="Search" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control map-search" #search [formControl]="searchControl">
    </div>
 
    <agm-map [latitude]="userLocation.latitude" [longitude]="userLocation.longitude" [scrollwheel]="true" [zoom]="userLocation.zoom">
      <agm-marker [latitude]="userLocation.latitude" [longitude]="userLocation.longitude"></agm-marker>
    </agm-map>
+   
 
    <div *ngIf="!userLocation.located">Searching for location...<i class="notched circle loading icon"></i></div>
    <div *ngIf="userLocation.selectedLocation">{{userLocation.selectedLocation}}</div>

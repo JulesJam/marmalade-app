@@ -3,7 +3,7 @@ import {
   OnInit,
   Input,
   Injectable,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 
 
@@ -16,9 +16,19 @@ import {
 
 
 
+
+
+
+
 import { Observable } from 'rxjs/Observable';
 
 import { LocationDataService } from '../location-data.service';
+import { UserLocationService } from '../userlocation.service';
+import { MapComponent } from '../map/map.component';
+
+
+
+
 
 
 import { Location } from '../location';
@@ -30,6 +40,11 @@ import { Location } from '../location';
   templateUrl: './location-form.component.html',
   styleUrls: ['./location-form.component.css']
 })
+
+
+
+
+
 
 export class LocationFormComponent implements OnInit {
   myForm: FormGroup;
@@ -43,11 +58,18 @@ export class LocationFormComponent implements OnInit {
   data: any;
   loading: boolean;
   fileToUpload: File = null;
+  mapIsDisplayed: boolean = false;
 
   newLocation: Location = new Location();
 
   @Input() locationList: Location[];
   @ViewChild('fileInput') fileInput;
+
+ 
+
+  
+
+
 
 
   constructor(fb: FormBuilder, private locationDataService: LocationDataService) {
@@ -68,7 +90,7 @@ export class LocationFormComponent implements OnInit {
     this.entryType = this.myForm.controls['entryType'];
     
 
-    //this shows how to sibscribe to value changes 
+    //this shows how to subscribe to value changes 
 
     /* 
     this.locationName.valueChanges.subscribe (
@@ -92,16 +114,23 @@ export class LocationFormComponent implements OnInit {
     // end of example remove eventually
   }
 
- 
+  locationNotified(locationDetails: any){
+    console.log("Location has been notfied", locationDetails);
+    this.myForm.controls['locationName'].setValue(locationDetails[0]);
+    this.myForm.controls['locationTown'].setValue(locationDetails[2]);
+    
+  }
 
   toggleForm(): void {
     this.isHidden =!this.isHidden;
+    if(!this.isHidden){this.mapIsDisplayed = true};
   }
 
   ngOnInit() {
-  this.isHidden = false;
-  this.toggleForm();
+  this.isHidden = true;
+
   }
+
 
   handleFileInput(files: FileList){
     this.fileToUpload =files.item(0);

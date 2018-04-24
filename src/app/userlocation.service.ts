@@ -22,7 +22,8 @@ export class UserLocationService {
   public countryCode: string;
 
   constructor( private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone) {
+    }
 
   setCurrentPosition() {
   
@@ -68,54 +69,67 @@ export class UserLocationService {
             }
            });
         })
-       });
+      });
   };
 
   findPlaceDetails(myCountry, searchParameters, searchControl){
 
-      console.log("second promise");
-      console.log("latlng", this.latitude);
-      console.log("My country", myCountry);
-
-      let autocomplete = new google.maps.places.Autocomplete(searchParameters, { 
-      bounds: {
-        north: this.latitude + 0.01,
-        south: this.latitude - 0.01,
-        east: this.longitude + 0.01,
-        west: this.longitude - 0.01,
-      },
-      strictBounds: true,
-      componentRestrictions: { country: myCountry }
-       
-        
-      });
-
-      console.log("place",autocomplete);
-
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          if(place.geometry === undefined || place.geometry === null) {
-            return;
-
-          }
-
-          let service: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          console.log("this clicked place", place, service);
-          console.log("search control", searchControl);
-          console.log("SearchElement", searchParameters.value);
-          this.selectedLocation = searchParameters.value;
-          searchParameters.value = "";
+      return new Promise((resolve, reject) =>{
+        console.log("second promise");
+        console.log("latlng", this.latitude);
+        console.log("My country", myCountry);
+  
+        let autocomplete = new google.maps.places.Autocomplete( searchParameters, { 
+        bounds: {
+          north: this.latitude + 0.01,
+          south: this.latitude - 0.01,
+          east: this.longitude + 0.01,
+          west: this.longitude - 0.01,
+        },
+        strictBounds: true,
+        componentRestrictions: { country: myCountry }
+         
           
-
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.zoom = 15;
         });
+  
+        console.log("place",autocomplete);
+  
+        autocomplete.addListener("place_changed", () => {
+          this.ngZone.run(() => {
+  
+            let place: google.maps.places.PlaceResult =   autocomplete.getPlace();
+            if(place.geometry === undefined || place.geometry ===   null) {
+              reject("Place cannot be found");
+  
+            }
+  
+            let service: google.maps.places.PlaceResult =   autocomplete.getPlace();
+  
+            console.log("this clicked place", place);
+            console.log("search control", searchControl);
+            console.log("SearchElement", searchParameters.value);
+            this.selectedLocation = searchParameters.value;
+            searchParameters.value = "";
+            
+  
+            this.latitude = place.geometry.location.lat();
+            this.longitude = place.geometry.location.lng();
+            this.zoom = 15;
+            let locationDataReturned = [
+            place.name,
+            this.selectedLocation,
+            place.formatted_address,
+            place.formatted_phone_number,
+            place.address_components[place.address_components.length - 1].long_name,
+            this.latitude, this.longitude,
+            place.place_id,
+            place.types
+             ]
+            resolve(locationDataReturned)
+          });
 
-    });
+      });
+    })
    };
 
 
