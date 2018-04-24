@@ -1,4 +1,4 @@
- <div class="ui cards"> 
+ <div class="ui link cards"> 
   <div class="card">
     <div class="image">
       <location-image [location]="location"></location-image>
@@ -7,7 +7,7 @@
     <div class="content">
       <div class="header">{{ location.locationName}}</div>
       <div class="meta">
-        <div>City: {{ location.locationTown }}</div>
+        <a>City: {{ location.locationTown }}</a>
       </div>
       <div class="description">
         {{ location.description}}

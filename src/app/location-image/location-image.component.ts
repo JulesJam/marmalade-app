@@ -7,12 +7,12 @@ import {Component,
 
 @Component({
   selector: 'location-image',
-  template: `<img class="location-image" src="{{imgPath}}">`,
+  template: `<img class="location-image "src="{{imgPath}}">`,
   styleUrls: ['./location-image.component.css']
 })
 export class LocationImageComponent implements OnInit {
   @Input() location: Location
-  @HostBinding('attr.class') cssClass = 'ui small image'
+  @HostBinding('attr.class') cssClass = 'location-image'
 
   imgPath: string;
 

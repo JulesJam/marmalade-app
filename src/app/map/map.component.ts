@@ -54,43 +54,43 @@ export class MapComponent implements OnInit {
 
   ngOnInit (){
   
-   this.searchControl = new FormControl();
-     this.zoom = 10;
-     this.latitude = 51.4686;
-     this.longitude = -0.1335;
-     this.located = false;
-
-     this.userLocation.setCurrentPosition()
-       .then(
-       (coords) => {
-         console.log("coords",coords);
-         this.userLocation.setCurrentCountry(coords)
-         .then(
-           (countryCode) => {
-             console.log("Detected Country = ",countryCode);
-             this.userLocation.findPlaceDetails(countryCode, this.searchElementRef.nativeElement, this.searchControl)
-             .then(
-               (newLocation) => {
-                 this.newLocation = newLocation;
-                 console.log("NewLocation is >>>", this.newLocation);
-                 this.notifyNewLocation.emit(this.newLocation);
-                   
-               }
-               );
-
-           }
-         );
-       })
-       .catch(
-       (err) => console.error("Geolocation Failed ", err));
-
+    this.searchControl = new FormControl();
+    this.zoom = 10;
+    this.latitude = 51.4686;
+    this.longitude = -0.1335;
+    this.located = false;
+    this.loadLocalSearch();
      
-     
-
    };
 
+  loadLocalSearch(){
+    this.userLocation.setCurrentPosition()
+      .then(
+      (coords) => {
+        console.log("coords",coords);
+        this.userLocation.setCurrentCountry(coords)
+        .then(
+          (countryCode) => {
+            console.log("Detected Country = ",countryCode);
+            this.userLocation.findPlaceDetails(countryCode, this.searchElementRef.nativeElement, this.searchControl)
+            .then(
+              (newLocation) => {
+                this.newLocation = newLocation;
+                console.log("NewLocation is >>>", this.newLocation);
+                this.notifyNewLocation.emit(this.newLocation);
+                  
+              }
+              );
 
+          }
+        );
+      })
+      .catch(
+      (err) => console.error("Geolocation Failed ", err));
   }
+
+
+}
 
 
  

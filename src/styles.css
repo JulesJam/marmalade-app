@@ -54,6 +54,8 @@ cf {
 
 
 
+
+
 .votes{
   display:block;
   width:50px;
@@ -172,8 +174,15 @@ cf {
   font-size: 1.2em;
 }
 
-.ui.cards{
-  margin: -.875em 27%;
+.location_image_container {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.location-image{
+  max-width: 100px;
+  height: auto;
 }
 
 .main-title{
@@ -244,6 +253,8 @@ agm-map {
 .map-search{
   min-width: 100%;
 }
+
+
 
 
 
