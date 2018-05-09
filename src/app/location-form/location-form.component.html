@@ -23,15 +23,16 @@
       </div>
 
       <div class="field"
-        [class.error]="!myForm.controls['locationTown'].valid && myForm.controls['locationTown'].touched">
-        <label for="locationTownInput">Address</label>
+        [class.error]="!myForm.controls['locationAddress'].valid && myForm.controls['locationAddress'].touched">
+        <label for="locationAddressInput">Address</label>
         <input  type="text"
-                id ="locationTownInput"
+                id ="locationAddressInput"
                 placeholder="Town"
-                [formControl]="myForm.controls['locationTown']">
-        <div *ngIf="!myForm.controls['locationTown'].valid"
+                [formControl]="myForm.controls['locationAddress']">
+        <div *ngIf="!myForm.controls['locationAddress'].valid"
           class="ui error message">Town is Required
         </div>
+        <div *ngIf="searchAgain">(Wrong details? Search Again)</div>
       </div>
 
       <div class="field"

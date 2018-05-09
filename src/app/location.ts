@@ -4,10 +4,15 @@ export class Location {
   locationMainImage: string;
   description: string;
   entryType: string;
-  locationTown: string;
-  votes: number;
+  locationAddress: string;
   locationPostcode: string;
-  
+  locationMainTelephone: string;
+  latitude: number;
+  longitude: number;
+  creatorID: string;
+  googlePlaceTypes: any[];
+  googlePlacesId: string;
+  votes: number;
 
 
 

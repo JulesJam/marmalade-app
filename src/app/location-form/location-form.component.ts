@@ -49,7 +49,7 @@ import { Location } from '../location';
 export class LocationFormComponent implements OnInit {
   myForm: FormGroup;
   locationName: any;
-  locationTown: any;
+  locationAddress: any;
   description: any;
   locationPostcode: any;
   locationMainImage: any;
@@ -59,6 +59,7 @@ export class LocationFormComponent implements OnInit {
   loading: boolean;
   fileToUpload: File = null;
   mapIsDisplayed: boolean = false;
+  searchAgain: boolean = false;
 
   newLocation: Location = new Location();
 
@@ -75,7 +76,7 @@ export class LocationFormComponent implements OnInit {
   constructor(fb: FormBuilder, private locationDataService: LocationDataService) {
     this.myForm =fb.group({
       'locationName': ['', Validators.required],
-      'locationTown': ['', Validators.required],
+      'locationAddress': ['', Validators.required],
       'description': ['', Validators.required],
       'locationPostcode': ['',Validators.required],
       'entryType': ['',Validators.required],
@@ -84,7 +85,7 @@ export class LocationFormComponent implements OnInit {
 
 
     this.locationName = this.myForm.controls['locationName'];
-    this.locationTown = this.myForm.controls['locationTown'];
+    this.locationAddress = this.myForm.controls['locationAddress'];
     this.description = this.myForm.controls['description'];
     this.locationPostcode = this.myForm.controls['locationPostcode'];
     this.entryType = this.myForm.controls['entryType'];
@@ -99,7 +100,7 @@ export class LocationFormComponent implements OnInit {
       }
     );
 
-    this.locationTown.valueChanges.subscribe (
+    this.locationAddress.valueChanges.subscribe (
       (value: string) => {
         console.log('Town changed to ', value);
       }
@@ -114,20 +115,26 @@ export class LocationFormComponent implements OnInit {
     // end of example remove eventually
   }
 
-  locationNotified(locationDetails: any){
+  locationNotified(locationDetails: Location){
     console.log("Location has been notfied", locationDetails);
-    this.myForm.controls['locationName'].setValue(locationDetails[0]);
-    this.myForm.controls['locationTown'].setValue(locationDetails[2]);
+    this.myForm.controls['locationName'].setValue(locationDetails.locationName);
+    this.myForm.controls['locationAddress'].setValue(locationDetails.locationAddress);
+    this.myForm.controls['locationPostcode'].setValue(locationDetails.locationPostcode);
+    this.mapIsDisplayed = false;
+    this.searchAgain = true;
     
   }
 
   toggleForm(): void {
+    console.log("Map before toggle", this.mapIsDisplayed);
     this.isHidden =!this.isHidden;
-    if(!this.isHidden){this.mapIsDisplayed = true};
+    if (this.isHidden){this.mapIsDisplayed = false} else {this.mapIsDisplayed = true};
+    console.log("Map after toggle", this.mapIsDisplayed);
   }
 
   ngOnInit() {
   this.isHidden = true;
+  this.mapIsDisplayed = false;
 
   }
 
@@ -150,7 +157,9 @@ export class LocationFormComponent implements OnInit {
 
     this.fileToUpload == null;
     this.myForm.reset();
+    this.mapIsDisplayed = false;
     this.isHidden = true;
+
    
     console.log("location form submitted", location, locationList);
     }

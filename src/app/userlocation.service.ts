@@ -5,6 +5,8 @@ import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import 'rxjs/add/operator/toPromise';
 
+import { Location } from './location';
+
 
 @Injectable()
 export class UserLocationService {
@@ -18,6 +20,8 @@ export class UserLocationService {
   public myCountry: string;
   public located: boolean;
   public selectedLocation: string;
+  public googleLocation: Location = new Location();
+
   
   public countryCode: string;
 
@@ -115,17 +119,31 @@ export class UserLocationService {
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();
             this.zoom = 15;
-            let locationDataReturned = [
-            place.name,
-            this.selectedLocation,
-            place.formatted_address,
-            place.formatted_phone_number,
-            place.address_components[place.address_components.length - 1].long_name,
-            this.latitude, this.longitude,
-            place.place_id,
-            place.types
-             ]
-            resolve(locationDataReturned)
+
+            this.googleLocation.locationName = place.name;
+
+            this.googleLocation.locationAddress = this.selectedLocation;
+
+            this.googleLocation.locationPostcode = place.address_components[place.address_components.length - 1].long_name;
+
+            this.googleLocation.locationMainTelephone = place.formatted_phone_number;
+
+            this.googleLocation.latitude = this.latitude;
+
+            this.googleLocation.longitude = this.longitude;
+
+            this.googleLocation.googlePlacesId = place.place_id;
+
+            this.googleLocation.googlePlaceTypes = place.types;
+
+
+
+           
+            console.log("what is this selectedLocation", this.selectedLocation);
+            
+           
+
+            resolve(this.googleLocation)
           });
 
       });

@@ -78,6 +78,7 @@ export class MapComponent implements OnInit {
                 this.newLocation = newLocation;
                 console.log("NewLocation is >>>", this.newLocation);
                 this.notifyNewLocation.emit(this.newLocation);
+                return false;
                   
               }
               );
