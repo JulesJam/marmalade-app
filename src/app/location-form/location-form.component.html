@@ -32,7 +32,7 @@
         <div *ngIf="!myForm.controls['locationAddress'].valid"
           class="ui error message">Town is Required
         </div>
-        <div *ngIf="searchAgain">(Wrong details? Search Again)</div>
+        <div *ngIf="searchAgain">(Wrong details?<a class= "reload_location_form" (click)="reloadLocationForm()"> Search Again</a>)</div>
       </div>
 
       <div class="field"

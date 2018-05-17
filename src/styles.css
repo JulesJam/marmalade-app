@@ -297,6 +297,11 @@ agm-map {
   min-width: 100%;
 }
 
+.reload_location_form{
+  color: #d3531a;
+  text-decoration: underline;
+}
+
 .ui.cards>.card>.content{
   display: block;
   height: 200px;

@@ -164,4 +164,9 @@ export class LocationFormComponent implements OnInit {
     console.log("location form submitted", location, locationList);
     }
 
+  reloadLocationForm (){
+    this.myForm.reset();
+    this.mapIsDisplayed = true;
+  }
+
 }
