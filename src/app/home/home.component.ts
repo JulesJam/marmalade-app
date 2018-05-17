@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   
-  bannerDisplayed: boolean;
+  loginButtonsActive: boolean;
   register: boolean;
   login: boolean;
 
@@ -18,19 +18,21 @@ export class HomeComponent implements OnInit {
   showLogin(): void {
     this.login =false;
     this.register = true;
-    this.bannerDisplayed = false;
+    this.loginButtonsActive = true;
+    
   }
 
   showRegister(): void {
     this.register = false;
     this.login = true;
-    this.bannerDisplayed = false;
+    this.loginButtonsActive = true;
+    
   }
 
   ngOnInit() {
     this.register = true;
     this.login = true;
-    this.bannerDisplayed = true;
+    this.loginButtonsActive = false;
   }
 
 }
