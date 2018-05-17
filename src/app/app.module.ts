@@ -36,7 +36,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ApinewService } from './apinew.service';
-import { MapComponent } from './map/map.component';
+import { FindLocalLocationComponent } from './findLocalLocation/findLocalLocation.component';
 import { UserLocationService } from './userlocation.service'
 
 
@@ -47,7 +47,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'contactus', redirectTo: 'contact' },
-  { path: 'map', component: MapComponent },
+  { path: 'findLocalLocation', component: FindLocalLocationComponent },
   { path: 'locations', component: LocationsComponent, canActivate:[AuthGuardService]},
   { path: '**', component: PageNotFoundComponent}
   
@@ -77,7 +77,7 @@ const routes: Routes = [
     PageNotFoundComponent,
     RegisterComponent,
     LoginComponent,
-    MapComponent
+    FindLocalLocationComponent
   ],
   imports: [
     BrowserModule,

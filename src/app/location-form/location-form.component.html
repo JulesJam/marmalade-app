@@ -7,7 +7,7 @@
       class="ui form"
       [class.error]="!myForm.valid && myForm.touched" >
       <button type="button" (click)="toggleForm()" class="ui right floated button">-</button>
-      <div *ngIf="mapIsDisplayed"><app-map (notifyNewLocation)="locationNotified($event)" ></app-map></div>
+      <div *ngIf="mapIsDisplayed"><find-local-location (notifyNewLocation)="locationNotified($event)" ></find-local-location></div>
       
       <div class="field"
         [class.error]="!myForm.controls['locationName'].valid && myForm.controls['locationName'].touched">

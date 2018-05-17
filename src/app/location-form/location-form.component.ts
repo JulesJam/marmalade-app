@@ -24,7 +24,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { LocationDataService } from '../location-data.service';
 import { UserLocationService } from '../userlocation.service';
-import { MapComponent } from '../map/map.component';
+import { FindLocalLocationComponent } from '../findLocalLocation/findLocalLocation.component';
 
 
 

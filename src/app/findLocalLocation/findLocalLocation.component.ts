@@ -9,13 +9,13 @@ import { UserLocationService } from '../userlocation.service';
 
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  selector: 'find-local-location',
+  templateUrl: './findLocalLocation.component.html',
+  styleUrls: ['./findLocalLocation.component.css']
 })
 
 
-export class MapComponent implements OnInit {
+export class FindLocalLocationComponent implements OnInit {
 
   public latitude: number;
   public longitude: number;
