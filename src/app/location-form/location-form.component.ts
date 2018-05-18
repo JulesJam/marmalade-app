@@ -55,11 +55,11 @@ export class LocationFormComponent implements OnInit {
   locationMainImage: any;
   entryType: any;
   isHidden: boolean;
-  data: any;
   loading: boolean;
   fileToUpload: File = null;
-  mapIsDisplayed: boolean = false;
+  searchIsDisplayed: boolean = false;
   searchAgain: boolean = false;
+  searchType: string;
 
   newLocation: Location = new Location();
 
@@ -80,7 +80,8 @@ export class LocationFormComponent implements OnInit {
       'description': ['', Validators.required],
       'locationPostcode': ['',Validators.required],
       'entryType': ['',Validators.required],
-      'locationMainImage': ['']
+      'locationMainImage': [''],
+      'searchType':['']
       });
 
 
@@ -89,7 +90,6 @@ export class LocationFormComponent implements OnInit {
     this.description = this.myForm.controls['description'];
     this.locationPostcode = this.myForm.controls['locationPostcode'];
     this.entryType = this.myForm.controls['entryType'];
-    
 
     //this shows how to subscribe to value changes 
 
@@ -120,21 +120,21 @@ export class LocationFormComponent implements OnInit {
     this.myForm.controls['locationName'].setValue(locationDetails.locationName);
     this.myForm.controls['locationAddress'].setValue(locationDetails.locationAddress);
     this.myForm.controls['locationPostcode'].setValue(locationDetails.locationPostcode);
-    this.mapIsDisplayed = false;
+    this.searchIsDisplayed = false;
     this.searchAgain = true;
     
   }
 
   toggleForm(): void {
-    console.log("Map before toggle", this.mapIsDisplayed);
+    console.log("Map before toggle", this.searchIsDisplayed);
     this.isHidden =!this.isHidden;
-    if (this.isHidden){this.mapIsDisplayed = false} else {this.mapIsDisplayed = true};
-    console.log("Map after toggle", this.mapIsDisplayed);
+    if (this.isHidden){this.searchIsDisplayed = false} else {this.searchIsDisplayed = true};
+    console.log("Map after toggle", this.searchIsDisplayed);
   }
 
   ngOnInit() {
   this.isHidden = true;
-  this.mapIsDisplayed = false;
+  this.searchIsDisplayed = false;
 
   }
 
@@ -142,6 +142,19 @@ export class LocationFormComponent implements OnInit {
   handleFileInput(files: FileList){
     this.fileToUpload =files.item(0);
     console.log(this.fileToUpload.name);
+  }
+
+  onSearchTypeChange(searchType): void{
+    
+    if(searchType){this.searchIsDisplayed = true};
+    this.searchType = searchType;
+    this.myForm.reset();
+    this.myForm.patchValue({
+      searchType : this.searchType
+    })
+    this.fileToUpload = null;
+    console.log("Radio Button changed to", searchType);
+
   }
 
   onSubmit(location: any, locationList): void{
@@ -155,9 +168,9 @@ export class LocationFormComponent implements OnInit {
         newLocation => 
         this.locationList.push(newLocation));
 
-    this.fileToUpload == null;
+    this.fileToUpload = null;
     this.myForm.reset();
-    this.mapIsDisplayed = false;
+    this.searchIsDisplayed = false;
     this.isHidden = true;
 
    
@@ -166,7 +179,7 @@ export class LocationFormComponent implements OnInit {
 
   reloadLocationForm (){
     this.myForm.reset();
-    this.mapIsDisplayed = true;
+    this.searchIsDisplayed = true;
   }
 
 }
