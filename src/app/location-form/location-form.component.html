@@ -24,7 +24,7 @@
             <find-local-location (notifyNewLocation)="locationNotified($event)" ></find-local-location>
           </div>
           <div *ngIf="searchType === 'all'">
-            <find-location-anywhere></find-location-anywhere>
+            <find-location-anywhere (notifyNewLocation)="locationNotified($event)"></find-location-anywhere>
           </div>
         </div>
         

@@ -1,83 +1,134 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ElementRef,
+  Injectable,
+  NgZone, 
+  Component,
+  OnInit,
+  AfterViewInit,
+  Output,
+  ViewChild,
+  EventEmitter
+  } from '@angular/core';
+
+import {
+  FormControl,
+  } from '@angular/forms';
+
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
+import 'rxjs/add/operator/toPromise';
+import { Location } from '../location';
+
+
+
+import { UserLocationService } from '../userlocation.service';
+
+
 
 @Component({
   selector: 'find-location-anywhere',
   templateUrl: './find-location-anywhere.component.html',
   styleUrls: ['./find-location-anywhere.component.css']
 })
+
+
 export class FindLocationAnywhereComponent implements OnInit {
 
-  constructor() { }
+  public latitude: number;
+  public longitude: number;
+  public zoom: number;
+
+  public searchControl: FormControl;
+  public selectedLocation: string;
+  public googleLocation: Location = new Location();
+
+  @ViewChild('autocomplete')
+  public searchElementRef: ElementRef;
+
+  @Output() notifyNewLocation: EventEmitter<any> 
+
+  constructor(
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone, private userLocation: UserLocationService
+    ) {
+      this.notifyNewLocation = new EventEmitter();
+    }
 
   ngOnInit() {
+    this.searchControl = new FormControl();
+    this.zoom = 10;
+    this.latitude = 51.4686;
+    this.longitude = -0.1335;
+    
+    
+    
+    
   }
 
+  ngAfterViewInit(){
+    this.loadSearch();
+  }
+
+  loadSearch(){
+    this.mapsAPILoader.load()
+      .then(() =>{
+        let autocomplete = new google.maps.places.Autocomplete( this.searchElementRef.nativeElement,
+              {types: ['geocode','establishment']});
+        autocomplete.addListener("place_changed", () => {
+          this.ngZone.run(() => {
+        
+            let place: google.maps.places.PlaceResult =   autocomplete.getPlace();
+            if(place.geometry === undefined || place.geometry ===   null) {
+              console.log("Place cannot be found");
+        
+            }
+        
+            let service: google.maps.places.PlaceResult =   autocomplete.getPlace();
+        
+            console.log("this clicked place", place);
+            this.latitude = place.geometry.location.lat();
+            this.longitude = place.geometry.location.lng();
+            this.zoom = 15;
+
+            this.selectedLocation = this.searchElementRef.nativeElement.value;
+
+            this.googleLocation.locationName = place.name;
+
+            this.googleLocation.locationAddress = this.selectedLocation;
+
+            this.googleLocation.locationPostcode = place.address_components[place.address_components.length - 1].long_name;
+
+            this.googleLocation.locationMainTelephone = place.formatted_phone_number;
+
+            this.googleLocation.latitude = this.latitude;
+
+            this.googleLocation.longitude = this.longitude;
+
+            this.googleLocation.googlePlacesId = place.place_id;
+
+            this.googleLocation.googlePlaceTypes = place.types;
+
+            this.notifyNewLocation.emit(this.googleLocation);
+
+
+
+            
+            console.log("what is this selectedLocation", this.selectedLocation);
+            
+            return false;
+
+           
+          })
+        })
+      })
+    }
+
+
+
+
+   
+   
+    
 }
 
 
-// This example displays an address form, using the autocomplete feature
-// of the Google Places API to help users fill in the information.
-
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-//var placeSearch, autocomplete;
-//var componentForm = {
-//  street_number: 'short_name',
-//  route: 'long_name',
-//  locality: 'long_name',
-//  administrative_area_level_1: 'short_name',
-//  country: 'long_name',
-//  postal_code: 'short_name'
-//};
-
-//function initAutocomplete() {
-  // Create the autocomplete object, restricting the search to geographical
-  // location types.
-//autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */
-      //(document.getElementById('autocomplete')),
-      //{types: ['geocode','establishment']});
-
-  // When the user selects an address from the dropdown, populate the address
-  // fields in the form.
-  //autocomplete.addListener('place_changed', fillInAddress);
-//}
-
-//function fillInAddress() {
-  // Get the place details from the autocomplete object.
-  //var place = autocomplete.getPlace();
-
-  //for (var component in componentForm) {
- //   document.getElementById(component).value = '';
-   // document.getElementById(component).disabled = false;
-  //}
-
-  // Get each component of the address from the place details
-  // and fill the corresponding field on the form.
-  //for (var i = 0; i < place.address_components.length; i++) {
-   // var addressType = place.address_components[i].types[0];
-    //var val = place.address_components[i][componentForm[addressType]];
-      //document.getElementById(addressType).value = val;
-//    }
-//  }
-//}
-//
-//// Bias the autocomplete object to the user's geographical location,
-//// as supplied by the browser's 'navigator.geolocation' object.
-//function geolocate() {
-//  if (navigator.geolocation) {
-//    navigator.geolocation.getCurrentPosition(function(position) {
-//      var geolocation = {
-//        lat: position.coords.latitude,
-//        lng: position.coords.longitude
-//      };
-//      var circle = new google.maps.Circle({
-//        center: geolocation,
-//        radius: position.coords.accuracy
-//      });
-//      autocomplete.setBounds(circle.getBounds());
-//    });
-//  }
-//}//

@@ -26,11 +26,6 @@ import { LocationDataService } from '../location-data.service';
 import { UserLocationService } from '../userlocation.service';
 import { FindLocalLocationComponent } from '../findLocalLocation/findLocalLocation.component';
 
-
-
-
-
-
 import { Location } from '../location';
 
 @Injectable()
@@ -180,6 +175,9 @@ export class LocationFormComponent implements OnInit {
   reloadLocationForm (){
     this.myForm.reset();
     this.searchIsDisplayed = true;
+    this.myForm.patchValue({
+      searchType : this.searchType
+    })
   }
 
 }

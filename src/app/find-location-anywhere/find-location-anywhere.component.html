@@ -1,6 +1,8 @@
 <div class="container">
+  <h1>Look up a venue anywhere in the world...</h1>
   <div class="form-group">
-    <input id="autocomplete" autocorrect = "off" placeholder="Enter name of venue you are looking for..." class="form-control map-search" type="text" /*[formControl]="autocompleteControl"*/>
+    <input placeholder="Search" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control map-search" #autocomplete [formControl]="searchControl">
+ 
   </div>
 <div>
  
