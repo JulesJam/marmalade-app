@@ -56,6 +56,7 @@ export class FindLocationAnywhereComponent implements OnInit {
 
   ngOnInit() {
     this.searchControl = new FormControl();
+    
     this.zoom = 10;
     this.latitude = 51.4686;
     this.longitude = -0.1335;

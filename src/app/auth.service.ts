@@ -66,6 +66,11 @@ export class AuthService {
     }
   }
 
+  public getCurrentUserId(): string {
+    let currentUser = this.getUserDetails()
+    return currentUser._id;
+  }
+
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
     if(user){

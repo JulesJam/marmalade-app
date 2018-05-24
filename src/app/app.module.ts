@@ -42,7 +42,7 @@ import { FindLocationAnywhereComponent } from './find-location-anywhere/find-loc
 
 
 const routes: Routes = [
-  // basic routes
+  
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -53,14 +53,7 @@ const routes: Routes = [
   { path: '**', component: PageNotFoundComponent}
   
 
- /* 
-  
-  // nested
-  {
-    path: 'products',
-    component: ProductsComponent,
-    children: childRoutes
-  }*/
+ 
 ];
 
 @NgModule({

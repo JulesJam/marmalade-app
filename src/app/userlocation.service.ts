@@ -85,10 +85,10 @@ export class UserLocationService {
   
         let autocomplete = new google.maps.places.Autocomplete( searchParameters, { 
         bounds: {
-          north: this.latitude + 0.01,
-          south: this.latitude - 0.01,
-          east: this.longitude + 0.01,
-          west: this.longitude - 0.01,
+          north: this.latitude + 0.05,
+          south: this.latitude - 0.05,
+          east: this.longitude + 0.05,
+          west: this.longitude - 0.05,
         },
         strictBounds: true,
         componentRestrictions: { country: myCountry }

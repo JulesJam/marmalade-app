@@ -22,6 +22,7 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
+import { AuthService } from '../auth.service';
 import { LocationDataService } from '../location-data.service';
 import { UserLocationService } from '../userlocation.service';
 import { FindLocalLocationComponent } from '../findLocalLocation/findLocalLocation.component';
@@ -55,6 +56,7 @@ export class LocationFormComponent implements OnInit {
   searchIsDisplayed: boolean = false;
   searchAgain: boolean = false;
   searchType: string;
+  userId: string
 
   newLocation: Location = new Location();
 
@@ -68,7 +70,7 @@ export class LocationFormComponent implements OnInit {
 
 
 
-  constructor(fb: FormBuilder, private locationDataService: LocationDataService) {
+  constructor(fb: FormBuilder, private locationDataService: LocationDataService, private auth: AuthService,) {
     this.myForm =fb.group({
       'locationName': ['', Validators.required],
       'locationAddress': ['', Validators.required],
@@ -76,7 +78,8 @@ export class LocationFormComponent implements OnInit {
       'locationPostcode': ['',Validators.required],
       'entryType': ['',Validators.required],
       'locationMainImage': [''],
-      'searchType':['']
+      'searchType':[''],
+      'userId':['']
       });
 
 
@@ -130,6 +133,7 @@ export class LocationFormComponent implements OnInit {
   ngOnInit() {
   this.isHidden = true;
   this.searchIsDisplayed = false;
+  this.userId = this.auth.getCurrentUserId();
 
   }
 
@@ -148,13 +152,16 @@ export class LocationFormComponent implements OnInit {
       searchType : this.searchType
     })
     this.fileToUpload = null;
+    
+    console.log("Location user ID", this.userId);
     console.log("Radio Button changed to", searchType);
 
   }
 
-  onSubmit(location: any, locationList): void{
+  onSubmit(location: Location, locationList): void{
 
-    console.log("location being posted is ", location)
+    console.log("location being posted is ", location, "User is ", this.userId)
+    location.creatorID = this.userId
    
     
     this.locationDataService  

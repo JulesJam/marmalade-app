@@ -225,8 +225,9 @@ login-box{
 }
 
 .ui.raised.segment{
-  min-width: 100%;
+  min-width: 77%;
   margin-left: 72%;
+
 }
 
 .login_buttons{
@@ -381,8 +382,8 @@ agm-map {
   }
 
   .ui.raised.segment{
-    min-width: 100%;
-    margin-left: 12%;
+    max-width: 56%;
+    margin-left: 19%;
   }
 
   .ui.buttons .button:first-child{
