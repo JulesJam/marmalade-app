@@ -12,6 +12,7 @@ export class Location {
   creatorID: string;
   googlePlaceTypes: any[];
   googlePlacesId: string;
+  googleImageUrl: string;
   votes: number;
 
 

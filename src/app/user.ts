@@ -15,6 +15,8 @@ export class User {
   jarMemberships: [string, number];
   //the jar either created or first joined
   primaryJarId: string;
+  //to add a direct relationship to someone who is alreday a member
+  friends: string[];
 
   exp: number;
   iat: number;
