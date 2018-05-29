@@ -10,6 +10,9 @@ export class User {
   avatar: string;
   marketingConsent: boolean;
   marketingConsentSetDate: Date = new Date();
+  contactConsent: boolean;
+  contactConsentSetDate: Date = new Date();
+  inviteCode: string;
   jarOwnerJarId: string;
   //memberships [jarId, membershiplevel]
   jarMemberships: [string, number];
@@ -17,6 +20,7 @@ export class User {
   primaryJarId: string;
   //to add a direct relationship to someone who is alreday a member
   friends: string[];
+  isActivated: boolean;
 
   exp: number;
   iat: number;

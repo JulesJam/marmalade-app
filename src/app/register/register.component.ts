@@ -1,4 +1,15 @@
-import { Component} from '@angular/core';
+import { 
+  Component
+} from '@angular/core';
+
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl
+} from '@angular/forms';
+
+
 import { AuthService, TokenPayload } from '../auth.service';
 import { Router } from '@angular/router';
 
@@ -10,34 +21,65 @@ import { Router } from '@angular/router';
 
 export class RegisterComponent {
 
+  registerForm: FormGroup;
+
+
+
   public invalidRegister: boolean;
   public registerError: string;
-  public  processing: boolean
+  public processing: boolean;
+  public hasInviteCode: boolean;
 
-  credentials: TokenPayload ={
+  /*credentials: TokenPayload ={
     email: '',
     firstName: '',
     lastName: '',
     password: '',
-    passwordConfirmation: ''
-      }
+    passwordConfirmation: '',
+    marketingConsent: false,
+    contactConsent: false,
+    inviteCode: '',
+    jarName: ''
+  }*/
 
    
    
 
 
 
-  constructor(private auth: AuthService, private router: Router) {
-   this.invalidRegister = false;
-   this.registerError = "";
-   this.processing = false;
+  constructor(fb: FormBuilder, private auth: AuthService, private router: Router) {
+
+    this.registerForm = fb.group({
+      'email': ['', Validators.required],
+      'firstName': ['', Validators.required],
+      'lastName': ['', Validators.required],
+      'password': ['', Validators.required],
+      'passwordConfirmation': ['', Validators.required],
+      'marketingConsent': [false],
+      'contactConsent': [false],
+      'inviteCode': [''],
+      'jarName': [''],
+      'hasInviteCode': [null]
+      });
+  
+  
+    this.invalidRegister = false;
+    this.registerError = "";
+    this.processing = false;
+    this.hasInviteCode = null;
+  }
+
+  onHasInviteCode(hasInviteCode): void{
+    this.hasInviteCode = hasInviteCode;
+    console.log("invite code is ", this.hasInviteCode);
   }
 
  
 
-  register(){
+  register(credentials: TokenPayload){
     this.processing = true;
-    this.auth.register(this.credentials).subscribe(() => {
+    console.log("credentials are",credentials);
+    this.auth.register(credentials).subscribe(() => {
       this.router.navigateByUrl('locations');
       this.processing = false;
       }, (err) => {

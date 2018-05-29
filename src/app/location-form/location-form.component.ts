@@ -43,7 +43,7 @@ import { Location } from '../location';
 
 
 export class LocationFormComponent implements OnInit {
-  myForm: FormGroup;
+  locationForm: FormGroup;
   locationName: any;
   locationAddress: any;
   description: any;
@@ -71,7 +71,7 @@ export class LocationFormComponent implements OnInit {
 
 
   constructor(fb: FormBuilder, private locationDataService: LocationDataService, private auth: AuthService,) {
-    this.myForm =fb.group({
+    this.locationForm =fb.group({
       'locationName': ['', Validators.required],
       'locationAddress': ['', Validators.required],
       'description': ['', Validators.required],
@@ -83,11 +83,11 @@ export class LocationFormComponent implements OnInit {
       });
 
 
-    this.locationName = this.myForm.controls['locationName'];
-    this.locationAddress = this.myForm.controls['locationAddress'];
-    this.description = this.myForm.controls['description'];
-    this.locationPostcode = this.myForm.controls['locationPostcode'];
-    this.entryType = this.myForm.controls['entryType'];
+    this.locationName = this.locationForm.controls['locationName'];
+    this.locationAddress = this.locationForm.controls['locationAddress'];
+    this.description = this.locationForm.controls['description'];
+    this.locationPostcode = this.locationForm.controls['locationPostcode'];
+    this.entryType = this.locationForm.controls['entryType'];
 
     //this shows how to subscribe to value changes 
 
@@ -104,7 +104,7 @@ export class LocationFormComponent implements OnInit {
       }
     );
 
-    this.myForm.valueChanges.subscribe (
+    this.locationForm.valueChanges.subscribe (
       (form: any) => {
         console.log('Form Changed to: ', form);
       }
@@ -115,9 +115,9 @@ export class LocationFormComponent implements OnInit {
 
   locationNotified(locationDetails: Location){
     console.log("Location has been notfied", locationDetails);
-    this.myForm.controls['locationName'].setValue(locationDetails.locationName);
-    this.myForm.controls['locationAddress'].setValue(locationDetails.locationAddress);
-    this.myForm.controls['locationPostcode'].setValue(locationDetails.locationPostcode);
+    this.locationForm.controls['locationName'].setValue(locationDetails.locationName);
+    this.locationForm.controls['locationAddress'].setValue(locationDetails.locationAddress);
+    this.locationForm.controls['locationPostcode'].setValue(locationDetails.locationPostcode);
     this.searchIsDisplayed = false;
     this.searchAgain = true;
     
@@ -147,8 +147,8 @@ export class LocationFormComponent implements OnInit {
     
     if(searchType){this.searchIsDisplayed = true};
     this.searchType = searchType;
-    this.myForm.reset();
-    this.myForm.patchValue({
+    this.locationForm.reset();
+    this.locationForm.patchValue({
       searchType : this.searchType
     })
     this.fileToUpload = null;
@@ -171,7 +171,7 @@ export class LocationFormComponent implements OnInit {
         this.locationList.push(newLocation));
 
     this.fileToUpload = null;
-    this.myForm.reset();
+    this.locationForm.reset();
     this.searchIsDisplayed = false;
     this.isHidden = true;
 
@@ -180,9 +180,9 @@ export class LocationFormComponent implements OnInit {
     }
 
   reloadLocationForm (){
-    this.myForm.reset();
+    this.locationForm.reset();
     this.searchIsDisplayed = true;
-    this.myForm.patchValue({
+    this.locationForm.patchValue({
       searchType : this.searchType
     })
   }

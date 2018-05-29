@@ -19,7 +19,11 @@ export class LoginComponent  {
     firstName: '',
     lastName: '',
     password: '',
-    passwordConfirmation: ''
+    passwordConfirmation: '',
+    marketingConsent: false,
+    contactConsent: false,
+    inviteCode: '',
+    jarName: '',
   }
 
   constructor(private auth: AuthService, private router: Router) {

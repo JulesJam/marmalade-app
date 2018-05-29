@@ -194,6 +194,7 @@ login-box{
 .location-image{
   width: 100px;
   height: 100px;
+
 }
 
 .main-title{
@@ -216,7 +217,7 @@ login-box{
 }
 
 .ui.buttons .button:first-child{
-  margin-left: 56%;
+  margin-left: 28%;
 }
 
 .login_register_form{
@@ -227,6 +228,12 @@ login-box{
 .ui.raised.segment{
   min-width: 77%;
   margin-left: 72%;
+
+}
+
+.ui.raised.segment.register{
+  min-width: 77%;
+  margin-left: 0%;
 
 }
 
@@ -279,14 +286,17 @@ login-box{
 
 .image_one_quarter_two{
   margin-left: 25vw;
+  border-left: 4px solid rgba(203, 203, 203, 1.0);
 }
 
 .image_one_quarter_three{
   margin-left: 50vw;
+  border-left: 4px solid rgba(203, 203, 203, 1.0);
 }
 
 .image_one_quarter_four{
   margin-left: 75vw;
+  border-left: 4px solid rgba(203, 203, 203, 1.0);
 }
 
 
@@ -384,6 +394,12 @@ agm-map {
   .ui.raised.segment{
     max-width: 56%;
     margin-left: 19%;
+  }
+
+  .ui.raised.segment.register{
+    min-width: 92%;
+    margin-left: 2%;
+
   }
 
   .ui.buttons .button:first-child{

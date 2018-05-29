@@ -24,6 +24,10 @@ export interface TokenPayload {
   passwordConfirmation: string;
   firstName?: string;
   lastName?: string;
+  marketingConsent: boolean;
+  contactConsent: boolean;
+  jarName?: string;
+  inviteCode?: string;
 }
 
 @Injectable()

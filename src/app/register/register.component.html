@@ -1,28 +1,71 @@
 <div class="login_register_form">  
-  <div class="ui raised segment"> 
+  <div class="ui raised segment register"> 
     <h1 *ngIf="!invalidRegister">Register here</h1>
     <div class="alert_bar" *ngIf="invalidRegister">Oops those details don't seem quite  right, contact support and give the following error... "{{this.registerError}}</div>
-    <form class="ui form"(submit)="register()">
+    <form [formGroup]="registerForm"
+          class="ui form"
+          (ngSubmit)="register(registerForm.value)">
       <div class="field">
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control" name="firstName" placeholder="Enter  your first name" [(ngModel)]="credentials.firstName">
+        <input type="text" class="form-control" name="firstName" placeholder="Enter  your first name" [formControl]="registerForm.controls['firstName']">
       </div>
+
       <div class="field">
         <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" name="lastame" placeholder="Enter   your last name" [(ngModel)]="credentials.lastName">
+        <input type="text" class="form-control" name="lastame" placeholder="Enter   your last name" [formControl]="registerForm.controls['lastName']">
       </div>
+
       <div class="field">
         <label for="email">Email Address</label>
-        <input type="email" class="form-control" name="email" placeholder="Email  Address" [(ngModel)]="credentials.email">
+        <input type="email" class="form-control" name="email" placeholder="Email  Address" [formControl]="registerForm.controls['email']">
       </div>
+
       <div class="field">
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" placeholder=" Password" [(ngModel)]="credentials.password">
+        <input type="password" class="form-control" name="password" placeholder=" Password" [formControl]="registerForm.controls['password']">
       </div>
+
       <div class="field">
         <label for="passwordConfirmation">Password Confirmation</label>
-        <input type="password" class="form-control" name="passwordConfirmation"   placeholder="Re-enter Password" [(ngModel)]="credentials. passwordConfirmation">
+        <input type="password" class="form-control" name="passwordConfirmation"   placeholder="Re-enter Password" [formControl]="registerForm.controls['passwordConfirmation']">
       </div>
+
+      <input  type="radio"
+              value= true
+              class="ui radio checkbox"
+
+              name="hasInviteCode"
+              [formControl]="registerForm.controls['hasInviteCode']"
+              (change)="onHasInviteCode(true)">Do you have an ivitation code? Yes
+      <br>
+      <input  type="radio"
+              value= false
+              class="ui radio checkbox"
+              name="hasInviteCode"
+              [formControl]="registerForm.controls['hasInviteCode']"
+              (change)="onHasInviteCode(false)">Do you have an ivitation code? No
+      <br>
+
+      <div *ngIf = 'hasInviteCode' class="field">
+        <label for="inviteCode">Invitation Code</label>
+        <input type="text" class="form-control" name="inviteCode"   placeholder="Enter your invitation code here" [formControl]="registerForm.controls['inviteCode']">
+      </div>
+
+      <div *ngIf = 'hasInviteCode === false' class="field">
+        <label for="jarName">We need to create your Marmalade Jar to store all your precious entries, enter a name for your jar here...</label>
+        <input type="text" class="form-control" name="jarName"   placeholder="Enter your Jar name here" [formControl]="registerForm.controls['jarName']">
+      </div>
+
+      <div class="field">
+        <label for="contactConsent">Please tick to confrim you are happy for us to send emails to your registered email in relation to your use or changes to Midnight Marmalade</label>
+        <input type="checkbox" class="form-control" name="contactConsent" [formControl]="registerForm.controls['contactConsent']">
+      </div>
+
+      <div class="field">
+        <label for="marketingConsent">Please tick to confrim you are happy for us to send occasional emails to your registered email with offers relevant to Midnight Marmalade content. We will never share your details with any third party</label>
+        <input type="checkbox" class="form-control" name="marketingConsent"   [formControl]="registerForm.controls['marketingConsent']">
+      </div>
+    
       
      
       <button *ngIf = "!processing" type="submit" class="ui button">Register!</button>
