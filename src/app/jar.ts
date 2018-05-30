@@ -1,5 +1,7 @@
 export class Jar {
   _id: string;
+  creatorId: string;
+
   jarName: string;
   jarIcon: string;
   //user id
@@ -9,6 +11,7 @@ export class Jar {
   //location id
   locations: string[] = [];
   date_created: Date = new Date();
+  last_updated: Date = new Date();
 
 
 

@@ -28,6 +28,7 @@ export interface TokenPayload {
   contactConsent: boolean;
   jarName?: string;
   inviteCode?: string;
+  visits: any[];
 }
 
 @Injectable()

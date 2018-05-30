@@ -24,6 +24,7 @@ export class LoginComponent  {
     contactConsent: false,
     inviteCode: '',
     jarName: '',
+    visits: []
   }
 
   constructor(private auth: AuthService, private router: Router) {

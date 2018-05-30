@@ -59,7 +59,8 @@ export class RegisterComponent {
       'contactConsent': [false],
       'inviteCode': [''],
       'jarName': [''],
-      'hasInviteCode': [null]
+      'hasInviteCode': [null],
+      'visits': [[]],
       });
   
   
