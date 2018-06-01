@@ -336,6 +336,12 @@ agm-map {
   width: 88% !important;
 }
 
+.user_header{
+  display: block;
+  width:100%;
+
+}
+
 
 @media only screen 
   and (min-device-width: 791px) 

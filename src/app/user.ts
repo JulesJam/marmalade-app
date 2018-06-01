@@ -19,7 +19,7 @@ export class User {
   //the jar either created or first joined
   primaryJarId: string;
   visits: [new() => Date];
-  //to add a direct relationship to someone who is alreday a member
+  //to add a direct relationship to someone who is already a member
   friends: string[];
   isActivated: boolean;
 

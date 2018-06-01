@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent  {
 
-  public invalidLogin: boolean;
-  public processing: boolean
+  private invalidLogin: boolean;
+  private invalidLoginErrorMessage
+  private processing: boolean
   
 
 
@@ -38,8 +39,9 @@ export class LoginComponent  {
       this.router.navigateByUrl('/locations');
       this.processing = false
       },(err) => {
-      console.log("log in error", err.error.message);
+      console.log("log in error", err.name," ",err.statusText);
       this.invalidLogin = true;
+      this.invalidLoginErrorMessage = " log in error "+err.name+" "+err.statusText;
       this.processing = false;
     });
   }

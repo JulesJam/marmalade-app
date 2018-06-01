@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service'
 export class HeaderComponent implements OnInit {
 
   menuOpen: boolean;
+  
 
   constructor(public auth: AuthService) { }
 

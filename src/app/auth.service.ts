@@ -10,6 +10,8 @@ import { User } from './user';
 const API_URL = environment.apiUrl;
 
 
+
+
 //need to check if interface is correct here
 
 interface TokenResponse {
@@ -34,6 +36,8 @@ export interface TokenPayload {
 @Injectable()
 
 export class AuthService {
+
+  public currentUser: User
 
   private token: string;
 
@@ -79,6 +83,7 @@ export class AuthService {
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
     if(user){
+      this.currentUser = user;
       return user.exp > Date.now()/1000;
     } else {
       return false;

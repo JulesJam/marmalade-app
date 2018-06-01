@@ -1,7 +1,7 @@
 <div class="login_register_form">
   <div class="ui raised segment"> 
     <h1 *ngIf="!invalidLogin">Sign In</h1>
-    <div class="alert_bar" *ngIf="invalidLogin">Oops those details don't seem quite  right, if this problem perisist please pray"</div>
+    <div class="alert_bar" *ngIf="invalidLogin">Oops those details don't seem quite  right, if this problem perisist please pray {{invalidLoginErrorMessage}}</div>
     <form class="ui form"(submit)="login()">
       <div class="field">
         <label for="email">Email Address</label>
