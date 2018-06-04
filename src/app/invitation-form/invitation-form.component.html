@@ -1,0 +1,31 @@
+<div class="ui raised segment location-form">
+  <div [ngClass]="{ hidden: isHidden }"> 
+    <button type="button" (click)="toggleForm()" class="ui right floated button">-</button> 
+    <form [formGroup]="invitationForm"
+      (ngSubmit)="onSubmit(invitationForm.value)"
+      class="ui form"
+      [class.error]="!invitationForm.valid && invitationForm.touched" >
+
+      <div class="field" [class.error]="!invitationForm.controls['recipientFirstName'].valid && invitationForm.controls['recipientFirstName'].touched">
+        <label for="recipientFirstName">Enter your friends first name</label>
+        <input type="text" class="form-control" placeholder="Enter your friends email address" [formControl]="invitationForm.controls['recipientFirstName']">
+        <div *ngIf="!invitationForm.controls['recipientFirstName'].valid &&   invitationForm.controls['recipientFirstName'].touched"
+          class="ui error message visible">Please enter your friends first name, only A-Z allowed
+        </div>
+      </div>
+
+      <div class="field" [class.error]="!invitationForm.controls['recipientEmailAddress'].valid && invitationForm.controls['recipientEmailAddress'].touched">
+        <label for="recipientEmailAddress">Enter your friends email address</label>
+        <input type="text" class="form-control" placeholder="Enter your friends email address" [formControl]="invitationForm.controls['recipientEmailAddress']">
+        <div *ngIf="!invitationForm.controls['recipientEmailAddress'].valid  &&   invitationForm.controls['recipientEmailAddress'].touched"
+          class="ui error message visible">This must be an email address
+        </div>
+      </div>
+      <button *ngIf = "invitationForm.valid" type="submit" class="ui button">Register!</button>
+    </form>
+  </div>
+  <div class="add-bar" [ngClass]="{ hidden: !isHidden }">
+    Click here to invite a friend to your Jar
+    <button (click)="toggleForm()" class="ui right floated button">+</button>
+  </div>
+</div>

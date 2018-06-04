@@ -5,7 +5,7 @@ import {
 
 import { Location } from '../location';
 import { User } from '../user';
-import { AuthService } from '../auth.service'
+import { AuthService, TokenPayload } from '../auth.service'
 
 import { LocationDataService } from '../location-data.service';
 
@@ -19,7 +19,7 @@ export class LocationsComponent  {
   locations: Location[];
   loading: boolean;
     data: Object;
-  private currentUser 
+  private currentUser: User;
 
   constructor(private locationDataService: LocationDataService, private auth: AuthService) {
     this.loading = true;

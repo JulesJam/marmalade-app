@@ -39,8 +39,8 @@ export class RegisterComponent {
 
     this.registerForm = fb.group({
       'email': ['', Validators.compose([Validators.email, Validators.required])],
-      'firstName': ['', Validators.compose([Validators.minLength(2),Validators.required, ])],
-      'lastName': ['', Validators.compose([Validators.minLength(2),Validators.required])],
+      'firstName': ['', Validators.compose([Validators.minLength(2),Validators.required,Validators.pattern('[a-zA-Z ]*') ])],
+      'lastName': ['', Validators.compose([Validators.minLength(2),Validators.required,Validators.pattern('[a-zA-Z ]*')])],
       'password': ['', Validators.compose([Validators.minLength(8),Validators.required, ])],
       'passwordConfirmation': ['', Validators.compose([Validators.minLength(8),Validators.required, ])],
       'marketingConsent': [false],

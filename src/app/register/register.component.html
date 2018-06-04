@@ -6,7 +6,7 @@
           class="ui form"
           (ngSubmit)="register(registerForm.value)"
           [class.error]="!registerForm.valid && registerForm.touched" >
-      <div class="field" [class.error]="!registerForm.controls['firstName'].valid &&   registerForm.controls['lastName'].touched">
+      <div class="field" [class.error]="!registerForm.controls['firstName'].valid &&   registerForm.controls['firstName'].touched">
         <label for="firstName">First Name</label>
         <input type="text" class="form-control" placeholder="Enter  your first name" [formControl]="registerForm.controls['firstName']">
         <div *ngIf="!registerForm.controls['firstName'].valid  &&   registerForm.controls['firstName'].touched"

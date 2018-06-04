@@ -38,7 +38,8 @@ import { LoginComponent } from './login/login.component';
 import { ApinewService } from './apinew.service';
 import { FindLocalLocationComponent } from './findLocalLocation/findLocalLocation.component';
 import { UserLocationService } from './userlocation.service';
-import { FindLocationAnywhereComponent } from './find-location-anywhere/find-location-anywhere.component'
+import { FindLocationAnywhereComponent } from './find-location-anywhere/find-location-anywhere.component';
+import { InvitationFormComponent } from './invitation-form/invitation-form.component'
 
 
 const routes: Routes = [
@@ -72,7 +73,8 @@ const routes: Routes = [
     RegisterComponent,
     LoginComponent,
     FindLocalLocationComponent,
-    FindLocationAnywhereComponent
+    FindLocationAnywhereComponent,
+    InvitationFormComponent
   ],
   imports: [
     BrowserModule,
