@@ -10,6 +10,7 @@
  </div>
 </div>
 <div *ngIf="!loading">
+  <div class="user_header">Logged in as {{currentUser.firstName}} primary jar {{currentUser.jarName}}</div>
   <location-form
     [locationList]="locations">
   </location-form>

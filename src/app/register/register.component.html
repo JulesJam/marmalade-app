@@ -4,71 +4,94 @@
     <div class="alert_bar" *ngIf="invalidRegister">Oops those details don't seem quite  right, contact support and give the following error... "{{this.registerError}}</div>
     <form [formGroup]="registerForm"
           class="ui form"
-          (ngSubmit)="register(registerForm.value)">
-      <div class="field">
+          (ngSubmit)="register(registerForm.value)"
+          [class.error]="!registerForm.valid && registerForm.touched" >
+      <div class="field" [class.error]="!registerForm.controls['firstName'].valid &&   registerForm.controls['lastName'].touched">
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control" name="firstName" placeholder="Enter  your first name" [formControl]="registerForm.controls['firstName']">
+        <input type="text" class="form-control" placeholder="Enter  your first name" [formControl]="registerForm.controls['firstName']">
+        <div *ngIf="!registerForm.controls['firstName'].valid  &&   registerForm.controls['firstName'].touched"
+          class="ui error message visible">Oops seems like you forgot to enter your first name must be at least 2 Characters
+        </div>
       </div>
 
-      <div class="field">
+      <div class="field" [class.error]="!registerForm.controls['lastName'].valid &&   registerForm.controls['lastName'].touched">
         <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" name="lastame" placeholder="Enter   your last name" [formControl]="registerForm.controls['lastName']">
+        <input type="text" class="form-control" placeholder="Enter your last name" [formControl]="registerForm.controls['lastName']">
+        <div *ngIf="!registerForm.controls['lastName'].valid  &&   registerForm.controls['lastName'].touched"
+          class="ui error message visible">Oops seems like you forgot to enter your last name must be at least 2 Characters
+        </div>
       </div>
 
-      <div class="field">
+      <div class="field" [class.error]="!registerForm.controls['email'].valid &&   registerForm.controls['email'].touched">
         <label for="email">Email Address</label>
         <input type="email" class="form-control" name="email" placeholder="Email  Address" [formControl]="registerForm.controls['email']">
+        <div *ngIf="!registerForm.controls['email'].valid  &&   registerForm.controls['email'].touched"
+          class="ui error message visible">Must be a valid email address
+        </div>
       </div>
 
-      <div class="field">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" placeholder=" Password" [formControl]="registerForm.controls['password']">
-      </div>
-
-      <div class="field">
-        <label for="passwordConfirmation">Password Confirmation</label>
-        <input type="password" class="form-control" name="passwordConfirmation"   placeholder="Re-enter Password" [formControl]="registerForm.controls['passwordConfirmation']">
+      <div [class.error]="registerForm.controls['password'].touched && registerForm.controls['passwordConfirmation'].touched && registerForm.controls['password'].value != registerForm.controls['passwordConfirmation'].value">
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" placeholder="   Password" [formControl]="registerForm.controls['password']">
+        </div>
+  
+        <div class="field">
+          <label for="passwordConfirmation">Password Confirmation</label>
+          <input type="password" class="form-control" placeholder="Re-enter Password" [formControl]=" registerForm.controls['passwordConfirmation']">
+          <div *ngIf="registerForm.controls['password'].touched && registerForm.controls['passwordConfirmation'].touched && registerForm.controls['password'].value.length < 8"
+            class="ui error message visible">Password should be at least 8 characters
+          </div>
+        </div>
+        <div *ngIf="registerForm.controls['password'].touched && registerForm.controls['passwordConfirmation'].touched && registerForm.controls['password'].value != registerForm.controls['passwordConfirmation'].value"
+          class="ui error message visible">Password and confirmation do not match
+        </div>
       </div>
 
       <input  type="radio"
               value= true
               class="ui radio checkbox"
-
-              name="hasInviteCode"
               [formControl]="registerForm.controls['hasInviteCode']"
-              (change)="onHasInviteCode(true)">Do you have an ivitation code? Yes
+              (change)="onHasInviteCode(true)">Do you have an invitation code? Yes
       <br>
       <input  type="radio"
               value= false
               class="ui radio checkbox"
-              name="hasInviteCode"
               [formControl]="registerForm.controls['hasInviteCode']"
-              (change)="onHasInviteCode(false)">Do you have an ivitation code? No
+              (change)="onHasInviteCode(false)">Do you have an invitation code? No
       <br>
+      <div *ngIf="!registerForm.controls['hasInviteCode'].valid  &&   registerForm.controls['contactConsent'].touched"
+        class="ui error message visible">You must select an option
+      </div>
 
       <div *ngIf = 'hasInviteCode' class="field">
         <label for="inviteCode">Invitation Code</label>
-        <input type="text" class="form-control" name="inviteCode"   placeholder="Enter your invitation code here" [formControl]="registerForm.controls['inviteCode']">
+        <input type="text" class="form-control"  placeholder="Enter your invitation code here" [formControl]="registerForm.controls['inviteCode']">
       </div>
 
       <div *ngIf = 'hasInviteCode === false' class="field">
         <label for="jarName">We need to create your Marmalade Jar to store all your precious entries, enter a name for your jar here...</label>
-        <input type="text" class="form-control" name="jarName"   placeholder="Enter your Jar name here" [formControl]="registerForm.controls['jarName']">
+        <input type="text" class="form-control"   placeholder="Enter your Jar name here" [formControl]="registerForm.controls['jarName']">
       </div>
 
       <div class="field">
         <label for="contactConsent">Please tick to confrim you are happy for us to send emails to your registered email in relation to your use or changes to Midnight Marmalade</label>
-        <input type="checkbox" class="form-control" name="contactConsent" [formControl]="registerForm.controls['contactConsent']">
+        <input type="checkbox" class="form-control" [formControl]="registerForm.controls['contactConsent']">
+        <div *ngIf="!registerForm.controls['contactConsent'].valid && registerForm.controls['firstName'].valid && registerForm.controls['lastName'].valid &&registerForm.controls['password'].valid" 
+          class="ui error message visible">To use the service you will need to consent to us being able to send you emails for the purpose of opertaing the service
+        </div>
       </div>
 
       <div class="field">
         <label for="marketingConsent">Please tick to confrim you are happy for us to send occasional emails to your registered email with offers relevant to Midnight Marmalade content. We will never share your details with any third party</label>
-        <input type="checkbox" class="form-control" name="marketingConsent"   [formControl]="registerForm.controls['marketingConsent']">
+        <input type="checkbox" class="form-control" [formControl]="registerForm.controls['marketingConsent']">
       </div>
+      <div *ngIf="!registerForm.valid"
+        class="ui error message">Form not valid</div>
     
       
      
-      <button *ngIf = "!processing" type="submit" class="ui button">Register!</button>
+      <button *ngIf = "!processing && registerForm.valid" type="submit" class="ui button">Register!</button>
       <div *ngIf="processing">Processing...</div>
     </form>
   </div>

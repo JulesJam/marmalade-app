@@ -30,18 +30,6 @@ export class RegisterComponent {
   public processing: boolean;
   public hasInviteCode: boolean;
 
-  /*credentials: TokenPayload ={
-    email: '',
-    firstName: '',
-    lastName: '',
-    password: '',
-    passwordConfirmation: '',
-    marketingConsent: false,
-    contactConsent: false,
-    inviteCode: '',
-    jarName: ''
-  }*/
-
    
    
 
@@ -50,16 +38,16 @@ export class RegisterComponent {
   constructor(fb: FormBuilder, private auth: AuthService, private router: Router) {
 
     this.registerForm = fb.group({
-      'email': ['', Validators.required],
-      'firstName': ['', Validators.required],
-      'lastName': ['', Validators.required],
-      'password': ['', Validators.required],
-      'passwordConfirmation': ['', Validators.required],
+      'email': ['', Validators.compose([Validators.email, Validators.required])],
+      'firstName': ['', Validators.compose([Validators.minLength(2),Validators.required, ])],
+      'lastName': ['', Validators.compose([Validators.minLength(2),Validators.required])],
+      'password': ['', Validators.compose([Validators.minLength(8),Validators.required, ])],
+      'passwordConfirmation': ['', Validators.compose([Validators.minLength(8),Validators.required, ])],
       'marketingConsent': [false],
-      'contactConsent': [false],
+      'contactConsent': [false, Validators.requiredTrue],
       'inviteCode': [''],
       'jarName': [''],
-      'hasInviteCode': [null],
+      'hasInviteCode': [null, Validators.required],
       'visits': [[]],
       });
   
@@ -75,7 +63,10 @@ export class RegisterComponent {
     console.log("invite code is ", this.hasInviteCode);
   }
 
- 
+
+
+
+
 
   register(credentials: TokenPayload){
     this.processing = true;

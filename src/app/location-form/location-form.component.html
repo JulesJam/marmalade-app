@@ -56,13 +56,13 @@
         </div>
   
         <div class="field"
-          [class.error]="!locationForm.controls['description'].valid &&   locationForm.controls['description'].touched">
+          [class.error]="!locationForm.controls['description'].valid && locationForm.controls['description'].touched">
           <label for="descriptionInput">Description</label>
           <input  type="text"
                   id ="descriptionInput"
                   placeholder="Description"
                   [formControl]="locationForm.controls['description']">
-          <div *ngIf="!locationForm.controls['description'].valid"
+          <div *ngIf="!locationForm.controls['description'].valid && locationForm.controls['description'].touched"
             class="ui error message">Description is Required
           </div>
         </div>

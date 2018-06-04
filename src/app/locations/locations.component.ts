@@ -4,6 +4,8 @@ import {
   } from '@angular/core';
 
 import { Location } from '../location';
+import { User } from '../user';
+import { AuthService } from '../auth.service'
 
 import { LocationDataService } from '../location-data.service';
 
@@ -17,9 +19,11 @@ export class LocationsComponent  {
   locations: Location[];
   loading: boolean;
     data: Object;
+  private currentUser 
 
-  constructor(private locationDataService: LocationDataService) {
+  constructor(private locationDataService: LocationDataService, private auth: AuthService) {
     this.loading = true;
+    this.currentUser = auth.currentUser
    }
 
   locationWasSelected(location: Location): void {

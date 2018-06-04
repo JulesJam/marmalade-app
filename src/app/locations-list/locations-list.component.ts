@@ -6,7 +6,7 @@ import {
   } from '@angular/core';
 
 import { Location } from '../location';
-import { AuthService } from '../auth.service'
+
 
 @Component({
   selector: 'locations-list',
@@ -20,12 +20,11 @@ export class LocationsListComponent  {
   @Input() locationList: Location[];
   @Output() onLocationSelected: EventEmitter<Location>;
 
-  private currentUser
+  
 
   private currentLocation: Location;
 
-  constructor(public auth: AuthService) {
-    this.currentUser = auth.currentUser;
+  constructor() {
     this.onLocationSelected = new EventEmitter();
   }
 
