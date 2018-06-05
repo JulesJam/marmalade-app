@@ -69,7 +69,7 @@ export class ApiService {
     opts.headers = headers;
     opts.body = (location);
 
-    console.log("Opts Headers>>>>>",opts.headers);
+    console.log("OPts Headres>>>>>",opts.headers);
    
     
     JSON.stringify(opts);

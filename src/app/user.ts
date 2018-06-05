@@ -1,3 +1,9 @@
+interface JarMemberships {
+  jarId: string,
+  membershipLevel: number
+}
+
+
 export class User {
 
   _id: string;
@@ -15,9 +21,9 @@ export class User {
   inviteCode: string;
   jarOwnerJarId: string;
   //memberships [jarId, membershiplevel]
-  jarMemberships: [string, number];
+  jarMemberships: [{JarMemberships}];
   //the jar either created or first joined
-  primaryJarId: string;
+  primaryJarId: JarMemberships;
   visits: [new() => Date];
   //to add a direct relationship to someone who is already a member
   friends: string[];
@@ -29,4 +35,6 @@ export class User {
   constructor(values: Object ={}){
     Object.assign(this, values);
   }
+
+
 }

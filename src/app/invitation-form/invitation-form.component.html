@@ -1,10 +1,11 @@
 <div class="ui raised segment location-form">
   <div [ngClass]="{ hidden: isHidden }"> 
-    <button type="button" (click)="toggleForm()" class="ui right floated button">-</button> 
+   
     <form [formGroup]="invitationForm"
       (ngSubmit)="onSubmit(invitationForm.value)"
       class="ui form"
       [class.error]="!invitationForm.valid && invitationForm.touched" >
+      <button type="button" (click)="toggleForm()" class="ui right floated button">-</button> 
 
       <div class="field" [class.error]="!invitationForm.controls['recipientFirstName'].valid && invitationForm.controls['recipientFirstName'].touched">
         <label for="recipientFirstName">Enter your friends first name</label>

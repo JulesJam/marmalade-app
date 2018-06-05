@@ -25,6 +25,7 @@ import { LocationImageComponent } from './location-image/location-image.componen
 import { LocationFormComponent } from './location-form/location-form.component';
 import { ApiService } from './api.service';
 import { LocationDataService } from './location-data.service';
+import { InvitationDataService } from './invitation-data.service'
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'contactus', redirectTo: 'contact' },
+  { path: 'register', redirectTo: 'home'},
   { path: 'findLocalLocation', component: FindLocalLocationComponent },
   { path: 'locations', component: LocationsComponent, canActivate:[AuthGuardService]},
   { path: '**', component: PageNotFoundComponent}
@@ -92,6 +94,7 @@ const routes: Routes = [
     { provide: LocationStrategy, useClass: HashLocationStrategy},
     ApiService,
     LocationDataService,
+    InvitationDataService,
     AuthService,
     AuthGuardService,
     ApinewService,

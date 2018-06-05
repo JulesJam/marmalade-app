@@ -31,7 +31,7 @@ export class LocationDataService {
     return this;
   }
 
- updateLocationById(id: string, values: Object = {}): Location{
+  updateLocationById(id: string, values: Object = {}): Location{
     let location = this.getLocationById(id);
     if (!location) {
     return null;

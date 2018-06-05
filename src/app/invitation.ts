@@ -6,15 +6,16 @@ export class Invitation {
   jarId: string;
   //email not in use until GDPR determined
   recipientEmailAddress: string;
+  recipientFirstName: string;
   senderMembershipLevel: number;
   emailSentDate: number[];
   reminderSentDate: number[];
-  acceptedDate: Date = new Date();
-  rejectDate: Date = new Date();
+  acceptedDate: Date;
+  rejectDate: Date;
   status: string;
 
   constructor(values: Object ={}){
     Object.assign(this, values);
-  }
+  };
 }
 

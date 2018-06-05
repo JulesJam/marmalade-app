@@ -167,8 +167,9 @@ export class LocationFormComponent implements OnInit {
     this.locationDataService  
       .addLocation(location, this.fileToUpload)
       .subscribe(
-        newLocation => 
-        this.locationList.push(newLocation));
+        newLocation => {
+        this.locationList.push(newLocation)}
+        );
 
     this.fileToUpload = null;
     this.locationForm.reset();
@@ -177,7 +178,7 @@ export class LocationFormComponent implements OnInit {
 
    
     console.log("location form submitted", location, locationList);
-    }
+  }
 
   reloadLocationForm (){
     this.locationForm.reset();
