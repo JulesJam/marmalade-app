@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { 
+  Component,
+  OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +13,12 @@ export class HomeComponent implements OnInit {
   loginButtonsActive: boolean;
   register: boolean;
   login: boolean;
+  inviteCode: string;
 
-  constructor() {
-    
+
+
+  constructor(private route: ActivatedRoute) {
+
    }
 
   showLogin(): void {
@@ -29,10 +35,21 @@ export class HomeComponent implements OnInit {
     
   }
 
+  checkForInviteCode(): void{
+    this.route.params.subscribe( params => {
+      this.inviteCode = params.id
+      if(params){
+        this.showRegister();
+      }
+      console.log("Route Params is", this.inviteCode)});
+  }
+
   ngOnInit() {
     this.register = true;
     this.login = true;
     this.loginButtonsActive = false;
+    this.inviteCode = null;
+    this.checkForInviteCode()
   }
 
 }

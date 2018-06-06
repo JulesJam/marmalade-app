@@ -1,6 +1,6 @@
 <div class="login_register_form">  
   <div class="ui raised segment register"> 
-    <h1 *ngIf="!invalidRegister">Register here</h1>
+    <h1 *ngIf="!invalidRegister">{{formTitle}}</h1>
     <div class="alert_bar" *ngIf="invalidRegister">Oops those details don't seem quite  right, contact support and give the following error... "{{this.registerError}}</div>
     <form [formGroup]="registerForm"
           class="ui form"
@@ -47,26 +47,27 @@
           class="ui error message visible">Password and confirmation do not match
         </div>
       </div>
-
-      <input  type="radio"
-              value= true
-              class="ui radio checkbox"
-              [formControl]="registerForm.controls['hasInviteCode']"
-              (change)="onHasInviteCode(true)">Do you have an invitation code? Yes
-      <br>
-      <input  type="radio"
-              value= false
-              class="ui radio checkbox"
-              [formControl]="registerForm.controls['hasInviteCode']"
-              (change)="onHasInviteCode(false)">Do you have an invitation code? No
-      <br>
+      <div *ngIf = "!inviteCode">
+        <input  type="radio"
+                value= true
+                class="ui radio checkbox"
+                [formControl]="registerForm.controls['hasInviteCode']"
+                (change)="onHasInviteCode(true, inviteCode)">Do you have an invitation code ? Yes
+        <br>
+        <input  type="radio"
+                value= false
+                class="ui radio checkbox"
+                [formControl]="registerForm.controls['hasInviteCode']"
+                (change)="onHasInviteCode(false, inviteCode)">Do you have an invitation   code? No
+        <br>
+      </div>
       <div *ngIf="!registerForm.controls['hasInviteCode'].valid  &&   registerForm.controls['contactConsent'].touched"
         class="ui error message visible">You must select an option
       </div>
 
       <div *ngIf = 'hasInviteCode' class="field">
         <label for="inviteCode">Invitation Code</label>
-        <input type="text" class="form-control"  placeholder="Enter your invitation code here" [formControl]="registerForm.controls['inviteCode']">
+        <input type="text" class="form-control"  placeholder="Enter your invitation code here" [formControl]="registerForm.controls['inviteCode']" [readonly]="inviteCode">
       </div>
 
       <div *ngIf = 'hasInviteCode === false' class="field">

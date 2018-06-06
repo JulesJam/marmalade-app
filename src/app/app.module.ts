@@ -13,7 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import {
   RouterModule,
-  Routes
+  Routes,
+  ActivatedRoute
 } from '@angular/router';
 
 import { AgmCoreModule } from '@agm/core';
@@ -46,11 +47,12 @@ import { InvitationFormComponent } from './invitation-form/invitation-form.compo
 const routes: Routes = [
   
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home/:id', component: HomeComponent},
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'contactus', redirectTo: 'contact' },
-  { path: 'register', redirectTo: 'home'},
+  { path: 'register/:id', redirectTo: 'home'},
   { path: 'findLocalLocation', component: FindLocalLocationComponent },
   { path: 'locations', component: LocationsComponent, canActivate:[AuthGuardService]},
   { path: '**', component: PageNotFoundComponent}

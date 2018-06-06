@@ -10,6 +10,7 @@ import {
 import { AuthService, TokenPayload } from '../auth.service'
 import { User } from '../user';
 import { Invitation } from '../invitation';
+import { siteURL } from '../../environments/siteURL';
 import { InvitationDataService } from '../invitation-data.service';
 
 @Component({
@@ -58,16 +59,17 @@ export class InvitationFormComponent implements OnInit {
       .addInvitation(this.sentInvitation)
       .subscribe(
         returnedInvitation =>{
-         this.sendEmail(returnedInvitation);
+        let invitationLink =siteURL.development+"home/"+returnedInvitation._id
+         this.sendEmail(returnedInvitation, invitationLink);
         }
         )
     /*window.location.href = "mailto:"+invitationForm.recipientEmailAddress+"?subject=This is a really good site for Hotel and Restaurant Recommendations&body=Hi%20goes%20here"*/
   }
 
-  sendEmail(returnedInvitation){
+  sendEmail(returnedInvitation, invitationLink){
     console.log("invitation process response >>>>>", returnedInvitation);
     let emailSubject = "This is a really good site for Hotel and Restaurant"
-    let emailBody = "Hi "+returnedInvitation.recipientFirstName+'\r\n'+"Midnight Marmalade is a new recommendation site for cool bars, restaurants, coffee shopes etc. It's different because reviews are grouped by people who are connected so you know they are reliable or at least how likely they are to be reliable. If you wnat to see my recommendations and add your own you can join the group I am in by clicking this link - http://this.my.invite:"+returnedInvitation._id+" Alternatively go to midnightmarla.de and register and eneter this Invitaion code: "+returnedInvitation._id+'\r\n'+'\r\n'+"All the best "
+    let emailBody = "Hi "+returnedInvitation.recipientFirstName+'\r\n'+"Midnight Marmalade is a new recommendation site for cool bars, restaurants, coffee shopes etc. It's different because reviews are grouped by people who are connected so you know they are reliable or at least how likely they are to be reliable. If you wnat to see my recommendations and add your own you can join the group I am in by pasting this link - "+invitationLink+" into your browser. Alternatively go to midnightmarla.de and register and eneter this Invitaion code: "+returnedInvitation._id+'\r\n'+'\r\n'+"All the best "
     emailBody = encodeURIComponent(emailBody);
      
 

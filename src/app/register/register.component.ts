@@ -1,5 +1,7 @@
 import { 
-  Component
+  Component,
+  OnInit,
+  Input
 } from '@angular/core';
 
 import {
@@ -20,6 +22,8 @@ import { Router } from '@angular/router';
 })
 
 export class RegisterComponent {
+  @Input() inviteCode: string;
+  
 
   registerForm: FormGroup;
 
@@ -29,6 +33,9 @@ export class RegisterComponent {
   public registerError: string;
   public processing: boolean;
   public hasInviteCode: boolean;
+
+  private formTitle: string;
+
 
    
    
@@ -56,11 +63,17 @@ export class RegisterComponent {
     this.registerError = "";
     this.processing = false;
     this.hasInviteCode = null;
+    this.formTitle ="Register here"
   }
 
-  onHasInviteCode(hasInviteCode): void{
+  onHasInviteCode(hasInviteCode, inviteCode): void{
     this.hasInviteCode = hasInviteCode;
-    console.log("invite code is ", this.hasInviteCode);
+
+    if(inviteCode){
+    this.registerForm.patchValue({inviteCode: inviteCode});
+    this.registerForm.patchValue({hasInviteCode: true})
+    };
+    console.log("invite code is ", this.inviteCode);
   }
 
 
@@ -80,6 +93,14 @@ export class RegisterComponent {
         this.registerError = err.message
         this.processing = false;
     });
+  }
+
+  ngOnInit() {
+    if(this.inviteCode) {
+      this.onHasInviteCode(true, this.inviteCode)
+      this.formTitle = "Thanks for accepting your invite - please register here"
+    };
+    console.log("Invite code recived from home is ",this.inviteCode)
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="ui raised segment location-form">
+<div class="ui raised segment invitation-form">
   <div [ngClass]="{ hidden: isHidden }"> 
    
     <form [formGroup]="invitationForm"
@@ -22,7 +22,7 @@
           class="ui error message visible">This must be an email address
         </div>
       </div>
-      <button *ngIf = "invitationForm.valid" type="submit" class="ui button">Register!</button>
+      <button *ngIf = "invitationForm.valid" type="submit" class="ui right floated button">Create Invitation</button>
     </form>
   </div>
   <div class="add-bar" [ngClass]="{ hidden: !isHidden }">
