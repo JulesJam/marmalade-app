@@ -25,7 +25,14 @@
       <button *ngIf = "invitationForm.valid" type="submit" class="ui right floated button">Create Invitation</button>
     </form>
   </div>
-  <div class="add-bar" [ngClass]="{ hidden: !isHidden }">
+  <div *ngIf="invitationMessageVisible" class="invitation-message">
+    Your invitation has been created. An email should have been generated for you to send from your mail client, the email has all the information your friend needs to join your group, however some systems may have blcoked htis process; in which case please send your friend an email with the invitation code shown below. Advise them to register at www.midnightmarmalade.co.uk and use the code when registering
+    <div class="large-centred">
+      {{invitationCode}}
+    </div>
+    <button *ngIf = "invitationMessageVisible" type="button" class="ui centered button" (click)="closeInviteMessage()">Close</button>
+  </div>
+  <div class="add-bar" *ngIf="!invitationMessageVisible"[ngClass]="{ hidden: !isHidden}">
     Click here to invite a friend to your Jar
     <button (click)="toggleForm()" class="ui right floated button">+</button>
   </div>

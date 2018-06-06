@@ -27,6 +27,8 @@ export class InvitationFormComponent implements OnInit {
   isHidden: boolean = true;
   sentInvitation: Invitation = new Invitation();
   returnedInvitation: Invitation = new Invitation();
+  invitationMessageVisible: boolean;
+  invitationCode: string = '';
 
   constructor(fb: FormBuilder, private auth: AuthService, private invitationDataService: InvitationDataService) {
     this.invitationForm = fb.group({
@@ -62,6 +64,7 @@ export class InvitationFormComponent implements OnInit {
         console.log("returned invitaion",returnedInvitation);
         let invitationLink =siteURL.development+"home/"+returnedInvitation._id
          this.sendEmail(returnedInvitation, invitationLink);
+         this.displayInviteCode(returnedInvitation._id)
         }
         )
     /*window.location.href = "mailto:"+invitationForm.recipientEmailAddress+"?subject=This is a really good site for Hotel and Restaurant Recommendations&body=Hi%20goes%20here"*/
@@ -75,12 +78,23 @@ export class InvitationFormComponent implements OnInit {
      
 
     location.href = "mailto:"+returnedInvitation.recipientEmailAddress+'?subject='+emailSubject+'&body='+emailBody;
+  }
 
- 
+  displayInviteCode(invitationCode): void {
+    this.isHidden = true;
+    this.invitationCode = invitationCode;
+    this.invitationMessageVisible = true;
+  }
+
+  closeInviteMessage(): void{
+    this.invitationMessageVisible = false;
+    this.isHidden = true;
+    this.invitationForm.reset();
   }
 
   ngOnInit() {
     this.currentUser = this.auth.currentUser
+    this.invitationMessageVisible = false;
     console.log("Invitaion current user is...", this.currentUser)
    
   }
