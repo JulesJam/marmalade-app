@@ -38,7 +38,8 @@ export class HomeComponent implements OnInit {
   checkForInviteCode(): void{
     this.route.params.subscribe( params => {
       this.inviteCode = params.id
-      if(params){
+      if(params.id){
+        
         this.showRegister();
       }
       console.log("Route Params is", this.inviteCode)});
