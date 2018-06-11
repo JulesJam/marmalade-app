@@ -1,6 +1,7 @@
 interface JarMemberships {
   jarId: string,
-  membershipLevel: number
+  membershipLevel: number,
+  branchCode: string
 }
 
 

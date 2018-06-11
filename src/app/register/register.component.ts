@@ -58,7 +58,7 @@ export class RegisterComponent {
       'visits': [[]],
       });
   
-  
+
     this.invalidRegister = false;
     this.registerError = "";
     this.processing = false;
@@ -69,10 +69,12 @@ export class RegisterComponent {
   onHasInviteCode(hasInviteCode, inviteCode): void{
     this.hasInviteCode = hasInviteCode;
 
+
     if(inviteCode){
     this.registerForm.patchValue({inviteCode: inviteCode});
     this.registerForm.patchValue({hasInviteCode: true})
     };
+    if (!hasInviteCode) this.registerForm.patchValue({inviteCode: ''});
     console.log("invite code is ", this.inviteCode);
   }
 

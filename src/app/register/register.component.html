@@ -78,7 +78,7 @@
       <div class="field">
         <label for="contactConsent">Please tick to confrim you are happy for us to send emails to your registered email in relation to your use or changes to Midnight Marmalade</label>
         <input type="checkbox" class="form-control" [formControl]="registerForm.controls['contactConsent']">
-        <div *ngIf="!registerForm.controls['contactConsent'].valid && registerForm.controls['firstName'].valid && registerForm.controls['lastName'].valid &&registerForm.controls['password'].valid" 
+        <div *ngIf="!registerForm.controls['contactConsent'].valid && registerForm.controls['firstName'].valid && registerForm.controls['lastName'].valid &&registerForm.controls['password'].valid &&registerForm.controls['passwordConfirmation'].valid &&registerForm.controls['hasInviteCode'].touched" 
           class="ui error message visible">To use the service you will need to consent to us being able to send you emails for the purpose of opertaing the service
         </div>
       </div>

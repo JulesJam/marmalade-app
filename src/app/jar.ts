@@ -1,3 +1,9 @@
+interface TreeManager {
+  branchCode: string,
+  members: string []
+}
+
+
 export class Jar {
   _id: string;
   creatorId: string;
@@ -10,6 +16,7 @@ export class Jar {
   invites: string[] = [];
   //location id
   locations: string[] = [];
+  treeManager: TreeManager;
   date_created: Date = new Date();
   last_updated: Date = new Date();
 

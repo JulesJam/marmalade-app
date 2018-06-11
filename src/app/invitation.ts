@@ -4,6 +4,7 @@ export class Invitation {
   senderId: string;
   dateCreated: Date = new Date();
   jarId: string;
+  branchCode: string;
   //email not in use until GDPR determined
   recipientEmailAddress: string;
   recipientFirstName: string;
