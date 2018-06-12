@@ -1,5 +1,5 @@
 interface TreeManager {
-  branchCode: string,
+  branchCode: number[],
   members: string []
 }
 

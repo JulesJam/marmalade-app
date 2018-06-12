@@ -49,7 +49,7 @@ export class InvitationFormComponent implements OnInit {
     console.log("invitation form", invitationForm, "and user is >>>", this.currentUser);
 
     this.sentInvitation.senderId = this.currentUser._id;
-    this.sentInvitation.jarId = this.currentUser.primaryJarId.jarId;
+    this.sentInvitation.jarId = this.currentUser.primaryJarId.jarId
     this.sentInvitation.recipientEmailAddress = invitationForm.recipientEmailAddress;
     this.sentInvitation.recipientFirstName = invitationForm.recipientFirstName;
     this.sentInvitation.senderMembershipLevel = this.currentUser.primaryJarId.membershipLevel;
