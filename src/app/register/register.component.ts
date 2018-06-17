@@ -90,9 +90,9 @@ export class RegisterComponent {
       this.router.navigateByUrl('locations');
       this.processing = false;
       }, (err) => {
-        console.log("register error",err.message);
+        console.log("register error",err.error.message);
         this.invalidRegister = true;
-        this.registerError = err.message
+        this.registerError = err.error.message + "please try different credentials"
         this.processing = false;
     });
   }
