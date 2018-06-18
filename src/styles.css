@@ -1,7 +1,10 @@
 @import './app/vendor/semantic.min.css';
 
 
-
+.main_container{
+  display: block;
+  min-width: 906px;
+}
 
 .ui.menu .item img.logo {
     margin-right: 1.5em;
