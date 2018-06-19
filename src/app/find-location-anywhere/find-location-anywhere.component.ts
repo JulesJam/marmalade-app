@@ -93,11 +93,17 @@ export class FindLocationAnywhereComponent implements OnInit {
 
             this.selectedLocation = this.searchElementRef.nativeElement.value;
 
+            
             this.googleLocation.locationName = place.name;
 
             this.googleLocation.locationAddress = this.selectedLocation;
 
+            this.googleLocation.locationTown = place.address_components[3].long_name;
+
+
             this.googleLocation.locationPostcode = place.address_components[place.address_components.length - 1].long_name;
+
+            this.googleLocation.locationCountry = place.address_components[place.address_components.length - 2].short_name;
 
             this.googleLocation.locationMainTelephone = place.formatted_phone_number;
 
@@ -108,6 +114,8 @@ export class FindLocationAnywhereComponent implements OnInit {
             this.googleLocation.googlePlacesId = place.place_id;
 
             this.googleLocation.googlePlaceTypes = place.types;
+
+            this.googleLocation.website = place.website;
 
             this.notifyNewLocation.emit(this.googleLocation);
 

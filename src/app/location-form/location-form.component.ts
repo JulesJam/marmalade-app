@@ -49,16 +49,19 @@ export class LocationFormComponent implements OnInit {
   description: any;
   locationPostcode: any;
   locationMainImage: any;
-  entryType: any;
+  entryType: string;
   isHidden: boolean;
   loading: boolean;
   fileToUpload: File = null;
   searchIsDisplayed: boolean = false;
   searchAgain: boolean = false;
   searchType: string;
-  userId: string
+  userId: string;
+
+ 
 
   newLocation: Location = new Location();
+  selectedLocation: Location = new Location();
 
   @Input() locationList: Location[];
   @ViewChild('fileInput') fileInput;
@@ -77,6 +80,8 @@ export class LocationFormComponent implements OnInit {
       'description': ['', Validators.required],
       'locationPostcode': ['',Validators.required],
       'entryType': ['',Validators.required],
+      'source': [''],
+      'locationType': ['',Validators.required],
       'locationMainImage': [''],
       'searchType':[''],
       'userId':['']
@@ -87,7 +92,7 @@ export class LocationFormComponent implements OnInit {
     this.locationAddress = this.locationForm.controls['locationAddress'];
     this.description = this.locationForm.controls['description'];
     this.locationPostcode = this.locationForm.controls['locationPostcode'];
-    this.entryType = this.locationForm.controls['entryType'];
+   
 
     //this shows how to subscribe to value changes 
 
@@ -114,6 +119,7 @@ export class LocationFormComponent implements OnInit {
   }
 
   locationNotified(locationDetails: Location){
+    this.selectedLocation = locationDetails;
     console.log("Location has been notfied", locationDetails);
     this.locationForm.controls['locationName'].setValue(locationDetails.locationName);
     this.locationForm.controls['locationAddress'].setValue(locationDetails.locationAddress);
@@ -158,11 +164,30 @@ export class LocationFormComponent implements OnInit {
 
   }
 
+
+  onEntryTypeChange(entryType): void{
+    
+   
+    this.entryType = entryType;
+    
+    this.locationForm.patchValue({
+      entryType : this.entryType
+    })
+    console.log("Radio Button changed to", entryType);
+
+  }
+
   onSubmit(location: Location, locationList): void{
 
     console.log("location being posted is ", location, "User is ", this.userId)
-    location.creatorID = this.userId
-   
+    location.creatorId = this.userId
+
+    console.log("location details are still here ++++ ",this.selectedLocation);
+    location.website = this.selectedLocation.website;
+    location.locationMainTelephone = this.selectedLocation.locationMainTelephone;
+    location.googlePlacesId = this.selectedLocation.googlePlacesId;
+    location.locationTown = this.selectedLocation.locationTown;
+    location.googlePlaceTypes = this.selectedLocation.googlePlaceTypes;
     
     this.locationDataService  
       .addLocation(location, this.fileToUpload)
@@ -175,6 +200,7 @@ export class LocationFormComponent implements OnInit {
     this.locationForm.reset();
     this.searchIsDisplayed = false;
     this.isHidden = true;
+    this.searchType = null;
 
    
     console.log("location form submitted", location, locationList);
@@ -183,6 +209,7 @@ export class LocationFormComponent implements OnInit {
   reloadLocationForm (){
     this.locationForm.reset();
     this.searchIsDisplayed = true;
+    this.searchType = null;
     this.locationForm.patchValue({
       searchType : this.searchType
     })

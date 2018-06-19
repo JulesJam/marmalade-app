@@ -124,7 +124,12 @@ export class UserLocationService {
 
             this.googleLocation.locationAddress = this.selectedLocation;
 
+            this.googleLocation.locationTown = place.address_components[3].long_name;
+
+
             this.googleLocation.locationPostcode = place.address_components[place.address_components.length - 1].long_name;
+
+            this.googleLocation.locationCountry = place.address_components[place.address_components.length - 2].short_name;
 
             this.googleLocation.locationMainTelephone = place.formatted_phone_number;
 
@@ -136,10 +141,13 @@ export class UserLocationService {
 
             this.googleLocation.googlePlaceTypes = place.types;
 
+            this.googleLocation.website = place.website;
+
 
 
            
             console.log("what is this selectedLocation", this.selectedLocation);
+            console.log("location details being saved ", this.googleLocation);
             
            
 

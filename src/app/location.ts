@@ -1,19 +1,29 @@
 export class Location {
   _id: string;
+  locationId: string;
+  jarId: string;
   locationName: string;
   locationMainImage: string;
   description: string;
   entryType: string;
   locationAddress: string;
+  locationCountry: string;
+  locationTown: string;
   locationPostcode: string;
   locationMainTelephone: string;
+  website: string;
   latitude: number;
   longitude: number;
-  creatorID: string;
+  creatorId: string;
   googlePlaceTypes: any[];
   googlePlacesId: string;
   googleImageUrl: string;
   votes: number;
+  upVotedBy: string[];
+  downVotedBy: string[];
+  verifiedDate: Date = new Date();
+  tags;
+
 
 
 
