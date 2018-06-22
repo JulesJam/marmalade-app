@@ -10,7 +10,7 @@
  </div>
 </div>
 <div *ngIf="!loading" class="main_container">
-  <div class="user_header">Logged in as {{currentUser.firstName}} your primary jar is {{currentUser.jarName}} and you are in branch {{currentUser.primaryJarId.branchCode}}<span *ngIf="currentUser.pendingInvitations > 0">you have {{currentUser.pendingInvitations}} pending invitations</span></div>
+  <div class="user_header">Logged in as {{currentUser.firstName}} your primary jar is {{currentUser.jarName}} and you are in branch {{currentUser.primaryJarId.branchCode}}</div>
   <invitation-form>
   </invitation-form>
   <location-form

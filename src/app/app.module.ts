@@ -41,7 +41,13 @@ import { ApinewService } from './apinew.service';
 import { FindLocalLocationComponent } from './findLocalLocation/findLocalLocation.component';
 import { UserLocationService } from './userlocation.service';
 import { FindLocationAnywhereComponent } from './find-location-anywhere/find-location-anywhere.component';
-import { InvitationFormComponent } from './invitation-form/invitation-form.component'
+import { InvitationFormComponent } from './invitation-form/invitation-form.component';
+import { PendingInviteReminderComponent } from './pending-invite-reminder/pending-invite-reminder.component';
+import { ModalService } from './modal.service';
+import { DomService } from './dom.service';
+
+
+
 
 
 const routes: Routes = [
@@ -78,7 +84,9 @@ const routes: Routes = [
     LoginComponent,
     FindLocalLocationComponent,
     FindLocationAnywhereComponent,
-    InvitationFormComponent
+    InvitationFormComponent,
+    PendingInviteReminderComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -100,7 +108,12 @@ const routes: Routes = [
     AuthService,
     AuthGuardService,
     ApinewService,
-    UserLocationService
+    UserLocationService,
+    DomService,
+    ModalService
+  ],
+  entryComponents: [
+   PendingInviteReminderComponent
   ],
   bootstrap: [AppComponent]
 })

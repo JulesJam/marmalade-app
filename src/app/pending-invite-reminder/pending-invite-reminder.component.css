@@ -1,0 +1,19 @@
+.pending-invite-modal-container{
+  display:block;
+  border-radius: 25px
+}
+.pending-invite-modal-text{
+  color: rgba(125, 131, 133, 1.0);
+  font-size: 20px;
+  text-align:center;
+}
+.pending-invite-modal-close{
+  text-align:center;
+}
+.pending-invite-modal-close button{
+  font-size: 20px;
+  width: 75px;
+  height: 50px;
+  border: 3px;
+  color: rgba(255, 20, 30, 1.0);
+}

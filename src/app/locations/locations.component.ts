@@ -1,6 +1,7 @@
 import {
   Component,
-  EventEmitter
+  EventEmitter,
+  OnInit,
   } from '@angular/core';
 
 import { Location } from '../location';
@@ -8,6 +9,8 @@ import { User } from '../user';
 import { AuthService, TokenPayload } from '../auth.service'
 
 import { LocationDataService } from '../location-data.service';
+import { ModalService } from '../modal.service';
+import { PendingInviteReminderComponent } from '../pending-invite-reminder/pending-invite-reminder.component';
 
 @Component({
   selector: 'locations',
@@ -21,9 +24,10 @@ export class LocationsComponent  {
     data: Object;
   private currentUser: User;
 
-  constructor(private locationDataService: LocationDataService, private auth: AuthService) {
+  constructor(private locationDataService: LocationDataService, private auth: AuthService, private modal: ModalService) {
     this.loading = true;
-    this.currentUser = auth.currentUser
+    this.currentUser = auth.currentUser;
+   
    }
 
   locationWasSelected(location: Location): void {
@@ -41,6 +45,16 @@ export class LocationsComponent  {
         this.loading = false;
         }
       );
+    
+    if(this.currentUser.pendingInvitations > 0 ){
+
+      let modalContent = {
+        currentUserFirstName: this.currentUser.firstName,
+        pendingInvitations: this.currentUser.pendingInvitations
+      }
+
+     this.modal.init(PendingInviteReminderComponent,modalContent,{} )
+    }  
   }
 
 }

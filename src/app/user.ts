@@ -39,6 +39,7 @@ export class User {
   jarMemberships: [{JarMemberships}];
   //the jar either created or first joined
   primaryJarId: JarMemberships;
+  pendingInvitations: number;
   visits: [new() => Date];
   //to add a direct relationship to someone who is already a member
   friends: string[];
