@@ -11,6 +11,9 @@
 </div>
 <div *ngIf="!loading" class="main_container">
   <div class="user_header">Logged in as {{currentUser.firstName}} your primary jar is {{currentUser.jarName}} and you are in branch {{currentUser.primaryJarId.branchCode}}</div>
+  <div class="viewSelector">
+    <button type="button" (click)="displayJarLocations()" class="ui right floated button">Jar</button>
+  </div>
   <invitation-form>
   </invitation-form>
   <location-form

@@ -1,7 +1,7 @@
 <div class="login_register_form">  
   <div class="ui raised segment register"> 
     <h1 *ngIf="!invalidRegister">{{formTitle}}</h1>
-    <div class="alert_bar" *ngIf="invalidRegister">Oops those details don't seem quite  right, contact support and give the following error... "{{this.registerError}}</div>
+    <div class="alert_bar" *ngIf="invalidRegister">Oops those details don't seem quite  right, contact support and give the following error... {{this.registerError}}</div>
     <form [formGroup]="registerForm"
           class="ui form"
           (ngSubmit)="register(registerForm.value)"

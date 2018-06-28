@@ -24,7 +24,7 @@ import { LocationsListComponent } from './locations-list/locations-list.componen
 import { LocationRowComponent } from './location-row/location-row.component';
 import { LocationImageComponent } from './location-image/location-image.component';
 import { LocationFormComponent } from './location-form/location-form.component';
-import { ApiService } from './api.service';
+import { ApiService } from './services/api.service';
 import { LocationDataService } from './location-data.service';
 import { InvitationDataService } from './invitation-data.service'
 import { HeaderComponent } from './header/header.component';
@@ -45,6 +45,7 @@ import { InvitationFormComponent } from './invitation-form/invitation-form.compo
 import { PendingInviteReminderComponent } from './pending-invite-reminder/pending-invite-reminder.component';
 import { ModalService } from './modal.service';
 import { DomService } from './dom.service';
+import { JarLocationListComponent } from './jar-location-list/jar-location-list.component';
 
 
 
@@ -85,7 +86,8 @@ const routes: Routes = [
     FindLocalLocationComponent,
     FindLocationAnywhereComponent,
     InvitationFormComponent,
-    PendingInviteReminderComponent
+    PendingInviteReminderComponent,
+    JarLocationListComponent
     
   ],
   imports: [

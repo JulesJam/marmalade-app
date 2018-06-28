@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Invitation } from './invitation';
+import { Invitation } from './models/invitation';
 
 import { ApinewService } from './apinew.service';
 

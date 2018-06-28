@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
 import { environment } from 'environments/environment';
 
-import { User } from './user';
+import { User } from './models/user';
 
 const API_URL = environment.apiUrl;
 

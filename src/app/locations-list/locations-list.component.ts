@@ -2,16 +2,18 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output
+  Output,
+  ChangeDetectionStrategy
   } from '@angular/core';
 
-import { Location } from '../location';
+import { Location } from '../models/location';
 
 
 @Component({
   selector: 'locations-list',
   templateUrl: './locations-list.component.html',
   styleUrls: ['./locations-list.component.css']
+ /* changeDetection: ChangeDetectionStrategy.OnPush*/
 })
 
 

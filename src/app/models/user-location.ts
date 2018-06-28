@@ -1,18 +1,20 @@
-export class UserEntries {
+import { UserComment } from './user-comment';
+
+export class UserLocation {
   _id: string;
   userId: string;
   dateCreated: Date = new Date();
-  jarEntryId: string;
-  //Ownership status owner||collector
-  ownershipStatus: string;
+  modifiedDate: Date = new Date();
+  locationId: string;
+  jarLocationId: string;
+  comments: UserComment [] ;
   entryType: string;
-  //usre comments is an array of comment id's
-  userComments: string[];
+  userTags: string [];
+  views: number [];
+  //user comments is an array of comment id's
   //upvote down votes set if user has made that action to manage once only voting
   upVoted: boolean;
   downVoted: boolean;
-
-
   constructor(values: Object ={}){
     Object.assign(this, values);
   }

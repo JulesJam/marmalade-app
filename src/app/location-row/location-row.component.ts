@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { LocationDataService } from '../location-data.service';
 
-import { Location } from '../location';
+import { Location } from '../models/location';
 
 @Component({
   selector: 'location-row',

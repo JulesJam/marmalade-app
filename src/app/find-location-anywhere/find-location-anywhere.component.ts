@@ -17,7 +17,7 @@ import {
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import 'rxjs/add/operator/toPromise';
-import { Location } from '../location';
+import { Location } from '../models/location';
 
 
 
@@ -107,9 +107,7 @@ export class FindLocationAnywhereComponent implements OnInit {
 
             this.googleLocation.locationMainTelephone = place.formatted_phone_number;
 
-            this.googleLocation.latitude = this.latitude;
-
-            this.googleLocation.longitude = this.longitude;
+            this.googleLocation.coordinates = [this.longitude, this.latitude];
 
             this.googleLocation.googlePlacesId = place.place_id;
 

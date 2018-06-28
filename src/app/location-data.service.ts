@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Location } from './location';
-import { ApiService } from './api.service';
+import { Location } from './models/location';
+import { ApiService } from './services/api.service';
 import { ApinewService } from './apinew.service';
 
 import { Observable } from 'rxjs/Observable';
@@ -50,6 +50,10 @@ export class LocationDataService {
 
   getAllLocations(): Observable<Location[]>{
     return this.apinew.getAllLocations();
+  }
+
+  getJarLocations(jarId): Observable<Location[]>{
+    return this.apinew.getJarLocations(jarId);
   }
 
   getLocationById(id: string): Location{

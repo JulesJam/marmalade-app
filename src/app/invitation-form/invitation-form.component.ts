@@ -8,8 +8,8 @@ import {
 } from '@angular/forms';
 
 import { AuthService, TokenPayload } from '../auth.service'
-import { User } from '../user';
-import { Invitation } from '../invitation';
+import { User } from '../models/user';
+import { Invitation } from '../models/invitation';
 import { siteURL } from '../../environments/siteURL';
 import { InvitationDataService } from '../invitation-data.service';
 
@@ -49,7 +49,7 @@ export class InvitationFormComponent implements OnInit {
     console.log("invitation form", invitationForm, "and user is >>>", this.currentUser);
 
     this.sentInvitation.senderId = this.currentUser._id;
-    this.sentInvitation.jarId = this.currentUser.primaryJarId.jarId
+    this.sentInvitation.jarId = this.currentUser.primaryJarId.jarId;
     this.sentInvitation.recipientEmailAddress = invitationForm.recipientEmailAddress;
     this.sentInvitation.recipientFirstName = invitationForm.recipientFirstName;
     this.sentInvitation.senderMembershipLevel = this.currentUser.primaryJarId.membershipLevel;

@@ -5,9 +5,9 @@ import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/commo
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
-import { Location } from './location';
+import { Location } from './models/location';
 
-import { Invitation } from './invitation';
+import { Invitation } from './models/invitation';
 
 
 
@@ -44,7 +44,33 @@ export class ApinewService {
       .map(response => {
            console.log("response json", response);
            const locations = response;
-           return locations.location.map((location) => new Location(location));
+           return locations.locations.map((location) => new Location(location));
+         })
+  };
+
+  public getJarLocations(jarId): Observable<Location[]>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'multipart/form-data',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer '+`${this.getToken()}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+
+
+    console.log("Query JAr Id ", jarId);
+    return this.http
+      .get<any>(this.API_URL + '/jar/'+jarId, httpOptions)
+      .map(response => {
+           console.log("response json", response.jar.jarLocations);
+           //this need to change
+           const jarLocations = response.jar.jarLocations;
+           console.log("Response: jarLocations" , jarLocations, "response jar locations.locations ", jarLocations[1]);
+           const locations = jarLocations
+            .reduce((arr, jarLocation) => arr.concat(jarLocation.location),[]);
+          console.log("reduced locations ", locations);
+           return locations.map((location) => new Location(location));
          })
   };
 

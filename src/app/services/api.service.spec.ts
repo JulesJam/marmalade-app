@@ -4,7 +4,7 @@ import {
   Response      
   } from '@angular/http';
 
-import { ApiService } from './api.service';
+import { ApiService } from './services/api.service';
 
 describe('ApiService', () => {
   beforeEach(() => {

@@ -5,7 +5,7 @@ import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import 'rxjs/add/operator/toPromise';
 
-import { Location } from './location';
+import { Location } from './models/location';
 
 
 @Injectable()
@@ -102,14 +102,14 @@ export class UserLocationService {
           this.ngZone.run(() => {
   
             let place: google.maps.places.PlaceResult =   autocomplete.getPlace();
-            if(place.geometry === undefined || place.geometry ===   null) {
-              reject("Place cannot be found");
+            if(place && place.geometry != undefined && place.geometry !=   null) {
+              
   
-            }
+            
   
             let service: google.maps.places.PlaceResult =   autocomplete.getPlace();
-  
-            console.log("this clicked place", place);
+            
+            console.log("this clicked place is", place);
             console.log("search control", searchControl);
             console.log("SearchElement", searchParameters.value);
             this.selectedLocation = searchParameters.value;
@@ -133,9 +133,9 @@ export class UserLocationService {
 
             this.googleLocation.locationMainTelephone = place.formatted_phone_number;
 
-            this.googleLocation.latitude = this.latitude;
+            this.googleLocation.coordinates = [this.longitude, this.latitude];
 
-            this.googleLocation.longitude = this.longitude;
+            
 
             this.googleLocation.googlePlacesId = place.place_id;
 
@@ -151,7 +151,10 @@ export class UserLocationService {
             
            
 
-            resolve(this.googleLocation)
+            resolve(this.googleLocation)}
+            else{
+              reject("Place cannot be found");
+            }
           });
 
       });

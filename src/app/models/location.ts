@@ -12,8 +12,7 @@ export class Location {
   locationPostcode: string;
   locationMainTelephone: string;
   website: string;
-  latitude: number;
-  longitude: number;
+  coordinates: number [];
   creatorId: string;
   googlePlaceTypes: any[];
   googlePlacesId: string;

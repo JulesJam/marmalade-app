@@ -4,8 +4,8 @@ import {
   OnInit,
   } from '@angular/core';
 
-import { Location } from '../location';
-import { User } from '../user';
+import { Location } from '../models/location';
+import { User } from '../models/user';
 import { AuthService, TokenPayload } from '../auth.service'
 
 import { LocationDataService } from '../location-data.service';
@@ -22,7 +22,7 @@ export class LocationsComponent  {
   locations: Location[];
   loading: boolean;
     data: Object;
-  private currentUser: User;
+  public currentUser: User;
 
   constructor(private locationDataService: LocationDataService, private auth: AuthService, private modal: ModalService) {
     this.loading = true;
@@ -32,6 +32,19 @@ export class LocationsComponent  {
 
   locationWasSelected(location: Location): void {
     console.log('Location Selected: ', location);
+  }
+
+  displayJarLocations(){
+    this.loading = true;
+    const jarId = this.currentUser.primaryJarId.jarId;
+    this.locationDataService
+      .getJarLocations(jarId)
+      .subscribe(
+        (locations) => {
+        this.locations = locations
+        this.loading = false;
+        }
+      );
   }
 
 

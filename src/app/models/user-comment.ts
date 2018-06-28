@@ -1,9 +1,9 @@
-export class UserComments {
+export class UserComment {
 
   _id: string;
   userId: string;
   dateCreated: Date = new Date();
-  userEntryId: string;
+  userLocationId: string;
   comment: string;
 
   constructor(values: Object ={}){

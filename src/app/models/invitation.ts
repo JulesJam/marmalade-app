@@ -1,3 +1,6 @@
+import { User } from './user';
+import { Jar} from './jar';
+
 export class Invitation {
 
   _id: string;

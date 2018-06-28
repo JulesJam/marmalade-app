@@ -27,7 +27,7 @@ import { LocationDataService } from '../location-data.service';
 import { UserLocationService } from '../userlocation.service';
 import { FindLocalLocationComponent } from '../findLocalLocation/findLocalLocation.component';
 
-import { Location } from '../location';
+import { Location } from '../models/location';
 
 @Injectable()
 
@@ -188,6 +188,8 @@ export class LocationFormComponent implements OnInit {
     location.googlePlacesId = this.selectedLocation.googlePlacesId;
     location.locationTown = this.selectedLocation.locationTown;
     location.googlePlaceTypes = this.selectedLocation.googlePlaceTypes;
+    location.coordinates = this.selectedLocation.coordinates;
+    location.locationCountry = this.selectedLocation.locationCountry;
     
     this.locationDataService  
       .addLocation(location, this.fileToUpload)
