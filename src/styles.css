@@ -161,7 +161,15 @@ login-box{
   display: block;
   position: fixed;
   top: 10.9em;
-  left: 85%;
+  left: 1%;
+}
+.viewActive {
+  color: red !important;
+}
+
+.display-map{
+  height: 500px;
+  width: 500px;
 }
 
 .navIcon {

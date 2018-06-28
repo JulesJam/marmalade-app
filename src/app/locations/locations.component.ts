@@ -24,9 +24,13 @@ export class LocationsComponent  {
     data: Object;
   public currentUser: User;
 
+  currentView: string = "all";
+  currentDisplayStyle: string = "list";
+
   constructor(private locationDataService: LocationDataService, private auth: AuthService, private modal: ModalService) {
     this.loading = true;
     this.currentUser = auth.currentUser;
+
    
    }
 
@@ -36,6 +40,7 @@ export class LocationsComponent  {
 
   displayJarLocations(){
     this.loading = true;
+
     const jarId = this.currentUser.primaryJarId.jarId;
     this.locationDataService
       .getJarLocations(jarId)
@@ -43,21 +48,38 @@ export class LocationsComponent  {
         (locations) => {
         this.locations = locations
         this.loading = false;
+        this.currentView = "jar";
         }
       );
   }
 
-
-
-  public ngOnInit() {
+  displayAllLocations(){
     this.locationDataService
       .getAllLocations()
       .subscribe(
         (locations) => {
         this.locations = locations
         this.loading = false;
+        this.currentView = "all";
         }
       );
+  }
+
+  toggleDisplayStyle(){
+    console.log("changing display style");
+    if(this.currentDisplayStyle == 'list'){
+      this.currentDisplayStyle = 'map'
+    } else{
+      this.currentDisplayStyle = 'list'
+    }
+  }
+
+
+
+  public ngOnInit() {
+    
+    this.displayAllLocations();
+    this.currentDisplayStyle = 'list';
     
     if(this.currentUser.pendingInvitations > 0 ){
 

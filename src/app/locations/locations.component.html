@@ -10,9 +10,17 @@
  </div>
 </div>
 <div *ngIf="!loading" class="main_container">
-  <div class="user_header">Logged in as {{currentUser.firstName}} your primary jar is {{currentUser.jarName}} and you are in branch {{currentUser.primaryJarId.branchCode}}</div>
+  <div class="user_header">Logged in as {{currentUser.firstName}} your primary jar is {{currentUser.jarName}} and you are in branch {{currentUser.primaryJarId.branchCode}}  {{currentView}}</div>
   <div class="viewSelector">
-    <button type="button" (click)="displayJarLocations()" class="ui right floated button">Jar</button>
+    <div>
+      <button type="button" (click)="displayAllLocations()" class="ui right floated button" [ngClass] = "{'viewActive': currentView === 'all'}">All</button>
+      <button type="button" (click)="displayJarLocations()" class="ui right floated button" [ngClass] = "{'viewActive': currentView === 'jar'}">Jar</button>
+      <button type="button" (click)="displayJarLocations()" class="ui right floated button">{{currentUser.firstName}}'s</button>
+    <div>
+      <button type="button" (click)="toggleDisplayStyle()" class="ui right floated button" [ngClass] = "{'viewTypeActive': currentView === 'map'}">Map</button>
+      <button type="button" (click)="toggleDisplayStyle()" class="ui right floated button" [ngClass] = "{'viewActive': currentView === 'list'}">List</button>
+    <div>
+    </div>
   </div>
   <invitation-form>
   </invitation-form>
@@ -20,7 +28,12 @@
     [locationList]="locations">
   </location-form>
   <locations-list
+    *ngIf="currentDisplayStyle =='list'"
     [locationList]="locations"
       (onLocationSelected)="locationWasSelected($event)">
   </locations-list>
+  <display-map
+    *ngIf = "currentDisplayStyle == 'map'"
+    [locationList]="locations">
+  </display-map>
 </div>

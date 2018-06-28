@@ -46,6 +46,7 @@ import { PendingInviteReminderComponent } from './pending-invite-reminder/pendin
 import { ModalService } from './modal.service';
 import { DomService } from './dom.service';
 import { JarLocationListComponent } from './jar-location-list/jar-location-list.component';
+import { DisplayMapComponent } from './display-map/display-map.component';
 
 
 
@@ -87,7 +88,8 @@ const routes: Routes = [
     FindLocationAnywhereComponent,
     InvitationFormComponent,
     PendingInviteReminderComponent,
-    JarLocationListComponent
+    JarLocationListComponent,
+    DisplayMapComponent
     
   ],
   imports: [
