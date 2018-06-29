@@ -22,6 +22,9 @@ export class Location {
   downVotedBy: string[];
   verifiedDate: Date = new Date();
   tags;
+  jarLocationDescription: string;
+  jarLocationVenueType: string;
+  mapTag: string;
 
 
 

@@ -68,12 +68,36 @@ export class ApinewService {
            const jarLocations = response.jar.jarLocations;
            console.log("Response: jarLocations" , jarLocations, "response jar locations.locations ", jarLocations[1]);
            const locations = jarLocations
-            .reduce((arr, jarLocation) => arr.concat(jarLocation.location),[]);
+            .reduce((arr, jarLocation) => arr.concat(/*jarLocation.location*/this.jarlocationUpdater(jarLocation, jarLocation.location)),[]);
           console.log("reduced locations ", locations);
            return locations.map((location) => new Location(location));
          })
   };
 
+  jarlocationUpdater(jarLocation, location){
+
+    location.jarLocationDescription = jarLocation.description;
+    location.jarLocationType = jarLocation.jarLocationType;
+    switch(jarLocation.jarLocationType){
+      case 'Pub':
+        location.mapTag = '🍺';
+        break;
+      case 'Coffee Shop':
+        location.mapTag = '☕️';
+        break;
+      case 'Restaurant':
+        location.mapTag = '🍴';
+        break;
+      case 'Hotel':
+        location.mapTag = '🛏';
+        break;
+      default:
+        'z';
+    }
+    console.log('this works', location);
+    return location;
+
+  }
 
   //Post new location using latest angular HTTP Client
   

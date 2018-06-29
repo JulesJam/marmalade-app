@@ -17,12 +17,13 @@ import { PendingInviteReminderComponent } from '../pending-invite-reminder/pendi
   templateUrl: './locations.component.html',
   styleUrls: ['./locations.component.css']
 })
-export class LocationsComponent  {
+export class LocationsComponent implements OnInit  {
 
   locations: Location[];
   loading: boolean;
-    data: Object;
+  data: Object;
   public currentUser: User;
+  mapHeight: string = "300px";
 
   currentView: string = "all";
   currentDisplayStyle: string = "list";
@@ -68,7 +69,8 @@ export class LocationsComponent  {
   toggleDisplayStyle(){
     console.log("changing display style");
     if(this.currentDisplayStyle == 'list'){
-      this.currentDisplayStyle = 'map'
+      this.currentDisplayStyle = 'map';
+      this.mapHeight = '75vh'
     } else{
       this.currentDisplayStyle = 'list'
     }

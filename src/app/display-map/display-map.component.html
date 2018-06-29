@@ -2,9 +2,13 @@
   [latitude]="lat"
   [longitude]="lng"
   [zoom]="zoom"
+  [zoomControl]= "zoomControl"
   [disableDefaultUI]="false"
-  [zoomControl]="false"
-  (mapClick)="mapClicked($event)">
+  (mapClick)="mapClicked($event)"
+  [style.height] = 'mapHeight'
+  [scrollwheel]="true"
+  >
+ 
 
   <agm-marker 
       *ngFor="let m of markers; let i = index"
@@ -16,16 +20,17 @@
       (dragEnd)="markerDragEnd(m, $event)">
       
     <agm-info-window>
-      <strong>{{m.label}}</strong>
+      <strong>{{m.info}}</strong>
     </agm-info-window>
     
   </agm-marker>
-  
+  <!--
   <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
       [radius]="5000"
       [fillColor]="'red'"
       [circleDraggable]="true"
       [editable]="true">
   </agm-circle>
+-->
 
 </agm-map>

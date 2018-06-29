@@ -30,6 +30,7 @@ export class FindLocalLocationComponent implements OnInit {
   
   public countryCode: string;
 
+  mapHeight: string;
   
 
   @ViewChild('search')
@@ -60,6 +61,7 @@ export class FindLocalLocationComponent implements OnInit {
     this.longitude = -0.1335;
     this.located = false;
     this.loadLocalSearch();
+    this.mapHeight = '300px';
      
    };
 

@@ -10,16 +10,19 @@
  </div>
 </div>
 <div *ngIf="!loading" class="main_container">
-  <div class="user_header">Logged in as {{currentUser.firstName}} your primary jar is {{currentUser.jarName}} and you are in branch {{currentUser.primaryJarId.branchCode}}  {{currentView}}</div>
-  <div class="viewSelector">
-    <div>
-      <button type="button" (click)="displayAllLocations()" class="ui right floated button" [ngClass] = "{'viewActive': currentView === 'all'}">All</button>
-      <button type="button" (click)="displayJarLocations()" class="ui right floated button" [ngClass] = "{'viewActive': currentView === 'jar'}">Jar</button>
-      <button type="button" (click)="displayJarLocations()" class="ui right floated button">{{currentUser.firstName}}'s</button>
-    <div>
-      <button type="button" (click)="toggleDisplayStyle()" class="ui right floated button" [ngClass] = "{'viewTypeActive': currentView === 'map'}">Map</button>
-      <button type="button" (click)="toggleDisplayStyle()" class="ui right floated button" [ngClass] = "{'viewActive': currentView === 'list'}">List</button>
-    <div>
+  
+  <div class="view_selector">
+    <div class="user_header">Logged in as {{currentUser.firstName}}</div>
+    <div class="user_header">primary jar is {{currentUser.jarName}} you are in branch {{currentUser.primaryJarId.branchCode}}
+    </div>
+    <div class="selector_group">
+      <button type="button" (click)="displayAllLocations()" class="ui left floated button action_button" [ngClass] = "{'view_active': currentView === 'all'}">All</button>
+      <button type="button" (click)="displayJarLocations()" class="ui left floated button action_button" [ngClass] = "{'view_active': currentView === 'jar'}">Jar</button>
+      <button type="button" (click)="displayJarLocations()" class="ui left floated button action_button">{{currentUser.firstName}}'s</button>
+    </div>
+    <div class="selector_group">
+      <button type="button" (click)="toggleDisplayStyle()" class="ui left floated button action_button" [ngClass] = "{'view_active': currentDisplayStyle === 'map'}">Map</button>
+      <button type="button" (click)="toggleDisplayStyle()" class="ui left floated button action_button" [ngClass] = "{'view_active': currentDisplayStyle === 'list'}">List</button>
     </div>
   </div>
   <invitation-form>
@@ -34,6 +37,6 @@
   </locations-list>
   <display-map
     *ngIf = "currentDisplayStyle == 'map'"
-    [locationList]="locations">
+    [locationList]="locations" [mapHeight]='mapHeight' class="map_width">
   </display-map>
 </div>

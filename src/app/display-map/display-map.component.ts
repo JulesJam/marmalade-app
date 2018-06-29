@@ -11,7 +11,12 @@ import {
   Location
 } from '../models/location';
 
+import { } from 'googlemaps';
+
+import { MapsAPILoader } from '@agm/core';
 import { MouseEvent } from '@agm/core';
+
+
 
 @Component({
   selector: 'display-map',
@@ -21,9 +26,11 @@ import { MouseEvent } from '@agm/core';
 export class DisplayMapComponent  {
 
   @Input() locationList: Location[];
-  // google maps zoom level
+  @Input() mapHeight: string;  // google maps zoom level
   currentLocation: number [];
-  zoom: number = 5;
+  zoom: number = 12;
+  zoomControl: boolean = true
+
   
   // initial center position for the map
   lat: number = 0
@@ -31,7 +38,7 @@ export class DisplayMapComponent  {
 
   markers: any[] 
 
-  constructor (private userlocation: UserLocationService){
+  constructor (private userlocation: UserLocationService, private mapsAPILoader: MapsAPILoader,){
 
   };
 
@@ -78,27 +85,36 @@ export class DisplayMapComponent  {
     }
   ]*/
 
+  /*labelOptions = {
+color: '#CC0000',
+fontFamily: '',
+fontSize: '14px',
+fontWeight: 'bold',
+text: 'Some Text',
+}*/
+
 
   ngOnInit () {
-   this.userlocation.setCurrentPosition()
-    .then((currentposition) =>{
-      this.lat = currentposition[0];
-      this.lng = currentposition[1];
-      console.log("The position is now set", currentposition);
-      console.log("the location list is ", this.locationList)
-      const newarray = this.locationList.map((location) => 
-       ( {'label':location.locationAddress,'lat': location.coordinates[1], 'lng':  location.coordinates[0]})
-      
-        )
-      console.log("new arraay",newarray);
-      this.markers = newarray
-    })
-
-    .catch((err) => console.error("Geolocation Failed ", err))
-    
-   
-  }
+    this.mapsAPILoader.load()
+      .then(() =>{
+        this.userlocation.setCurrentPosition()
+          .then((currentposition) =>{
+            this.lat = currentposition[0];
+            this.lng = currentposition[1];
+            console.log("The position is now set", currentposition);
+            console.log("the location list is ", this.locationList);
+            const newarray = this.locationList.map((location) => 
+            ( {'label': location.mapTag, 'info':location.locationAddress,'lat': location.coordinates[1], 'lng':  location.coordinates[0]})
+            );
+            console.log("new arraay",newarray);
+            newarray.push({'label': 'U', 'info':"Your Current Location",'lat': this.lat, 'lng':  this.lng})
+            this.markers = newarray;
+          })
+          .catch((err) => console.error("Geolocation Failed ", err))  
+        })
+    }
 }
+
 
 // just an interface for type safety.
 interface marker {

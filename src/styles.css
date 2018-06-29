@@ -12,7 +12,7 @@ body {
   display: block;
   min-width: 906px;
   color: rgba(125, 131, 133, 1.0);
-  overflow: ;
+  overflow: hidden ;
 }
 
 .ui.menu .item img.logo {
@@ -89,7 +89,7 @@ login-box{
 }
 
 .invitation-form{
-  margin: 1em 0 !important;
+  margin: 1em 0 0.5em !important;
   overflow: hidden;
 }
 
@@ -157,19 +157,23 @@ login-box{
   text-align: center;
 }
 
-.viewSelector {
+.view_selector {
   display: block;
   position: fixed;
   top: 10.9em;
   left: 1%;
 }
-.viewActive {
+.view_active {
   color: red !important;
 }
 
+.selector_group{
+  padding: 20px;
+}
+
 .display-map{
-  height: 500px;
-  width: 500px;
+  height: 100vh;
+  
 }
 
 .navIcon {
@@ -380,8 +384,9 @@ login-box{
 
 
 agm-map {
-  height: 300px;
+  height: 100vh;
 }
+
 
 .map-search{
   min-width: 100%;
@@ -409,7 +414,7 @@ agm-map {
 }
 
 .ui.cards {
-  margin: -.5em !important;
+  margin: -3.9% -2px -3px -5.9% !important;
 }
 
 
@@ -484,12 +489,23 @@ agm-map {
 
   }
 
+  .ui.cards{
+    margin: -4% 0 0 4% !important;
+    width: 98%;
+  }
+
+  .a{
+    overflow: wrap;
+  }
+
+
+
   .loginregister_buttons{
     font-size: 1rem !important;
   }
 
   .ui.raised.segment{
-    max-width: 56%;
+    min-width: 88%;
     margin-left: 19%;
   }
 
@@ -502,6 +518,36 @@ agm-map {
   .ui.buttons .button:first-child{
     margin-left: 0%;
   }
+
+  .main_container{
+    display: block;
+    min-width: 328px;
+    max-width: 328px;
+    color: rgba(125, 131, 133, 1.0);
+    overflow: hidden ;
+  }
+
+  .view_selector{
+    position: relative;
+    top: 0.5em;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .selector_group{
+    float: left;
+    padding: 3px 0 15px;
+  }
+
+  .action_button{
+    height: 40px !important;
+    padding: ;
+    font-size: 10px !important;
+    padding-bottom: 8px;
+
+
+  }
+
 
 
   
