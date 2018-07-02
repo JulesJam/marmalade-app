@@ -10,7 +10,7 @@ body {
 }
 .main_container{
   display: block;
-  min-width: 906px;
+  width: 80%;
   color: rgba(125, 131, 133, 1.0);
   overflow: hidden ;
 }
@@ -162,6 +162,8 @@ login-box{
   position: fixed;
   top: 10.9em;
   left: 1%;
+  width: 10%;
+
 }
 .view_active {
   color: red !important;
@@ -436,6 +438,16 @@ agm-map {
   overflow: hidden;
 }
 
+.action_button{
+  height: 40px !important;
+  padding: ;
+  font-size: 10px !important;
+  padding-bottom: 8px;
+  margin-bottom: 3px;
+
+
+}
+
 
 
 
@@ -544,6 +556,7 @@ agm-map {
     padding: ;
     font-size: 10px !important;
     padding-bottom: 8px;
+    margin-bottom: 3px;
 
 
   }
