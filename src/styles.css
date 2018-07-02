@@ -11,6 +11,7 @@ body {
 .main_container{
   display: block;
   width: 80%;
+  margin-left: 20%;
   color: rgba(125, 131, 133, 1.0);
   overflow: hidden ;
 }
@@ -443,9 +444,7 @@ agm-map {
   padding: ;
   font-size: 10px !important;
   padding-bottom: 8px;
-  margin-bottom: 3px;
-
-
+  margin-bottom: 5px !important;
 }
 
 
