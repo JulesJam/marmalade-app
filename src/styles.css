@@ -10,7 +10,7 @@ body {
 }
 .main_container{
   display: block;
-  width: 80%;
+  min-width: 80%;
   margin-left: 20%;
   color: rgba(125, 131, 133, 1.0);
   overflow: hidden ;
@@ -163,7 +163,7 @@ login-box{
   position: fixed;
   top: 10.9em;
   left: 1%;
-  width: 10%;
+  width: 15%;
 
 }
 .view_active {
@@ -171,13 +171,19 @@ login-box{
 }
 
 .selector_group{
-  padding: 20px;
+  float: left;
+  padding: 5px;
 }
 
 .display-map{
   height: 100vh;
   
 }
+
+.map_width{
+  width: 80vw;
+}
+
 
 .navIcon {
   width: 60px;
@@ -388,6 +394,8 @@ login-box{
 
 agm-map {
   height: 100vh;
+  width: 60vw;
+
 }
 
 
@@ -532,10 +540,17 @@ agm-map {
 
   .main_container{
     display: block;
-    min-width: 328px;
-    max-width: 328px;
+    min-width: 88vw;
+    max-width: 88vw;
+    margin: 0;
     color: rgba(125, 131, 133, 1.0);
     overflow: hidden ;
+  }
+
+  agm-map {
+    height: 100vh;
+    width: 98vw;
+
   }
 
   .view_selector{
@@ -558,6 +573,10 @@ agm-map {
     margin-bottom: 3px;
 
 
+  }
+
+  .ui.right.floated.button{
+    padding: 3px;
   }
 
 
