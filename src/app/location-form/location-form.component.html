@@ -94,10 +94,13 @@
         <div class="field"
           [class.error]="!locationForm.controls['locationType'].valid &&   locationForm.controls['locationType'].touched">
           <label for="locationTypeInput">Type of venue</label>
-          <input  type="text"
-                  id ="locationTypeInput"
-                  placeholder="Restaurant, Hotel, Coffe Shop"
-                  [formControl]="locationForm.controls['locationType']">
+          <select 
+            [formControl]="locationForm.controls['locationType']">
+          <option *ngFor="let locationType of locationTypes"
+                  [value] = "locationType.name">
+                  {{locationType.name}}
+          </option>
+          </select>
           <div *ngIf="!locationForm.controls['locationType'].valid"
             class="ui error message">Type of location is Required
           </div>

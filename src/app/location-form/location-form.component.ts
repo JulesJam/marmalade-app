@@ -66,6 +66,19 @@ export class LocationFormComponent implements OnInit {
   @Input() locationList: Location[];
   @ViewChild('fileInput') fileInput;
 
+  locationTypes = [
+    {id: 1, name:"Restaurant"},
+    {id: 2, name:"Coffee Shop"},
+    {id: 3, name:"Pub"},
+    {id: 4, name:"Cokctail Bar"},
+    {id: 5, name: "Hotel"},
+    {id: 6, name: "Café"},
+    {id: 7, name: "Bar/Wine Bar"},
+    {id: 8, name: "FoodStall"},
+    {id: 9, name: "Place to Visit"},
+    {id: 10, name: "Something else..."}
+  ];
+
  
 
   
