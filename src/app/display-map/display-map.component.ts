@@ -104,7 +104,7 @@ text: 'Some Text',
             console.log("The position is now set", currentposition);
             console.log("the location list is ", this.locationList);
             const newarray = this.locationList.map((location) => 
-            ( {'label': location.mapTag, 'info':location.locationAddress,'lat': location.coordinates[1], 'lng':  location.coordinates[0]})
+            ( {'label': location.mapTag, 'info':location.locationName,'lat': location.coordinates[1], 'lng':  location.coordinates[0]})
             );
             console.log("new arraay",newarray);
             newarray.push({'label': 'U', 'info':"Your Current Location",'lat': this.lat, 'lng':  this.lng})

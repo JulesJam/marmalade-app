@@ -26,6 +26,7 @@ import { LocationImageComponent } from './location-image/location-image.componen
 import { LocationFormComponent } from './location-form/location-form.component';
 import { ApiService } from './services/api.service';
 import { LocationDataService } from './location-data.service';
+import { RemindersService } from './services/reminders.service';
 import { InvitationDataService } from './invitation-data.service'
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -114,7 +115,8 @@ const routes: Routes = [
     ApinewService,
     UserLocationService,
     DomService,
-    ModalService
+    ModalService,
+    RemindersService
   ],
   entryComponents: [
    PendingInviteReminderComponent

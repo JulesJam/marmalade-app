@@ -10,8 +10,7 @@ body {
 }
 .main_container{
   display: block;
-  min-width: 80%;
-  margin-left: 20%;
+  min-width: 85%;
   color: rgba(125, 131, 133, 1.0);
   overflow: hidden ;
 }
@@ -456,6 +455,51 @@ agm-map {
 }
 
 
+@media only screen 
+  and (min-device-width: 1022px) 
+  and (max-device-width: 1367px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .ui.raised.segment{
+      min-width: 100%;
+      margin-left: 53%;
+    }
+    .view_selector{
+      position: relative;
+      top: 0.5em;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .selector_group{
+      float: left;
+      padding: 3px 0 15px;
+    }
+
+  }
+
+  @media only screen 
+    and (min-device-width: 1022px) 
+    and (max-device-width: 1367px)
+    and (-webkit-min-device-pixel-ratio: 2)
+    and (orientation: landscape) {
+      .ui.raised.segment{
+        min-width: 100%;
+        margin-left: 53%;
+      }
+      .view_selector{
+        position: relative;
+        top: 0.5em;
+        width: 50%%;
+        margin-bottom: 10px;
+      }
+
+      .selector_group{
+        float: left;
+        padding: 3px 0 15px;
+      }
+
+    }
 
 
 @media only screen 
@@ -466,6 +510,58 @@ agm-map {
     .ui.raised.segment{
       min-width: 100%;
       margin-left: 53%;
+    }
+  }
+
+@media only screen 
+  and (min-device-width: 800px) 
+  and (max-device-width: 900px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape){
+    agm-map {
+      height: 100vh;
+      width: 88vw;
+
+    }
+
+    .view_selector{
+      position: relative;
+      top: 0.5em;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .selector_group{
+      float: left;
+      padding: 3px 0 15px;
+    }
+
+    .action_button{
+      height: 40px !important;
+      padding: ;
+      font-size: 10px !important;
+      padding-bottom: 8px;
+      margin-bottom: 3px;
+
+
+    }
+
+    #modal-container {
+        position:  fixed;
+        top: 50%;
+        left: 50%;
+        width: 375px;
+        background: white;
+        margin-left: -187.5px;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0px 0px 2px 1px black;
+        z-index: 100;
+        border-radius: 25px
+    }
+
+    .ui.right.floated.button{
+      padding: 3px;
     }
   }
 
@@ -540,8 +636,8 @@ agm-map {
 
   .main_container{
     display: block;
-    min-width: 88vw;
-    max-width: 88vw;
+    min-width: 80vw;
+    max-width: 80vw;
     margin: 0;
     color: rgba(125, 131, 133, 1.0);
     overflow: hidden ;
@@ -549,7 +645,7 @@ agm-map {
 
   agm-map {
     height: 100vh;
-    width: 98vw;
+    width: 80vw;
 
   }
 

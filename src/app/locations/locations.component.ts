@@ -9,6 +9,7 @@ import { User } from '../models/user';
 import { AuthService, TokenPayload } from '../auth.service'
 
 import { LocationDataService } from '../location-data.service';
+import { RemindersService } from '../services/reminders.service';
 import { ModalService } from '../modal.service';
 import { PendingInviteReminderComponent } from '../pending-invite-reminder/pending-invite-reminder.component';
 
@@ -28,9 +29,12 @@ export class LocationsComponent implements OnInit  {
   currentView: string = "all";
   currentDisplayStyle: string = "list";
 
-  constructor(private locationDataService: LocationDataService, private auth: AuthService, private modal: ModalService) {
+ 
+
+  constructor(private locationDataService: LocationDataService, private auth: AuthService, private modal: ModalService, private reminders: RemindersService) {
     this.loading = true;
     this.currentUser = auth.currentUser;
+    
 
    
    }
@@ -82,15 +86,19 @@ export class LocationsComponent implements OnInit  {
     
     this.displayAllLocations();
     this.currentDisplayStyle = 'list';
-    
-    if(this.currentUser.pendingInvitations > 0 ){
+    console.log("invitations reminder", this.reminders.invitationsReminder)
+
+    if(this.currentUser.pendingInvitations > 0 && !this.reminders.invitationsReminder ){
 
       let modalContent = {
         currentUserFirstName: this.currentUser.firstName,
         pendingInvitations: this.currentUser.pendingInvitations
-      }
+      };
 
+      this.reminders.toggleInvitationReminder();
+     
      this.modal.init(PendingInviteReminderComponent,modalContent,{} )
+
     }  
   }
 

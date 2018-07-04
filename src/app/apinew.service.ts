@@ -68,14 +68,14 @@ export class ApinewService {
            const jarLocations = response.jar.jarLocations;
            console.log("Response: jarLocations" , jarLocations, "response jar locations.locations ", jarLocations[1]);
            const locations = jarLocations
-            .reduce((arr, jarLocation) => arr.concat(/*jarLocation.location*/this.jarlocationUpdater(jarLocation, jarLocation.location)),[]);
+            .reduce((arr, jarLocation) => arr.concat(this.jarlocationUpdater(jarLocation, jarLocation.location)),[]);
           console.log("reduced locations ", locations);
            return locations.map((location) => new Location(location));
          })
   };
 
   jarlocationUpdater(jarLocation, location){
-
+    
     location.jarLocationDescription = jarLocation.description;
     location.jarLocationType = jarLocation.jarLocationType;
     switch(jarLocation.jarLocationType){
@@ -91,6 +91,9 @@ export class ApinewService {
       case 'Hotel':
         location.mapTag = '🛏';
         break;
+      case 'Cockatil Bar':
+        location.mapTag = '🍸';
+        break
       default:
         'z';
     }

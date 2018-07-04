@@ -67,14 +67,14 @@ export class LocationFormComponent implements OnInit {
   @ViewChild('fileInput') fileInput;
 
   locationTypes = [
-    {id: 1, name:"Restaurant"},
-    {id: 2, name:"Coffee Shop"},
-    {id: 3, name:"Pub"},
-    {id: 4, name:"Cokctail Bar"},
+    {id: 1, name: "Restaurant"},
+    {id: 2, name: "Coffee Shop"},
+    {id: 3, name: "Pub"},
+    {id: 4, name: "Cocktail Bar"},
     {id: 5, name: "Hotel"},
     {id: 6, name: "Café"},
-    {id: 7, name: "Bar/Wine Bar"},
-    {id: 8, name: "FoodStall"},
+    {id: 7, name: "Wine Bar"},
+    {id: 8, name: "Food Stall"},
     {id: 9, name: "Place to Visit"},
     {id: 10, name: "Something else..."}
   ];
@@ -208,6 +208,7 @@ export class LocationFormComponent implements OnInit {
       .addLocation(location, this.fileToUpload)
       .subscribe(
         newLocation => {
+        console.log("Location recieved ", newLocation);
         this.locationList.push(newLocation)}
         );
 

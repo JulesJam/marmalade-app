@@ -6,9 +6,9 @@
 export const environment = {
   production: 'https://marmaladeapi-pxjrfmnkbi.now.sh/api',
   zeitNow: 'https://marmaladeapi-pxjrfmnkbi.now.sh/api',
-  apiUrl: 'https://marmaladeapi-pxjrfmnkbi.now.sh/api'
+  /*apiUrl: 'https://marmaladeapi-pxjrfmnkbi.now.sh/api'*/
 
-  /*apiUrl: 'http://localhost:3000/api'*/
+  apiUrl: 'http://localhost:3000/api'
 };
 
 
