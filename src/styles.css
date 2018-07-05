@@ -427,6 +427,14 @@ agm-map {
   margin: -3.9% -2px -3px -5.9% !important;
 }
 
+.indicator {
+  display: block;
+  padding-bottom: 90%;
+  float: right;
+  color: red;
+}
+
+
 
 .ui.grid{
   margin-left: 6.5em;

@@ -2,6 +2,9 @@
   <div class="card">
     <div class="image">
       <location-image [location]="location"></location-image>
+      <div *ngIf="location.jarLocationEntryType == 'Wishlist'" class="indicator">
+        {{ location.jarLocationEntryType }}
+      </div>
     </div>
    
     
@@ -15,7 +18,10 @@
         <a>&#9742;: {{ location.locationMainTelephone}}</a>
       </div>
       <div class="description">
+        {{ location.jarLocationDescription }}
         {{ location.jarLocationType}} {{location.mapTag}}
+        
+        
       </div>
     </div>
     <div class="extra content">

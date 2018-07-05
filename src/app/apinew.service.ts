@@ -59,7 +59,7 @@ export class ApinewService {
     };
 
 
-    console.log("Query JAr Id ", jarId);
+    console.log("Query Jar Id ", jarId);
     return this.http
       .get<any>(this.API_URL + '/jar/'+jarId, httpOptions)
       .map(response => {
@@ -76,8 +76,14 @@ export class ApinewService {
 
   jarlocationUpdater(jarLocation, location){
     
-    location.jarLocationDescription = jarLocation.description;
+    if (jarLocation.descriptions){
+
+      location.jarLocationDescription = jarLocation.descriptions[0];
+    }
+   
     location.jarLocationType = jarLocation.jarLocationType;
+    location.jarLocationEntryType = jarLocation.entryType;
+    
     switch(jarLocation.jarLocationType){
       case 'Pub':
         location.mapTag = '🍺';

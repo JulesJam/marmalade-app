@@ -24,6 +24,10 @@ export class Location {
   tags;
   jarLocationDescription: string;
   jarLocationVenueType: string;
+  jarLocationEntryType: string;
+  userLocationEntryType: string;
+  jarLocationSource: string;
+  userLocationSource: string;
   mapTag: string;
 
 

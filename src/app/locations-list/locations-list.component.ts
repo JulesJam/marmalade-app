@@ -31,6 +31,7 @@ export class LocationsListComponent  {
   }
 
   clicked(location: Location): void {
+    console.log("You clicked ", location.locationName)
     this.currentLocation = location;
     this.onLocationSelected.emit(location);
   }
