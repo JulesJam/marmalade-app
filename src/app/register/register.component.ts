@@ -1,7 +1,9 @@
 import { 
   Component,
   OnInit,
-  Input
+  Input,
+  Output,
+  EventEmitter
 } from '@angular/core';
 
 import {
@@ -23,6 +25,7 @@ import { Router } from '@angular/router';
 
 export class RegisterComponent {
   @Input() inviteCode: string;
+  @Output() registerSuccess: EventEmitter<boolean> = new EventEmitter<boolean>();
   
 
   registerForm: FormGroup;
@@ -87,7 +90,9 @@ export class RegisterComponent {
     this.processing = true;
     console.log("credentials are",credentials);
     this.auth.register(credentials).subscribe(() => {
-      this.router.navigateByUrl('locations');
+      this.router.navigateByUrl('home');
+      this.auth.logout();
+      this.registerSuccess.emit(true);
       this.processing = false;
       }, (err) => {
         console.log("register error",err.error.message);

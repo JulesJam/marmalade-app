@@ -26,7 +26,7 @@ export class LocationsComponent implements OnInit  {
   public currentUser: User;
   mapHeight: string = "300px";
 
-  currentView: string = "all";
+  currentView: string = "jar";
   currentDisplayStyle: string = "list";
 
  
@@ -84,7 +84,7 @@ export class LocationsComponent implements OnInit  {
 
   public ngOnInit() {
     
-    this.displayAllLocations();
+    this.displayJarLocations();
     this.currentDisplayStyle = 'list';
     console.log("invitations reminder", this.reminders.invitationsReminder)
 

@@ -11,7 +11,8 @@
       <div class="loginregister_buttons"></div>
       <button class="ui button register_button loginregister_buttons" [ngClass]="{ register_button_activated: !register }" type="button" (click)="showRegister()">Register</button>
     </div>
+    <div class="register_confirmation" *ngIf="registerMessage !=''">{{registerMessage}}woo hoo</div>
   </div>
   <app-login [ngClass]="{ hidden: login }"></app-login>
-  <app-register [ngClass]="{ hidden: register }" [inviteCode]="inviteCode"></app-register>
+  <app-register [ngClass]="{ hidden: register }" [inviteCode]="inviteCode" (registerSuccess) = "onRegister($event)"></app-register>
 </div>

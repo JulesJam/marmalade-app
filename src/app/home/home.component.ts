@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   register: boolean;
   login: boolean;
   inviteCode: string;
+  registerMessage: string = '';
 
 
 
@@ -35,6 +36,17 @@ export class HomeComponent implements OnInit {
     
   }
 
+  onRegister(result: boolean): void {
+    this.register = result;
+    this.login = !result;
+    this.loginButtonsActive = true;
+    this.registerMessage = "Yeah. You just joined MidnightMarmalade please sign in to start adding your favourite places";
+    console.log(this.registerMessage);
+   
+  
+  }
+
+
   checkForInviteCode(): void{
     this.route.params.subscribe( params => {
       this.inviteCode = params.id
@@ -45,12 +57,14 @@ export class HomeComponent implements OnInit {
       console.log("Route Params is", this.inviteCode)});
   }
 
+  
   ngOnInit() {
     this.register = true;
     this.login = true;
     this.loginButtonsActive = false;
     this.inviteCode = null;
-    this.checkForInviteCode()
+    this.checkForInviteCode();
+    this.registerMessage = '';
   }
 
 }

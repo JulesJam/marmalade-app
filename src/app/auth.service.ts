@@ -58,6 +58,7 @@ export class AuthService {
 
   public logout(): void{
    this.token = '';
+   this.currentUser = null;
    window.localStorage.removeItem('marmalade-token');
    window.localStorage.removeItem('username');
    this.router.navigateByUrl('/');
