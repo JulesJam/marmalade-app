@@ -6,9 +6,9 @@
 export const environment = {
   production: ' https://api.midnightmarmala.de/api',
   zeitNow: ' https://api.midnightmarmala.de/api',
-  /*apiUrl: ' https://api.midnightmarmala.de/api'*/
+  apiUrl: ' https://api.midnightmarmala.de/api'
 
-  apiUrl: 'http://localhost:3000/api'
+  /*apiUrl: 'http://localhost:3000/api'*/
 };
 
 
