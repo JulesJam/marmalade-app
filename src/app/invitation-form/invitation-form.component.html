@@ -26,10 +26,11 @@
     </form>
   </div>
   <div *ngIf="invitationMessageVisible" class="invitation-message">
-    Your invitation has been created. An email should have been generated for you to send from your mail client, the email has all the information your friend needs to join your group, however some systems may have blcoked htis process; in which case please send your friend an email with the invitation code shown below. Advise them to register at www.midnightmarmalade.co.uk and use the code when registering
+    Hurrah! Your invitation has been sent and copy will be in yur inbox. The invitation will be valid for 30 days, we will send you a wee reminder just before it expires if your friend has not accepted it. You can always send them a message with this code 
     <div class="large-centred">
       {{invitationCode}}
     </div>
+    which they can use to register at www.test.midnightmarmala.de
     <button *ngIf = "invitationMessageVisible" type="button" class="ui centered button" (click)="closeInviteMessage()">Close</button>
   </div>
   <div class="add-bar" *ngIf="!invitationMessageVisible"[ngClass]="{ hidden: !isHidden}">

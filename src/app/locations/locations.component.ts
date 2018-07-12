@@ -74,7 +74,7 @@ export class LocationsComponent implements OnInit  {
     console.log("changing display style");
     if(this.currentDisplayStyle == 'list'){
       this.currentDisplayStyle = 'map';
-      this.mapHeight = '75vh'
+      this.mapHeight = '80vw'
     } else{
       this.currentDisplayStyle = 'list'
     }
