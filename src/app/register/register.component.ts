@@ -13,6 +13,10 @@ import {
   AbstractControl
 } from '@angular/forms';
 
+import { Invitation } from '../models/invitation';
+
+import { InvitationDataService } from '../invitation-data.service';
+
 
 import { AuthService, TokenPayload } from '../auth.service';
 import { Router } from '@angular/router';
@@ -36,16 +40,17 @@ export class RegisterComponent {
   public registerError: string;
   public processing: boolean;
   public hasInviteCode: boolean;
-
+  public receivedInvitation: Invitation;
   private formTitle: string;
 
 
+
    
    
 
 
 
-  constructor(fb: FormBuilder, private auth: AuthService, private router: Router) {
+  constructor(fb: FormBuilder, private auth: AuthService, private router: Router, private invitationDataService: InvitationDataService) {
 
     this.registerForm = fb.group({
       'email': ['', Validators.compose([Validators.email, Validators.required])],
@@ -78,7 +83,24 @@ export class RegisterComponent {
     this.registerForm.patchValue({hasInviteCode: true})
     };
     if (!hasInviteCode) this.registerForm.patchValue({inviteCode: ''});
-    console.log("invite code is ", this.inviteCode);
+    
+    this.invitationDataService.getInvitation(inviteCode)
+      .subscribe(
+        (response)=>{
+          console.log("reponse is ", response)
+          if(response.invitation){
+          this.receivedInvitation = response.invitation;
+          this.registerForm.patchValue({firstName: this.receivedInvitation.recipientFirstName});
+          this.registerForm.patchValue({email: this.receivedInvitation.recipientEmailAddress})
+          this.formTitle = "Thanks "+this.receivedInvitation.recipientFirstName+" for accepting your invite - please register here";
+          };
+          if(response.success === false){
+            this.registerError = response.message;
+            this.invalidRegister = true;
+           
+          }
+        }
+      );
   }
 
 
@@ -88,14 +110,12 @@ export class RegisterComponent {
 
   register(credentials: TokenPayload){
     this.processing = true;
-    console.log("credentials are",credentials);
     this.auth.register(credentials).subscribe(() => {
       this.router.navigateByUrl('home');
       this.auth.logout();
       this.registerSuccess.emit(true);
       this.processing = false;
       }, (err) => {
-        console.log("register error",err.error.message);
         this.invalidRegister = true;
         this.registerError = err.error.message + "please try different credentials"
         this.processing = false;
@@ -104,10 +124,8 @@ export class RegisterComponent {
 
   ngOnInit() {
     if(this.inviteCode) {
-      this.onHasInviteCode(true, this.inviteCode)
-      this.formTitle = "Thanks for accepting your invite - please register here"
+      this.onHasInviteCode(true, this.inviteCode);
     };
-    console.log("Invite code recived from home is ",this.inviteCode)
   }
 
 }

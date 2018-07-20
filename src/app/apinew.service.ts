@@ -3,7 +3,7 @@ import { environment } from 'environments/environment';
 
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { Location } from './models/location';
 
@@ -42,7 +42,6 @@ export class ApinewService {
     return this.http
       .get<any>(this.API_URL + '/locations', httpOptions)
       .map(response => {
-           console.log("response json", response);
            const locations = response;
            return locations.locations.map((location) => new Location(location));
          })
@@ -63,13 +62,10 @@ export class ApinewService {
     return this.http
       .get<any>(this.API_URL + '/jar/'+jarId, httpOptions)
       .map(response => {
-           console.log("response json", response.jar.jarLocations);
            //this need to change
            const jarLocations = response.jar.jarLocations;
-           console.log("Response: jarLocations" , jarLocations, "response jar locations.locations ", jarLocations[1]);
            const locations = jarLocations
             .reduce((arr, jarLocation) => arr.concat(this.jarlocationUpdater(jarLocation, jarLocation.location)),[]);
-          console.log("reduced locations ", locations);
            return locations.map((location) => new Location(location));
          })
   };
@@ -103,7 +99,6 @@ export class ApinewService {
       default:
         'z';
     }
-    console.log('this works', location);
     return location;
 
   }
@@ -115,8 +110,6 @@ export class ApinewService {
     if(file){
     formData.append('file', file, file.name)};
     formData.append('location', JSON.stringify(location));
-
-    console.log('FormData <<<<<<<<<<', formData);
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Bearer '+`${this.getToken()}`,
@@ -127,7 +120,6 @@ export class ApinewService {
     return this.http
       .post<any>(this.API_URL + '/locations', formData, httpOptions)
       .map(response => {
-      console.log('Post response', response)
       return new Location (response.location);
       })
       
@@ -135,11 +127,6 @@ export class ApinewService {
 
   public createInvitation(invitation: Invitation): Observable<Invitation> {
     const formData: FormData = new FormData();
-    console.log("invitation being converted", invitation);
-    
-    /*formData.append('invitation', JSON.stringify(invitation));
-
-    console.log('Invitation FormData <<<<<<<<<<', formData);*/
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Bearer '+`${this.getToken()}`,
@@ -150,11 +137,24 @@ export class ApinewService {
     return this.http
       .post<any>(this.API_URL + '/invitations', invitation, httpOptions)
       .map(response => {
-      console.log('Post response', response)
       return new Invitation (response.invitation);
       })
       
   }
+
+  public getInvitation(invitationId: string): Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        'Accept': 'application/json'
+      })
+    };
+    let lookupurl = this.API_URL + '/invitations/' + invitationId
+    return this.http
+      .get<any>(this.API_URL + '/invitations/' + invitationId, httpOptions)
+                  
+  }
+  
   
 
 }

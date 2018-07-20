@@ -5,6 +5,8 @@ import { ApinewService } from './apinew.service';
 
 import { Observable } from 'rxjs/Observable';
 
+
+
 @Injectable()
 export class InvitationDataService {
   
@@ -51,11 +53,12 @@ export class InvitationDataService {
   getAllInvitations(): Observable<Invitation[]>{
     return this.apinew.getAllInvitations();
   }
+  */
 
-  getInvitationById(id: string): Invitation{
-    return this.invitationList
-    .filter(invitation => invitation._id === id)
-    .pop();
-  }*/
+  getInvitation(id: string): Observable<any>{
+   
+    return this.apinew.getInvitation(id);
+    
+  }
 
 }

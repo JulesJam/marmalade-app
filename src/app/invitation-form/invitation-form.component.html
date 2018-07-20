@@ -30,7 +30,7 @@
     <div class="large-centred">
       {{invitationCode}}
     </div>
-    which they can use to register at www.test.midnightmarmala.de
+    which they can use to register at www.test.midnightmarmala.de<br>
     <button *ngIf = "invitationMessageVisible" type="button" class="ui centered button" (click)="closeInviteMessage()">Close</button>
   </div>
   <div class="add-bar" *ngIf="!invitationMessageVisible"[ngClass]="{ hidden: !isHidden}">

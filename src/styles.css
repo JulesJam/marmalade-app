@@ -10,13 +10,17 @@ body {
 }
 .main_container{
   display: block;
-  min-width: 85%;
+  width: 75vw;
   color: rgba(125, 131, 133, 1.0);
   overflow: hidden ;
 }
 
 .ui.menu .item img.logo {
     margin-right: 1.5em;
+}
+
+.ui.attached.menu{
+  height: 101px;
 }
 .ui.raised.segments {
   margin: 1em auto;
@@ -85,10 +89,12 @@ login-box{
 }
 
 .location-form{
+  width:70vw;
   margin: 1em 0 !important;
 }
 
 .invitation-form{
+  width: 70vw;
   margin: 1em 0 0.5em !important;
   overflow: hidden;
 }
@@ -170,7 +176,7 @@ login-box{
   position: fixed;
   top: 10.9em;
   left: 1%;
-  width: 15%;
+  width: 12vw;
 
 }
 .view_active {
@@ -279,9 +285,9 @@ login-box{
 
 .navLinks {
   display: block;
-  margin: 0.3em auto;
+  margin: 0.01em auto;
   color: #d3531a;
-  font-size: 1.2em;
+  font-size: 0.8em;
 }
 
 .location_image_container {
@@ -297,11 +303,10 @@ login-box{
 }
 
 .main-title{
+  display: inline-block;
   font-size: 3em;
   color: #d3531a;
-  margin:  auto !important;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  margin: 10px auto;
   padding-left:17%;
 }
 
@@ -401,7 +406,7 @@ login-box{
 
 agm-map {
   height: 100vh;
-  width: 60vw;
+  width: 70vw;
 
 }
 
@@ -523,6 +528,7 @@ agm-map {
   and (max-device-width: 1366px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: landscape) {
+
     .ui.raised.segment{
       min-width: 100%;
       margin-left: 53%;
@@ -580,13 +586,27 @@ agm-map {
       padding: 3px;
     }
   }
-
+@media only screen 
+  and (min-device-width: 319px) 
+  and (max-device-width: 790px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape){
+    .main-title{
+      font-size: 2em;
+      margin: 30px auto;
+    }
+    .main_container{
+      padding-left: 10vw;
+      width: 89vw;
+    }
+  }
 
 @media only screen 
   and (min-device-width: 319px) 
   and (max-device-width: 790px) 
   and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) { .main-title{
+  and (orientation: portrait) { 
+  .main-title{
   width: 30%;
   font-size: 1em;
   color: #d3531a;
@@ -611,7 +631,7 @@ agm-map {
   }
 
   .nav-links{
-    font-size: 1em;
+    font-size: 0.8em;
   }
 
   .login_buttons{

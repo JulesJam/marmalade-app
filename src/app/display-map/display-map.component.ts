@@ -42,7 +42,9 @@ export class DisplayMapComponent  {
 
   };
 
-  clickedMarker(label: string, index: number) {
+  clickedMarker(label: string, index: number, m) {
+    console.log("M is ",m);
+    /*m.open();*/
     console.log(`clicked the marker: ${label || index}`)
   }
   

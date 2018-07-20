@@ -3,6 +3,7 @@ import {
   OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit {
   login: boolean;
   inviteCode: string;
   registerMessage: string = '';
+  showButtons: boolean;
 
 
 
@@ -32,7 +34,7 @@ export class HomeComponent implements OnInit {
   showRegister(): void {
     this.register = false;
     this.login = true;
-    this.loginButtonsActive = true;
+    if(!this.inviteCode){this.loginButtonsActive = true};
     
   }
 
@@ -51,16 +53,18 @@ export class HomeComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.inviteCode = params.id
       if(params.id){
-        
         this.showRegister();
+        this.showButtons = false;
       }
-      console.log("Route Params is", this.inviteCode)});
+      console.log("Route Params is", this.inviteCode)
+    });
   }
 
   
   ngOnInit() {
     this.register = true;
     this.login = true;
+    this.showButtons = true;
     this.loginButtonsActive = false;
     this.inviteCode = null;
     this.checkForInviteCode();

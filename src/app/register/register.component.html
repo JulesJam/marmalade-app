@@ -3,6 +3,7 @@
     <h1 *ngIf="!invalidRegister">{{formTitle}}</h1>
     <div class="alert_bar" *ngIf="invalidRegister">Oops those details don't seem quite  right, contact support and give the following error... {{this.registerError}}</div>
     <form [formGroup]="registerForm"
+          *ngIf="!invalidRegister"
           class="ui form"
           (ngSubmit)="register(registerForm.value)"
           [class.error]="!registerForm.valid && registerForm.touched" >
