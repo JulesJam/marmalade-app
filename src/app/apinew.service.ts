@@ -149,10 +149,22 @@ export class ApinewService {
         'Accept': 'application/json'
       })
     };
-    let lookupurl = this.API_URL + '/invitations/' + invitationId
+    
     return this.http
       .get<any>(this.API_URL + '/invitations/' + invitationId, httpOptions)
                   
+  }
+
+  public getUserConfirmation(confirmationId: string): Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        'Accept': 'application/json'
+      })
+    };
+
+    return this.http
+      .get<any>(this.API_URL+'/userConfirmations/'+confirmationId, httpOptions)
   }
   
   

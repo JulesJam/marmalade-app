@@ -35,8 +35,10 @@
     [locationList]="locations"
       (onLocationSelected)="locationWasSelected($event)">
   </locations-list>
-  <display-map
-    *ngIf = "currentDisplayStyle == 'map'"
-    [locationList]="locations" [mapHeight]='mapHeight' >
-  </display-map>
+  <div class="map-container">
+    <display-map
+      *ngIf = "currentDisplayStyle == 'map'"
+      [locationList]="locations" [mapHeight]='mapHeight' >
+    </display-map>
+  </div>
 </div>

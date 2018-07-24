@@ -10,10 +10,13 @@ body {
 }
 .main_container{
   display: block;
-  width: 75vw;
+  width: 100vw;
   color: rgba(125, 131, 133, 1.0);
   overflow: hidden ;
+  padding: 0px 8vw;
 }
+
+
 
 .ui.menu .item img.logo {
     margin-right: 1.5em;
@@ -90,15 +93,18 @@ login-box{
 
 .location-form{
   width:70vw;
-  margin: 1em 0 !important;
+  margin: 1em 15.5em 0.5em !important;
 }
 
 .invitation-form{
   width: 70vw;
-  margin: 1em 0 0.5em !important;
+  margin: 1em 15.5em 0.5em !important;
   overflow: hidden;
 }
 
+.map-container{
+  padding:0 10vw;
+}
 
 
 
@@ -336,8 +342,8 @@ login-box{
 
 
 .login_buttons{
-  margin-top: 35vw;
-  margin-left: 20%;
+  margin-top: 38vw;
+  margin-left: 12%;
 
 }
 
@@ -640,7 +646,7 @@ agm-map {
 
   .ui.cards{
     margin: -4% 0 0 4% !important;
-    width: 98%;
+    width: 100%;
   }
 
   .a{
@@ -676,10 +682,11 @@ agm-map {
   .main_container{
     display: block;
     min-width: 80vw;
-    max-width: 80vw;
+    max-width: 88vw;
     margin: 0;
     color: rgba(125, 131, 133, 1.0);
     overflow: hidden ;
+    padding: 0;
   }
 
   agm-map {
@@ -712,6 +719,14 @@ agm-map {
 
   .ui.right.floated.button{
     padding: 3px;
+  }
+
+  .invitation-form{
+    margin: 1em 2.5em 0.5em !important;
+  }
+
+  .location-form{
+    margin: 1em 2.5em 0.5em !important;
   }
 
 
