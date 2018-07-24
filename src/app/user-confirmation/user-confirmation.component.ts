@@ -32,7 +32,7 @@ export class UserConfirmationComponent implements OnInit {
               this.statusMessage = response.message
               this.login = false
             }
-          }
+          },
             error =>{
               this.statusMessage = "That link seems to be invalid please contact support"
             }

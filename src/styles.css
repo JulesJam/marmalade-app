@@ -128,8 +128,7 @@ login-box{
 }
 
 .register_confirmation {
-  margin-left: 28%;
-  width: 100%;
+  width: 83%;
   background-color: rgba(125, 131, 133, 0.8);
   color: rgba(250, 250, 250, .9);
   text-align: center;

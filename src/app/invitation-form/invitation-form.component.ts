@@ -62,7 +62,7 @@ export class InvitationFormComponent implements OnInit {
       .subscribe(
         returnedInvitation =>{
         console.log("returned invitaion",returnedInvitation);
-        let invitationLink =siteURL.development+"home/"+returnedInvitation._id
+        let invitationLink = "https://test.midnightmarmala.de/#home/"+returnedInvitation._id
          /*this.sendEmail(returnedInvitation, invitationLink);*/
          this.displayInviteCode(returnedInvitation._id)
         }

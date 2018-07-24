@@ -81,9 +81,6 @@ export class RegisterComponent {
     if(inviteCode){
     this.registerForm.patchValue({inviteCode: inviteCode});
     this.registerForm.patchValue({hasInviteCode: true})
-    };
-    if (!hasInviteCode) this.registerForm.patchValue({inviteCode: ''});
-    
     this.invitationDataService.getInvitation(inviteCode)
       .subscribe(
         (response)=>{
@@ -101,6 +98,10 @@ export class RegisterComponent {
           }
         }
       );
+    };
+    if (!hasInviteCode) this.registerForm.patchValue({inviteCode: ''});
+    
+   
   }
 
 
@@ -117,6 +118,7 @@ export class RegisterComponent {
       this.processing = false;
       }, (err) => {
         this.invalidRegister = true;
+        console.log("register error was ",err);
         this.registerError = err.error.message + "please try different credentials"
         this.processing = false;
     });

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
@@ -95,7 +95,13 @@ export class AuthService {
    let base;
 
    if (method === 'post'){
-     base = this.http.post(API_URL + `/${type}`, user);
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin': '*',
+          'Accept': 'application/json'
+        })
+      };
+     base = this.http.post(API_URL + `/${type}`, user,httpOptions );
    } else {
      base = this.http.get(API_URL + `/${type}`,{headers:  {Authorization: `Bearer ${this.getToken()}`}});
    }

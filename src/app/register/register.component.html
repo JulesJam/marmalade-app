@@ -34,12 +34,12 @@
       <div [class.error]="registerForm.controls['password'].touched && registerForm.controls['passwordConfirmation'].touched && registerForm.controls['password'].value != registerForm.controls['passwordConfirmation'].value">
         <div class="field">
           <label for="password">Password</label>
-          <input type="password" autcomplete='new-password' class="form-control" placeholder="   Password" [formControl]="registerForm.controls['password']">
+          <input type="password" autocomplete='new-password' class="form-control" placeholder="   Password" [formControl]="registerForm.controls['password']">
         </div>
   
         <div class="field">
           <label for="passwordConfirmation">Password Confirmation</label>
-          <input type="password" autcomplete='new-password' class="form-control" placeholder="Re-enter Password" [formControl]=" registerForm.controls['passwordConfirmation']">
+          <input type="password" autocomplete='new-password' class="form-control" placeholder="Re-enter Password" [formControl]=" registerForm.controls['passwordConfirmation']">
           <div *ngIf="registerForm.controls['password'].touched && registerForm.controls['passwordConfirmation'].touched && registerForm.controls['password'].value.length < 8"
             class="ui error message visible">Password should be at least 8 characters
           </div>
