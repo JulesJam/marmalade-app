@@ -48,6 +48,7 @@ import { ModalService } from './modal.service';
 import { DomService } from './dom.service';
 import { JarLocationListComponent } from './jar-location-list/jar-location-list.component';
 import { DisplayMapComponent } from './display-map/display-map.component';
+import { UserConfirmationComponent } from './user-confirmation/user-confirmation.component';
 
 
 
@@ -62,6 +63,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'contactus', redirectTo: 'contact' },
   { path: 'register/:id', redirectTo: 'home'},
+  { path: 'userConfirmation/:id', component: UserConfirmationComponent},
   { path: 'findLocalLocation', component: FindLocalLocationComponent },
   { path: 'locations', component: LocationsComponent, canActivate:[AuthGuardService]},
   { path: '**', component: PageNotFoundComponent}
@@ -90,7 +92,8 @@ const routes: Routes = [
     InvitationFormComponent,
     PendingInviteReminderComponent,
     JarLocationListComponent,
-    DisplayMapComponent
+    DisplayMapComponent,
+    UserConfirmationComponent
     
   ],
   imports: [

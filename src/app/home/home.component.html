@@ -1,18 +1,18 @@
-<div>
-  <div class="front_page_image_band" [ngClass]="{hidden: loginButtonsActive || !showButtons}">
-    <img class="image_one_quarter" src="../assets/images/queensbury.jpg" title="image1" alt="image of">
-    <img class="image_one_quarter image_one_quarter_two" [ngClass]="{hidden: loginButtonsActive}" src="../assets/images/missing.png" title="image1" alt="image of">
-    <img class="image_one_quarter image_one_quarter_three" [ngClass]="{hidden: loginButtonsActive}" src="../assets/images/bandol.jpg" title="image1" alt="image of">
-    <img class="image_one_quarter image_one_quarter_four" src="../assets/images/thewarehousehotel.jpg" title="image1" alt="image of">
+
+<div class="front_page_image_band" [ngClass]="{hidden: loginButtonsActive || !showButtons}">
+  <img class="image_one_quarter" src="../assets/images/queensbury.jpg" title="image1" alt="image of">
+  <img class="image_one_quarter image_one_quarter_two" [ngClass]="{hidden: loginButtonsActive}" src="../assets/images/missing.png" title="image1" alt="image of">
+  <img class="image_one_quarter image_one_quarter_three" [ngClass]="{hidden: loginButtonsActive}" src="../assets/images/bandol.jpg" title="image1" alt="image of">
+  <img class="image_one_quarter image_one_quarter_four" src="../assets/images/thewarehousehotel.jpg" title="image1" alt="image of">
+</div>
+<div *ngIf="showButtons" [ngClass]="loginButtonsActive ? 'login_buttons_activated': 'login_buttons'">
+  <div class="ui large buttons">
+    <button class="ui button login_button loginregister_buttons"  type="button" (click)="showLogin()" [ngClass]="{ login_button_activated: !login }">Sign In</button>
+    <div class="loginregister_buttons"></div>
+    <button class="ui button register_button loginregister_buttons" [ngClass]="{ register_button_activated: !register }" type="button" (click)="showRegister()">Register</button>
   </div>
-  <div *ngIf="showButtons" [ngClass]="loginButtonsActive ? 'login_buttons_activated': 'login_buttons'">
-    <div class="ui large buttons">
-      <button class="ui button login_button loginregister_buttons"  type="button" (click)="showLogin()" [ngClass]="{ login_button_activated: !login }">Sign In</button>
-      <div class="loginregister_buttons"></div>
-      <button class="ui button register_button loginregister_buttons" [ngClass]="{ register_button_activated: !register }" type="button" (click)="showRegister()">Register</button>
-    </div>
-    <div class="register_confirmation" *ngIf="registerMessage !=''">{{registerMessage}}</div>
+  <div class="register_confirmation" *ngIf="registerMessage !=''">{{registerMessage}}</div>
   </div>
   <app-login [ngClass]="{ hidden: login }"></app-login>
   <app-register [ngClass]="{ hidden: register }" [inviteCode]="inviteCode" (registerSuccess) = "onRegister($event)"></app-register>
-</div>
+
