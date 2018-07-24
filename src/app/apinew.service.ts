@@ -164,7 +164,7 @@ export class ApinewService {
     };
 
     return this.http
-      .get<any>(this.API_URL+'/userConfirmations/'+confirmationId, httpOptions)
+      .get<any>(this.API_URL+'/userConfirmation/'+confirmationId, httpOptions)
   }
   
   

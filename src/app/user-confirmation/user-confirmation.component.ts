@@ -16,7 +16,7 @@ export class UserConfirmationComponent implements OnInit {
 
   constructor(private apinew: ApinewService, private route: ActivatedRoute ) {
     this.login = true;
-    this. statusMessage = 'Looking up confirmation details';
+    this.statusMessage = 'Looking up confirmation details';
   }
 
   checkConfirmation(): void{
@@ -26,9 +26,16 @@ export class UserConfirmationComponent implements OnInit {
         this.apinew.getUserConfirmation(confirmationCode)
         .subscribe(
           response =>{
-          console.log("returned invitaion",response);
-          
+            console.log("resposne is...",response);
+            if(!response.success){this.statusMessage = "That link seem sto be invalid please contact support"} 
+            else if (response.success){
+              this.statusMessage = response.message
+              this.login = false
+            }
           }
+            error =>{
+              this.statusMessage = "That link seems to be invalid please contact support"
+            }
         )
       }
      

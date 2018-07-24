@@ -1,4 +1,8 @@
 h2 {
+  display: block;
+  margin: 7px auto;
+  width: 348px;
   color: white;
+  text-align: center;
 }
 
