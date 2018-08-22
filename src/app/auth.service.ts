@@ -94,16 +94,19 @@ export class AuthService {
  public request(method: 'post'|'get', type: 'login'|'register'|'locations', user?: TokenPayload): Observable<any> {
    let base;
 
+   const httpOptions = {
+     headers: new HttpHeaders({
+       'Content-Type':  'multipart/form-data',
+       'Accept': 'application/json',
+       'Authorization': 'Bearer '+`${this.getToken()}`,
+       'Access-Control-Allow-Origin': '*'
+     })
+   };
+
    if (method === 'post'){
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Access-Control-Allow-Origin': '*',
-          'Accept': 'application/json'
-        })
-      };
-     base = this.http.post(API_URL + `/${type}`, user,httpOptions );
+     base = this.http.post(API_URL + `/${type}`, user);
    } else {
-     base = this.http.get(API_URL + `/${type}`,{headers:  {Authorization: `Bearer ${this.getToken()}`}});
+     base = this.http.get(API_URL + `/${type}`, httpOptions/*{headers:  {Authorization: `Bearer ${this.getToken()}`}}*/);
    }
 
    const request = base.pipe(
