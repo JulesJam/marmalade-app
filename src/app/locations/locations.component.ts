@@ -9,6 +9,8 @@ import { User } from '../models/user';
 import { AuthService, TokenPayload } from '../auth.service'
 
 import { LocationDataService } from '../location-data.service';
+import { DistanceCalculatorService } from '../distance-calculator.service';
+import { UserLocationService } from '../userlocation.service';
 import { RemindersService } from '../services/reminders.service';
 import { ModalService } from '../modal.service';
 import { PendingInviteReminderComponent } from '../pending-invite-reminder/pending-invite-reminder.component';
@@ -28,10 +30,12 @@ export class LocationsComponent implements OnInit  {
 
   currentView: string = "jar";
   currentDisplayStyle: string = "list";
+  currentUserLocation: number[];
+
 
  
 
-  constructor(private locationDataService: LocationDataService, private auth: AuthService, private modal: ModalService, private reminders: RemindersService) {
+  constructor(private locationDataService: LocationDataService, private auth: AuthService, private modal: ModalService, private reminders: RemindersService, private userLocationService: UserLocationService, private distanceCalculatorService: DistanceCalculatorService) {
     this.loading = true;
     this.currentUser = auth.currentUser;
     
@@ -51,6 +55,11 @@ export class LocationsComponent implements OnInit  {
       .getJarLocations(jarId)
       .subscribe(
         (locations) => {
+        locations.map(location => {
+          location.distanceFromUser = this.distanceCalculatorService.miles(this.currentUserLocation[0],this.currentUserLocation[1], location.coordinates[1],location.coordinates[0]);
+          console.log("Updating Location ",location);
+          return location
+        })
         this.locations = locations
         this.loading = false;
         this.currentView = "jar";
@@ -63,6 +72,11 @@ export class LocationsComponent implements OnInit  {
       .getAllLocations()
       .subscribe(
         (locations) => {
+        locations.map(location => {
+          location.distanceFromUser === 2
+          return location
+        })
+
         this.locations = locations
         this.loading = false;
         this.currentView = "all";
@@ -84,8 +98,16 @@ export class LocationsComponent implements OnInit  {
 
   public ngOnInit() {
     
-    this.displayJarLocations();
+    
     this.currentDisplayStyle = 'list';
+    this.userLocationService.setCurrentPosition()
+      .then((coords)=>{
+        console.log("User is at ", coords[0]);
+        this.currentUserLocation = [coords[0],coords[1]];
+        this.displayJarLocations();
+      }
+    );
+
     console.log("invitations reminder", this.reminders.invitationsReminder)
 
     if(this.currentUser.pendingInvitations > 0 && !this.reminders.invitationsReminder ){

@@ -35,7 +35,6 @@ export class UserLocationService {
       if('geolocation' in navigator){
         navigator.geolocation.getCurrentPosition((position) => {
           console.log("Position is ",position.coords.latitude, position.coords.longitude);
-          console.log("is anything happening", position);
           this.latitude = position.coords.latitude;
           this.longitude = position.coords.longitude;
           this.myLocation = [this.latitude, this.longitude]
@@ -45,7 +44,7 @@ export class UserLocationService {
         })
       } else {
         console.log("Geolocation failing");
-        reject("Geolocation is not supported by this browser.");
+        reject([0,0]);
       }
       
     });

@@ -44,7 +44,7 @@ export class LocationsListComponent  {
   }
 
   sortedLocations(): Location[] {
-    return this.locationList.sort((a: Location, b: Location) => b.votes - a.votes);
+    return this.locationList.sort((a: Location, b: Location) => a.distanceFromUser - b.distanceFromUser);
   }
 
 

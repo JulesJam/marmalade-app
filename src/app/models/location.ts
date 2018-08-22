@@ -29,6 +29,7 @@ export class Location {
   jarLocationSource: string;
   userLocationSource: string;
   mapTag: string;
+  distanceFromUser: number;
 
 
 

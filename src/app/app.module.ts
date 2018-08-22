@@ -41,6 +41,7 @@ import { LoginComponent } from './login/login.component';
 import { ApinewService } from './apinew.service';
 import { FindLocalLocationComponent } from './findLocalLocation/findLocalLocation.component';
 import { UserLocationService } from './userlocation.service';
+import { DistanceCalculatorService } from './distance-calculator.service';
 import { FindLocationAnywhereComponent } from './find-location-anywhere/find-location-anywhere.component';
 import { InvitationFormComponent } from './invitation-form/invitation-form.component';
 import { PendingInviteReminderComponent } from './pending-invite-reminder/pending-invite-reminder.component';
@@ -117,6 +118,7 @@ const routes: Routes = [
     AuthGuardService,
     ApinewService,
     UserLocationService,
+    DistanceCalculatorService,
     DomService,
     ModalService,
     RemindersService
