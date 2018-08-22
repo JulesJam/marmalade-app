@@ -1,25 +1,29 @@
  <div class="ui link cards"> 
   <div class="card">
-    <div class="image">
-      <location-image [location]="location"></location-image>
-      <div *ngIf="location.jarLocationEntryType == 'Wishlist'" class="indicator">
-        {{ location.jarLocationEntryType }}
+    <div class="location_header">
+      <div class="location_image_container">
+        <location-image [location]="location"></location-image>
       </div>
-    </div>
-   
+      <div class="location_info_container">
+        <div *ngIf="location.jarLocationEntryType == 'Wishlist'" class="indicator">
+        {{ location.jarLocationEntryType }}  
+        </div>
+        {{location.mapTag}} {{ location.jarLocationType}} 
+      </div>
+   </div>
     
     <div class="content">
       <div class="header">{{ location.locationName}}</div>
       <div class="meta">
         <a>City: {{ location.locationAddress }}</a>
         <br>
-        <a>Website: {{ location.website }}</a>
+        Website: <a href="{{ location.website }}"> click to view</a>
         <br>
-        <a>&#9742;: {{ location.locationMainTelephone}}</a>
+        <a href="tel:{{ location.locationMainTelephone}}">&#9742;: {{ location.locationMainTelephone}}</a>
       </div>
       <div class="description">
         {{ location.jarLocationDescription }}
-        {{ location.jarLocationType}} {{location.mapTag}}
+       
         
         
       </div>

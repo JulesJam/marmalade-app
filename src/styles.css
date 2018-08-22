@@ -297,10 +297,22 @@ login-box{
   font-size: 0.8em;
 }
 
+.location_header {
+  width: 100%;
+}
+
 .location_image_container {
-  width: 150px;
-  height: 150px;
+  width: 50%;
+  height: 100px;
   overflow: hidden;
+  float: left;
+}
+
+.location_info_container {
+  width: 50%;
+  height: 100px;
+  overflow: hidden;
+  float: right;
 }
 
 .location-image{
