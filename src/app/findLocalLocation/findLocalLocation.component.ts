@@ -77,6 +77,7 @@ export class FindLocalLocationComponent implements OnInit {
             this.userLocation.findPlaceDetails(countryCode, this.searchElementRef.nativeElement, this.searchControl)
             .then(
               (newLocation) => {
+                
                 this.newLocation = newLocation;
                 console.log("NewLocation is >>>", this.newLocation);
                 this.notifyNewLocation.emit(this.newLocation);

@@ -321,6 +321,11 @@ login-box{
 
 }
 
+.google_logo{
+  width: 30%;
+  float: right;
+}
+
 .main-title{
   display: inline-block;
   font-size: 3em;

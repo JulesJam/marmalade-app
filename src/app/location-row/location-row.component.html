@@ -8,7 +8,7 @@
         <div *ngIf="location.jarLocationEntryType == 'Wishlist'" class="indicator">
         {{ location.jarLocationEntryType }}  
         </div>
-        {{location.mapTag}} {{ location.jarLocationType}} <br> {{location.distanceFromUser}} miles
+        {{location.mapTag}} {{ location.jarLocationType}} <br> {{location.distanceFromUser}} Miles (as the crow flies)
       </div>
    </div>
     
@@ -19,13 +19,13 @@
         <br>
         Website: <a href="{{ location.website }}"> click to view</a>
         <br>
-        <a href="tel:{{ location.locationMainTelephone}}">&#9742;: {{ location.locationMainTelephone}}</a>
+        <a href="tel:{{ location.locationMainTelephone}}">&#9742;: {{ location.locationMainTelephone}} </a><img class="google_logo" src="../../assets/images/logos/powered_by_google/desktop/powered_by_google_on_white.png">
       </div>
+  
+        
+    
       <div class="description">
         {{ location.jarLocationDescription }}
-       
-        
-        
       </div>
     </div>
     <div class="extra content">

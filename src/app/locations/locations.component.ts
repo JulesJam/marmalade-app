@@ -73,7 +73,7 @@ export class LocationsComponent implements OnInit  {
       .subscribe(
         (locations) => {
         locations.map(location => {
-          location.distanceFromUser === 2
+          location.distanceFromUser = this.distanceCalculatorService.miles(this.currentUserLocation[0],this.currentUserLocation[1], location.coordinates[1],location.coordinates[0]);
           return location
         })
 
