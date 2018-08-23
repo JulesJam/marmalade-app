@@ -32,31 +32,20 @@ export class UserLocationService {
   setCurrentPosition() {
   
      return new Promise((resolve, reject) =>{
-      console.log(navigator);
-      let localNavigator: any;
-      localNavigator = navigator; 
-      localNavigator.permissions.query({'name': 'geolocation'})
-      .then( permission =>{
-        console.log(permission.state
-          );
-        if(permission.state != "denied"){
-          navigator.geolocation.getCurrentPosition((position) => {
-            console.log("Position is ",position.coords.latitude, position.coords.longitude);
-            this.latitude = position.coords.latitude;
-            this.longitude = position.coords.longitude;
-            this.myLocation = [this.latitude, this.longitude]
-            this.located = true;
-            this.zoom = 16;
-            resolve(this.myLocation);
-          })
-        } else {
-          console.log("Geolocation failing");
-          this.myLocation = [0,0]
+      if('geolocation' in navigator){
+        navigator.geolocation.getCurrentPosition((position) => {
+          console.log("Position is ",position.coords.latitude, position.coords.longitude);
+          this.latitude = position.coords.latitude;
+          this.longitude = position.coords.longitude;
+          this.myLocation = [this.latitude, this.longitude]
+          this.located = true;
+          this.zoom = 16;
           resolve(this.myLocation);
-        }
-        reject(console.log("Geolocation failed"));
-      } );
-      
+        })
+      } else {
+        console.log("Geolocation failing");
+        reject([0,0]);
+      }
       
     });
   };
